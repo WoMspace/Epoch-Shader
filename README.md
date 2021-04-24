@@ -13,6 +13,16 @@ a particular period of time in history or a person's life.
 - B&W and Color film modes
 - Among many others!
 
+#### Todo:
+- Random digital and analogue glitches and transforms.
+- HDR
+- Tonemapping
+- Dimensional rewind effect
+- Light leaks
+- Anamorphic effects
+- Other lens effects
+- Fix bokeh edges
+
 ![2021-04-24_23 47 55](https://user-images.githubusercontent.com/22845656/115974876-db9a6a80-a557-11eb-8b29-b5a40c35a700.png)
 ![2021-04-24_23 49 12](https://user-images.githubusercontent.com/22845656/115974863-c7566d80-a557-11eb-8d0f-ed69ce0e9405.png)
 
