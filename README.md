@@ -1,8 +1,10 @@
-# Epoch
+# [Epoch](https://www.google.com/search?q=define+epoch)
 ## /ˈiːpɒk,ˈɛpɒk/
 **noun:**
-	a particular period of time in history or a person's life.
-	*"the Victorian epoch"*
+
+a particular period of time in history or a person's life.
+	
+*"the Victorian epoch"*
 
 #### Features include
 - Scanlines
