@@ -10,6 +10,8 @@ profile.FILM_BW=B&W Film
 profile.FILM_BW.comment=Emulate black-and-white 35mm film.
 profile.FILM_COLOR=Color Film
 profile.FILM_COLOR.comment=Emulate color 35mm film.
+profile.ANAMORPHIC_LENS=Anamorphic Lens
+profile.ANAMORPHIC_LENS.comment=Emulate an anamorphic lens.
 
 screen.WORLD=World
 screen.WORLD.comment=World effects. Pre-camera.
@@ -101,7 +103,7 @@ option.GREYSCALE_BLUE_CONTRIBUTION.comment=How sensitive to blue the B&W film is
 option.COLORFILM_STRENGTH=Color Film Strength
 option.COLORFILM_STRENGTH.comment=How strong the color film color effect is.
 option.GRAIN_STRENGTH=Grain Strength
-option.GRAIN_STRENGTH.comment=Strength of the grain. It's subtractive, so stronger grain makes the whole image darker.
+option.GRAIN_STRENGTH.comment=Strength of the grain. Stronger tends to lower contrast of the whole image.
 option.GRAIN_MODE=Grain Mode
 option.GRAIN_MODE.comment=Luma is black and white grain. Generally considered aesthetic. Chroma is colored noise. Generally considered ugly.
 value.GRAIN_MODE.GRAIN_DISABLED=Disabled

@@ -55,10 +55,10 @@ void main()
 		vec2 noiseCoord = texcoord + vec2(sin(noiseSeed), cos(noiseSeed));
 
         #if GRAIN_MODE == 1 // luma noise
-		color -= vec3(texture2D(noisetex, noiseCoord).r)*GRAIN_STRENGTH;
+		color += vec3(texture2D(noisetex, noiseCoord).r - 0.5)*GRAIN_STRENGTH;
         #endif
         #if GRAIN_MODE == 2 // chroma noise
-        color -= texture2D(noisetex, noiseCoord).rgb*GRAIN_STRENGTH;
+        color += (texture2D(noisetex, noiseCoord).rgb - vec3(0.5))*GRAIN_STRENGTH;
         #endif
     #endif
 
