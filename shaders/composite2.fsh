@@ -19,6 +19,7 @@ uniform sampler2D colortex2;
 uniform mat4 gbufferProjection;
 uniform float viewWidth;
 uniform float viewHeight;
+uniform float frameCounter;
 
 const bool colortex2Clear = false;
 

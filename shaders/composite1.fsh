@@ -16,6 +16,7 @@ uniform sampler2D colortex0;
 uniform sampler2D noisetex;
 uniform sampler2D colortex1;
 uniform sampler2D depthtex0;
+uniform mat4 gbufferProjection;
 
 const bool colortex1Clear = false;
 const bool colortex0MipmapEnabled = true;
@@ -31,7 +32,7 @@ void main()
     vec3 color = texture2D(colortex0, texcoord).rgb;
 
     #if DOF_MODE == 1 //mip blur
-    color = mipBlur(2.0);
+    color = mipBlur(sqrt(abs(getFragDepth(depthtex0, texcoord) - getCursorDepth())));
     #endif
     #if DOF_MODE == 2 //bokeh blur
     color = bokehBlur();
