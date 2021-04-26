@@ -17,12 +17,12 @@ varying vec2 texcoord;
 
 void main()
 {
-    vec3 color = texture2D(colortex0, texcoord).rgb;
+	vec3 color = texture2D(colortex0, texcoord).rgb;
 
-    #ifdef SHADER_FOG_ENABLED
-    color = doFog(getRoundFragDepth(depthtex0, texcoord), color);
-    #endif
+	#ifdef SHADER_FOG_ENABLED
+	color = doFog(getRoundFragDepth(depthtex0, texcoord), color);
+	#endif
 
-    /* DRAWBUFFERS:0 */
-    gl_FragData[0] = vec4(color, 1.0);
+	/* DRAWBUFFERS:0 */
+	gl_FragData[0] = vec4(color, 1.0);
 }

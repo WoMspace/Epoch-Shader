@@ -26,7 +26,6 @@ vec3 doFog(float depth, vec3 color)
 		fogNearValue = 0.0;
 		fogFarValue = LAVA_FOG_DISTANCE;
 	}
-	
 	if(texture2D(depthtex0, texcoord).r != 1.0)
 	{
 		color = mix(color, customFogColor, clamp(((length(viewPos)-fogNearValue)/fogFarValue), 0.0, 1.0));

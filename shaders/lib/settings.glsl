@@ -22,9 +22,9 @@ const float centerDepthHalflife = 0.5; // How fast the focus should move. In sec
 
 #define DOF_ANAMORPHIC 1.0 // Aspect ratio of the bokeh. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.2 1.4 1.6 1.8 2.0 2.2 2.4 2.6 2.8 3.0]
 #ifdef MC_GL_RENDERER_RADEON
-    #define DOF_BOKEH_SAMPLES 128 // How many samples to use for the bokeh. [32 64 128 256 512 1024 2048]
+	#define DOF_BOKEH_SAMPLES 128 // How many samples to use for the bokeh. [32 64 128 256 512 1024 2048]
 #else
-    #define DOF_BOKEH_SAMPLES 128 // How many samples to use for the bokeh. [32 64 128 256 512]
+	#define DOF_BOKEH_SAMPLES 128 // How many samples to use for the bokeh. [32 64 128 256 512]
 #endif
 // #define DOF_BOKEH_MIPMAP // Smoothens a low bokeh sample count. Can make the bokeh pixellated.
 // #define DOF_BOKEH_NOISE // Makes the bokeh noisy, but smoother. BROKEN!
@@ -47,7 +47,6 @@ const float centerDepthHalflife = 0.5; // How fast the focus should move. In sec
 
 // //#define COLORFILM_SATURATION 1.0 // no idea how to implement this but it's important :P
 #define COLORFILM_STRENGTH 1.0 // How strong the film color simulation should be. [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
-
 
 #define GRAIN_STRENGTH 0.15 // How strong the noise is. [0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40 0.45 0.50]
 #define GRAIN_DISABLED 0
@@ -83,7 +82,18 @@ const int noiseTextureResolution = 512; // Size of the noise texture. Smaller nu
 #endif
 
 #define GHOSTING_ENABLED // Ghosting effect.
-#define GHOSTING_STRENGTH 0.7 // The strength of the ghosting. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9]
+#define GHOSTING_STRENGTH 0.5 // The strength of the ghosting. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9]
+
+// #define GRADING_ENABLED // Post-processing color grading.
+#define GRADING_HI_RED 1.0 // Red highlight strength [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define GRADING_HI_GREEN 1.0 // Green highlight strength [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define GRADING_HI_BLUE 1.0 // Blue highlight strength [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define GRADING_MID_RED 1.0 // Red midtones strength [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define GRADING_MID_GREEN 1.0 // Green midtones strength [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define GRADING_MID_BLUE 1.0 // Blue midtones strength [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define GRADING_LOW_RED 1.0 // Red shadow strength [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define GRADING_LOW_GREEN 1.0 // Green shadow strength [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define GRADING_LOW_BLUE 1.0 // Blue shadow strength [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
 
 // #define BARREL_DISTORTION_ENABLED // Causes a rounding of the image.
 #define BARREL_POWER -0.5 // How strong the lens distortion should be. Negative = Barrel Distortion. Positive = Pincushion Distortion. [-1.0 -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]

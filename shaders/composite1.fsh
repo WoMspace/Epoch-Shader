@@ -31,52 +31,48 @@ varying vec2 texcoord;
 
 void main()
 {
-    vec3 color = texture2D(colortex0, texcoord).rgb;
+	vec3 color = texture2D(colortex0, texcoord).rgb;
 
-    #if DOF_MODE == 1 //mip blur
-    color = mipBlur(sqrt(abs(getFragDepth(depthtex0, texcoord) - getCursorDepth())));
-    #endif
-    #if DOF_MODE == 2 //bokeh blur
-    color = bokehBlur();
-    #endif
+	#if DOF_MODE == 1 //mip blur
+	color = mipBlur(sqrt(abs(getFragDepth(depthtex0, texcoord) - getCursorDepth())));
+	#elif DOF_MODE == 2 //bokeh blur
+	color = bokehBlur();
+	#endif
 
-    #if FILM_MODE != 0
-        #if FILM_MODE == 1 // greyscale
-            color = extractLuma(color, vec3(GREYSCALE_RED_CONTRIBUTION, GREYSCALE_GREEN_CONTRIBUTION, GREYSCALE_BLUE_CONTRIBUTION));
-            color = contrast(color, FILM_BRIGHTNESS, FILM_CONTRAST);
-        #endif
-        #if FILM_MODE == 2 // color film
-            color = colorFilm(color, 1.0);
-        #endif
-    #endif
+	#if FILM_MODE != 0
+		#if FILM_MODE == 1 // greyscale
+			color = extractLuma(color, vec3(GREYSCALE_RED_CONTRIBUTION, GREYSCALE_GREEN_CONTRIBUTION, GREYSCALE_BLUE_CONTRIBUTION));
+			color = contrast(color, FILM_BRIGHTNESS, FILM_CONTRAST);
+		#elif FILM_MODE == 2 // color film
+			color = colorFilm(color, 1.0);
+		#endif
+	#endif
 
-    #if GRAIN_MODE != 0
-        float noiseSeed = float(frameCounter) * 0.11;
+	#if GRAIN_MODE != 0
+		float noiseSeed = float(frameCounter) * 0.11;
 		vec2 noiseCoord = texcoord + vec2(sin(noiseSeed), cos(noiseSeed));
 
-        #if GRAIN_MODE == 1 // luma noise
+		#if GRAIN_MODE == 1 // luma noise
 		color += vec3(texture2D(noisetex, noiseCoord).r - 0.5)*GRAIN_STRENGTH;
-        #endif
-        #if GRAIN_MODE == 2 // chroma noise
-        color += (texture2D(noisetex, noiseCoord).rgb - vec3(0.5))*GRAIN_STRENGTH;
-        #endif
-    #endif
+		#elif GRAIN_MODE == 2 // chroma noise
+		color += (texture2D(noisetex, noiseCoord).rgb - vec3(0.5))*GRAIN_STRENGTH;
+		#endif
+	#endif
 
-    #ifdef CHROMA_SAMPLING_ENABLED
-        vec3 chroma = normalize(texture2DLod(colortex0, texcoord, CHROMA_SAMPLING_SIZE).rgb) * 2.0;
+	#ifdef CHROMA_SAMPLING_ENABLED
+		vec3 chroma = normalize(texture2DLod(colortex0, texcoord, CHROMA_SAMPLING_SIZE).rgb) * 2.0;
 		color = chroma * extractLuma(color);
-    #endif
+	#endif
 
-    vec3 color2 = color;
-    #ifdef INTERLACING_ENABLED
-    if(mod(gl_FragCoord.y, INTERLACING_SIZE) > (INTERLACING_SIZE - 1.0)*0.5)
-        {
-            color = texture2D(colortex1, texcoord).rgb;
-        }
-    #endif
+	vec3 color2 = color;
+	#ifdef INTERLACING_ENABLED
+	if(mod(gl_FragCoord.y, INTERLACING_SIZE) > (INTERLACING_SIZE - 1.0)*0.5)
+		{
+			color = texture2D(colortex1, texcoord).rgb;
+		}
+	#endif
 
-
-    /* DRAWBUFFERS:01 */
-    gl_FragData[0] = vec4(color, 1.0);
-    gl_FragData[1] = vec4(color2, 1.0);
+	/* DRAWBUFFERS:01 */
+	gl_FragData[0] = vec4(color, 1.0);
+	gl_FragData[1] = vec4(color2, 1.0);
 }
