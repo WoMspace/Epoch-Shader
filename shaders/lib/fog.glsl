@@ -1,6 +1,3 @@
-uniform int isEyeInWater;
-uniform vec3 fogColor;
-
 vec3 doFog(float depth, vec3 color)
 {
 	float viewPos = getRoundFragDepth(depthtex0, texcoord);

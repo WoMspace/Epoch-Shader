@@ -14,3 +14,13 @@ vec2 distort(vec2 coord, float strength) { //Builderb0y has made an entirely (at
     coord *= 1.0 - strength * dot(coord, coord);
     return coord + vec2(0.5);
 }
+
+bool floatEquals(float op1, float op2, float difference)
+{
+	return abs(op1 - op2) < difference;
+}
+
+float generateNoise(vec2 spatialSeed, float temporalSeed)
+{
+	return 1.0;
+}

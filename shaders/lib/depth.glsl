@@ -1,7 +1,3 @@
-uniform mat4 gbufferProjectionInverse;
-uniform float far;
-uniform float centerDepthSmooth;
-
 float getFragDepth(sampler2D depthTex, vec2 texcoord)
 {
 	float depth = texture2D(depthTex, texcoord).r;

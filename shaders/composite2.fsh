@@ -19,7 +19,7 @@ uniform sampler2D colortex2;
 uniform mat4 gbufferProjection;
 uniform float viewWidth;
 uniform float viewHeight;
-uniform float frameCounter;
+uniform int frameCounter;
 uniform float frameTime;
 
 const bool colortex2Clear = false;
@@ -43,7 +43,12 @@ void main()
 		#endif
 	#endif
 
+	#ifdef VHS_TRANSFORMS_ENABLED
+		uv.x += generateNoise(uv, float(frameCounter)) * 0.1;
+	#endif
+
 	vec3 color = texture2D(colortex0, uv).rgb;
+	//color = vec3(generateNoise(uv, frameCounter));
 
 	#if SCANLINE_MODE != 0
 		#if SCANLINE_MODE == 1 // WoMspace Scanlines

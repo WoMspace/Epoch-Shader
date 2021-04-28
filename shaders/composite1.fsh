@@ -19,6 +19,15 @@ uniform sampler2D noisetex;
 uniform sampler2D colortex1;
 uniform sampler2D depthtex0;
 uniform mat4 gbufferProjection;
+uniform mat4 gbufferProjectionInverse;
+uniform float centerDepthSmooth;
+uniform float far;
+uniform float near;
+uniform float viewWidth;
+uniform float viewHeight;
+uniform float aspectRatio;
+uniform int frameCounter;
+uniform float frameTimeCounter;
 
 const bool colortex1Clear = false;
 const bool colortex0MipmapEnabled = true;
@@ -26,6 +35,7 @@ const bool colortex0MipmapEnabled = true;
 varying vec2 texcoord;
 
 #include "lib/depth.glsl"
+#include "lib/maths.glsl"
 #include "lib/blurs.glsl"
 #include "lib/color.glsl"
 
@@ -36,7 +46,8 @@ void main()
 	#if DOF_MODE == 1 //mip blur
 	color = mipBlur(sqrt(abs(getFragDepth(depthtex0, texcoord) - getCursorDepth())));
 	#elif DOF_MODE == 2 //bokeh blur
-	color = bokehBlur();
+	float coc = texture2DLod(colortex0, texcoord, 3.5).a;
+	color = bokehBlur(coc * 20.0);
 	#endif
 
 	#if FILM_MODE != 0
