@@ -59,14 +59,14 @@ void main()
 
 	#ifdef FILM_IMPERFECTIONS_SPOTS_ENABLED
 		float spotHere = 0.0;
-		for(int i = 0; i < FILM_IMPERFECTIONS_SPOTS_SIZE; i++)
+		for(int i = -FILM_IMPERFECTIONS_SPOTS_SIZE; i < FILM_IMPERFECTIONS_SPOTS_SIZE; i++)
 		{
-			for(int j = 0; j < FILM_IMPERFECTIONS_SPOTS_SIZE; j++)
+			for(int j = -FILM_IMPERFECTIONS_SPOTS_SIZE; j < FILM_IMPERFECTIONS_SPOTS_SIZE; j++)
 			{
 				vec2 spotLoc = texcoord + vec2(1.0 / viewWidth * i, 1.0 / viewHeight * j);
 				if(texture2D(colortex0, spotLoc).a > 0.0)
 				{
-					spotHere = 1.0;
+					spotHere = 1.0 - (abs(i * j) / (FILM_IMPERFECTIONS_SPOTS_SIZE * FILM_IMPERFECTIONS_SPOTS_SIZE));
 					break;
 				}
 			}
@@ -75,7 +75,7 @@ void main()
 	#endif
 
 	#ifdef FILM_IMPERFECTIONS_LINES_ENABLED
-		color -= clamp(texture2D(noisetex, vec2(texcoord.x + frameTime, 1.0)).r - 0.9, 0.0, 0.1) * 10.0 * FILM_IMPERFECTIONS_LINES_STRENGTH;
+		color -= clamp(texture2D(noisetex, vec2(frameTime + texcoord.x, 1.0)).r - 0.9, 0.0, 0.1) * 10.0 * FILM_IMPERFECTIONS_LINES_STRENGTH;
 	#endif
 
 	#if SCANLINE_MODE != 0

@@ -52,7 +52,7 @@ const float centerDepthHalflife = 0.5; // How fast the focus should move. In sec
 // #define FILM_IMPERFECTIONS_SHAKE_ENABLED // Film shakes a little bit, to simulate playback.
 #define FILM_IMPERFECTIONS_SHAKE_STRENGTH 0.2 // Strength of the film shake effect. [0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 //#define FILM_IMPERFECTIONS_SPOTS_ENABLED // Small spots on the screen that appear and disappear.
-#define FILM_IMPERFECTIONS_SPOTS_SIZE 5 // How big in pixels the spots should be. [1 3 5 7 9 11 13 15]
+#define FILM_IMPERFECTIONS_SPOTS_SIZE 3 // Radius of the spots in pixels. [1 3 5 7 9 11 13 15]
 #define FILM_IMPERFECTIONS_SPOTS_AMOUNT 0.05 // How many spots should be generated. [0.01 0.02 0.03 0.04 0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 //#define FILM_IMPERFECTIONS_LINES_ENABLED // Lines that move around. Amount of movement is linked to framerate. Higher fps = less movement.
 #define FILM_IMPERFECTIONS_LINES_STRENGTH 0.7 // Strength of the lines. [0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
