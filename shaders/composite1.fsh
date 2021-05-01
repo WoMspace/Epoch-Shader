@@ -83,7 +83,14 @@ void main()
 		}
 	#endif
 
+	float spotLoc = 0.0;
+	#ifdef FILM_IMPERFECTIONS_SPOTS_ENABLED
+		//preparation for next pass
+		float threshold = 1.0 - (FILM_IMPERFECTIONS_SPOTS_AMOUNT * 0.01);
+		spotLoc = clamp(texture2D(noisetex, noiseCoord).r - threshold, 0.0, 0.01) * (1.0 / FILM_IMPERFECTIONS_SPOTS_AMOUNT) * 100.0;
+	#endif
+
 	/* DRAWBUFFERS:01 */
-	gl_FragData[0] = vec4(color, 1.0);
+	gl_FragData[0] = vec4(color, spotLoc); //alpha has film grunge spot locations
 	gl_FragData[1] = vec4(color2, 1.0);
 }

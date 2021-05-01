@@ -16,11 +16,13 @@ uniform sampler2D colortex2;
 #if (SCANLINE_MODE == 3 && defined(CRT_TEXTURE_ENABLED))
 	uniform sampler2D colortex3;
 #endif
+uniform sampler2D noisetex;
 uniform mat4 gbufferProjection;
 uniform float viewWidth;
 uniform float viewHeight;
 uniform int frameCounter;
 uniform float frameTime;
+uniform float frameTimeCounter;
 
 const bool colortex2Clear = false;
 
@@ -47,8 +49,34 @@ void main()
 		uv.x += generateNoise(uv, float(frameCounter)) * 0.1;
 	#endif
 
+	#ifdef FILM_IMPERFECTIONS_SHAKE_ENABLED
+		//uv.y += cos(frameTimeCounter * 100.0) * FILM_IMPERFECTIONS_SHAKE_STRENGTH * 0.01;
+		uv.y += texture2D(noisetex, vec2(frameTime)).r * (10.0 / viewHeight) * FILM_IMPERFECTIONS_SHAKE_STRENGTH;
+	#endif
+
 	vec3 color = texture2D(colortex0, uv).rgb;
 	//color = vec3(generateNoise(uv, frameCounter));
+
+	#ifdef FILM_IMPERFECTIONS_SPOTS_ENABLED
+		float spotHere = 0.0;
+		for(int i = 0; i < FILM_IMPERFECTIONS_SPOTS_SIZE; i++)
+		{
+			for(int j = 0; j < FILM_IMPERFECTIONS_SPOTS_SIZE; j++)
+			{
+				vec2 spotLoc = texcoord + vec2(1.0 / viewWidth * i, 1.0 / viewHeight * j);
+				if(texture2D(colortex0, spotLoc).a > 0.0)
+				{
+					spotHere = 1.0;
+					break;
+				}
+			}
+		}
+		color -= spotHere;
+	#endif
+
+	#ifdef FILM_IMPERFECTIONS_LINES_ENABLED
+		color -= clamp(texture2D(noisetex, vec2(texcoord.x + frameTime, 1.0)).r - 0.9, 0.0, 0.1) * 10.0 * FILM_IMPERFECTIONS_LINES_STRENGTH;
+	#endif
 
 	#if SCANLINE_MODE != 0
 		#if SCANLINE_MODE == 1 // WoMspace Scanlines

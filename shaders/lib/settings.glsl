@@ -20,7 +20,7 @@
 const float lens_aperture_diameter = LENS_LENGTH / LENS_APERTURE;
 #define DOF_AUTOFOCUS -1
 #define DOF_DISTANCE DOF_AUTOFOCUS // How should the focus be handled. [DOF_AUTOFOCUS 0 2 4 8 16 32 64 128 256 512]
-const float centerDepthHalflife = 0.5; // How fast the focus should move. In seconds. [0.0 0.25 0.5 0.75 1.0 1.5 2.0]
+const float centerDepthHalflife = 0.5; // How fast the focus should move. In seconds. [0.0 0.25 0.5 0.75 1.0 1.5 2.0 2.5 3.0 4.0 5.0]
 #define DOF_ANAMORPHIC 1.0 // Aspect ratio of the bokeh. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.2 1.4 1.6 1.8 2.0 2.2 2.4 2.6 2.8 3.0]
 #ifdef MC_GL_RENDERER_RADEON
 	#define DOF_BOKEH_SAMPLES 128 // How many samples to use for the bokeh. [32 64 128 256 512 1024 2048]
@@ -40,7 +40,7 @@ const float centerDepthHalflife = 0.5; // How fast the focus should move. In sec
 #define FILM_COLOR 2 // Color film, like a Kodak Gold film.
 #define FILM_MODE FILM_DISABLED // Film emulation. [FILM_DISABLED FILM_GREYSCALE FILM_COLOR]
 #define FILM_BRIGHTNESS 0.0 // How bright the image should be. [-1.0 -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
-#define FILM_CONTRAST 1.0 // How much contrast the film-like image should have. [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define FILM_CONTRAST 1.0 // How much contrast the film-like image should have. [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0 2.1 2.2 2.3 2.4 2.5 2.6 2.7 2.8 2.9 3.0 3.1 3.2 3.3 3.4 3.5 3.6 3.7 3.8 3.9 4.0]
 
 #define GREYSCALE_RED_CONTRIBUTION 1.0 // How much red should affect total luminance. [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
 #define GREYSCALE_GREEN_CONTRIBUTION 1.0 // How much green should affect total luminance. [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
@@ -48,6 +48,14 @@ const float centerDepthHalflife = 0.5; // How fast the focus should move. In sec
 
 // //#define COLORFILM_SATURATION 1.0 // no idea how to implement this but it's important :P
 #define COLORFILM_STRENGTH 1.0 // How strong the film color simulation should be. [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+
+// #define FILM_IMPERFECTIONS_SHAKE_ENABLED // Film shakes a little bit, to simulate playback.
+#define FILM_IMPERFECTIONS_SHAKE_STRENGTH 0.2 // Strength of the film shake effect. [0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
+//#define FILM_IMPERFECTIONS_SPOTS_ENABLED // Small spots on the screen that appear and disappear.
+#define FILM_IMPERFECTIONS_SPOTS_SIZE 5 // How big in pixels the spots should be. [1 3 5 7 9 11 13 15]
+#define FILM_IMPERFECTIONS_SPOTS_AMOUNT 0.05 // How many spots should be generated. [0.01 0.02 0.03 0.04 0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
+//#define FILM_IMPERFECTIONS_LINES_ENABLED // Lines that move around. Amount of movement is linked to framerate. Higher fps = less movement.
+#define FILM_IMPERFECTIONS_LINES_STRENGTH 0.7 // Strength of the lines. [0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 
 #define GRAIN_STRENGTH 0.15 // How strong the noise is. [0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40 0.45 0.50]
 #define GRAIN_DISABLED 0
