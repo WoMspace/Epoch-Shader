@@ -37,7 +37,6 @@ void main()
 		coc = abs(lens_aperture_diameter * ((LENS_LENGTH * (cursorDepth - fragDepth)) / (fragDepth * (cursorDepth - LENS_LENGTH))));
 	#endif
 
-
 	/* DRAWBUFFERS:0 */
 	gl_FragData[0] = vec4(color, coc);
 }

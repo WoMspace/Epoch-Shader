@@ -1,3 +1,8 @@
+//#define NORMALS_ENABLED // Should normalmapping be enabled.
+#define NORMALS_STRENGTH 1.0 // How strong the normal mapping should be. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+//#define NORMALS_LAB_AO_ENABLED // Should the labPBR texture Ambient Occlusion be used.
+#define NORMALS_LAB_AO_STRENGTH 1.0 // How strong the labPBR ambient occlusion is. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+
 #define SHADER_FOG_ENABLED // Should the fog effect be used.
 #define FOG_END far // How far away the fog should end. [32 64 128 far]
 #define FOG_NEAR 32 // How far away the fog should start. [0 2 4 8 16 32 64]
