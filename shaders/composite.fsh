@@ -3,7 +3,7 @@
 /*
 ==== COMPOSITE0:WORLD ====
 - Fog
-- DoF CoC calculation
+- DoF CoC calculation (hehe coc)
 */
 
 #include "lib/settings.glsl"
