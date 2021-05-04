@@ -11,10 +11,12 @@ void main() {
 	texcoord = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;
 	lmcoord  = (gl_TextureMatrix[1] * gl_MultiTexCoord1).xy;
 	glcolor = gl_Color;
-	
-	tbn = mat3(
+	vec3 normal = gl_NormalMatrix * gl_Normal;
+	vec3 tangent = normalize(gl_NormalMatrix * at_tangent.xyz);
+	tbn = mat3(tangent, cross(tangent, normal) * sign(at_tangent.w), normal);
+	/* tbn = mat3(
     	normalize(gl_NormalMatrix * at_tangent.xyz),
     	normalize(gl_NormalMatrix * cross(at_tangent.xyz, gl_Normal.xyz) * sign(at_tangent.w)),
     	normalize(gl_NormalMatrix * gl_Normal)
-    );
+    ); */
 }

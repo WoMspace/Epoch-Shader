@@ -2,6 +2,11 @@
 #define NORMALS_STRENGTH 1.0 // How strong the normal mapping should be. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
 //#define NORMALS_LAB_AO_ENABLED // Should the labPBR texture Ambient Occlusion be used.
 #define NORMALS_LAB_AO_STRENGTH 1.0 // How strong the labPBR ambient occlusion is. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+//#define SPECULAR_EMISSIVE_ENABLED
+#define SPECULAR_EMISSIVE_STRENGTH 2.0 // How strong the labPBR Emission is. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0 2.2 2.4 2.6 2.8 3.0 3.2 3.4 3.6 3.8 4.0]
+
+#define NORMALMAP_ENABLED = defined(NORMALS_ENABLED) || defined(NORMALS_LAB_AO_ENABLED)
+#define SPECULARMAP_ENABLED = defined(SPECULAR_EMISSIVE_ENABLED)
 
 #define SHADER_FOG_ENABLED // Should the fog effect be used.
 #define FOG_END far // How far away the fog should end. [32 64 128 far]
