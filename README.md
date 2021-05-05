@@ -26,23 +26,10 @@ a particular period of time in history or a person's life.
 ![2021-04-24_23 49 12](https://user-images.githubusercontent.com/22845656/115974863-c7566d80-a557-11eb-8d0f-ed69ce0e9405.png)
 
 ### BUFFER USAGE:
-- colortex0
-	- Writes: composite0-2
-	- Reads: composite0-2
-	- Effects: N/A
-	- Holds: Main screen
-- colortex1
-	- Writes: composite1
-	- Reads: composite1
-	- Effects: Interlacing
-	- Holds: Main screen, a frame behind
-- colortex2
-	- Writes: composite2
-	- Reads: composite2
-	- Effects: Ghosting
-	- Holds: Accumulated mains screen
-- colortex3
-	- Writes: shaders.properties
-	- Reads: composite2
-	- Effects: texture-based CRT mode
-	- Holds: CRT RGB texture
+
+buffer|Read|Write|composite0|composite1|composite2
+------|----|-----|----------|----------|----------
+colortex0|012|012|color.rgb, coc.a|color.rgb, filmspot.a|color.rgb
+colortex1|1|1|N/A|color.rgb delayed|N/A
+colortex2|2|2|N/A|N/A|color.rgb accum
+colortex3|2|N/A|N/A|N/A|CRT Texture
