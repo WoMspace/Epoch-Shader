@@ -8,6 +8,20 @@ vec3 mipBlur(float blurAmount)
 float hPixelOffset = 1/viewWidth;
 float vPixelOffset = 1/viewHeight;
 
+vec3 onionRingBokeh(float blurAmount) //adds the harsher edges to the bokeh.
+{
+	vec3 retColor = vec3(0.0);
+	for(int i = 0; i < DOF_BOKEH_SAMPLES; i++)
+	{
+		float angle = (360.0 / DOF_BOKEH_SAMPLES) * i;
+		float polarDistance = blurAmount;
+		float hOffset = polarDistance * sin(angle) * hPixelOffset;
+		float vOffset = polarDistance * cos(angle) * vPixelOffset;
+		retColor += texture2D(colortex0, vec2(hOffset + texcoord.x, vOffset + texcoord.y)).rgb;
+	}
+	return retColor / DOF_BOKEH_SAMPLES;
+}
+
 vec3 bokehBlur(float blurAmount) //simple and pretty fast bokeh blur.
 {
 	blurAmount *= gbufferProjection[1].y;
@@ -18,5 +32,10 @@ vec3 bokehBlur(float blurAmount) //simple and pretty fast bokeh blur.
 		float vOffset = texcoord.y + bokehOffsets[i].y * vPixelOffset * blurAmount * DOF_ANAMORPHIC;
 		retColor += texture2D(colortex0, vec2(hOffset, vOffset)).rgb;
 	}
-	return retColor / DOF_BOKEH_SAMPLES;
+	retColor /= DOF_BOKEH_SAMPLES;
+	#ifdef DOF_BOKEH_ONIONRING
+		retColor += onionRingBokeh(blurAmount);
+		retColor *= 0.5;
+	#endif
+	return retColor;
 }
