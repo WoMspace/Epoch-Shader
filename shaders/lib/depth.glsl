@@ -7,7 +7,11 @@ float getFragDepth(sampler2D depthTex, vec2 texcoord)
 
 float getCursorDepth()
 {
+	#if DOF_DISTANCE == DOF_AUTOFOCUS
 	return pow(far+1,centerDepthSmooth)-1;
+	#else
+	return DOF_DISTANCE;
+	#endif
 }
 
 float getRoundFragDepth(sampler2D depthTex, vec2 texcoord)
