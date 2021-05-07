@@ -75,6 +75,12 @@ void main()
 		color = chroma * extractLuma(color);
 	#endif
 
+	#ifdef QUANTISATION_ENABLED
+	color *= quantisation_colors_perchannel;
+	color = round(color);
+	color *= 1.0 / quantisation_colors_perchannel;
+	#endif
+
 	vec3 color2 = color;
 	#ifdef INTERLACING_ENABLED
 	if(mod(gl_FragCoord.y, INTERLACING_SIZE) > (INTERLACING_SIZE - 1.0)*0.5)
