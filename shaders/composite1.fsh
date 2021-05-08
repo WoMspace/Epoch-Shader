@@ -47,7 +47,7 @@ void main()
 	color = mipBlur(sqrt(abs(getFragDepth(depthtex0, texcoord) - getCursorDepth())));
 	#elif DOF_MODE == 2 //bokeh blur
 	float coc = texture2DLod(colortex0, texcoord, 3.5).a;
-	color = bokehBlur(coc * 20.0);
+	color = bokehBlur(coc * 10.0);
 	#endif
 
 	#if FILM_MODE != 0

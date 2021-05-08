@@ -34,7 +34,7 @@ void main()
 	#if DOF_MODE == DOF_BOKEH
 		float fragDepth = getFragDepth(depthtex0, texcoord);
 		float cursorDepth = getCursorDepth();
-		coc = abs(lens_aperture_diameter * ((LENS_LENGTH * (cursorDepth - fragDepth)) / (fragDepth * (cursorDepth - LENS_LENGTH))));
+		coc = abs(lens_aperture_diameter * ((LENS_LENGTH * (cursorDepth - fragDepth)) / (fragDepth * (cursorDepth - LENS_LENGTH)))) * 0.5;
 	#endif
 
 	/* DRAWBUFFERS:0 */

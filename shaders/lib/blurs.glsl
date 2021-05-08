@@ -15,8 +15,8 @@ vec3 onionRingBokeh(float blurAmount) //adds the harsher edges to the bokeh.
 	{
 		float angle = (360.0 / DOF_BOKEH_SAMPLES) * i;
 		float polarDistance = blurAmount;
-		float hOffset = polarDistance * sin(angle) * hPixelOffset;
-		float vOffset = polarDistance * cos(angle) * vPixelOffset;
+		float hOffset = polarDistance * sin(angle) * hPixelOffset * (1.0/DOF_ANAMORPHIC);
+		float vOffset = polarDistance * cos(angle) * vPixelOffset * DOF_ANAMORPHIC;
 		retColor += texture2D(colortex0, vec2(hOffset + texcoord.x, vOffset + texcoord.y)).rgb;
 	}
 	return retColor / DOF_BOKEH_SAMPLES;
@@ -28,7 +28,7 @@ vec3 bokehBlur(float blurAmount) //simple and pretty fast bokeh blur.
 	vec3 retColor = vec3(0.0);
 	for(int i = 0; i < DOF_BOKEH_SAMPLES; i++)
 	{
-		float hOffset = texcoord.x + bokehOffsets[i].x * hPixelOffset * blurAmount * (1/DOF_ANAMORPHIC);
+		float hOffset = texcoord.x + bokehOffsets[i].x * hPixelOffset * blurAmount * (1.0 / DOF_ANAMORPHIC);
 		float vOffset = texcoord.y + bokehOffsets[i].y * vPixelOffset * blurAmount * DOF_ANAMORPHIC;
 		retColor += texture2D(colortex0, vec2(hOffset, vOffset)).rgb;
 	}
