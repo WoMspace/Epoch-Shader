@@ -10,7 +10,7 @@ float getCursorDepth()
 	#if DOF_DISTANCE == DOF_AUTOFOCUS
 	return pow(far+1,centerDepthSmooth)-1;
 	#else
-	return DOF_DISTANCE;
+	return float(DOF_DISTANCE);
 	#endif
 }
 

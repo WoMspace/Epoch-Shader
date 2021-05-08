@@ -50,6 +50,19 @@ void main()
 	color = bokehBlur(coc * 10.0);
 	#endif
 
+	#ifdef BLOOM_ENABLED
+
+		vec3 bloomColor = color;// * 10.0 - 7.5;
+		int count = 0;
+		for(float i = 0.0; i < 7.0; i += 0.1)
+		{//kinda sketch ngl. WIP.
+			bloomColor += texture2DLod(colortex0, texcoord, i).rgb * 10.0 - 7.5;
+			count++;
+		}
+		//bloomColor = bloomColor * 10.0 - 7.5;
+		color =+ clamp(bloomColor / count, 0.0, 2.0);
+	#endif
+
 	#if FILM_MODE != 0
 		#if FILM_MODE == 1 // greyscale
 			color = extractLuma(color, vec3(GREYSCALE_RED_CONTRIBUTION, GREYSCALE_GREEN_CONTRIBUTION, GREYSCALE_BLUE_CONTRIBUTION));
