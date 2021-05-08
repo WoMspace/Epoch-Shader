@@ -14,6 +14,7 @@ varying vec4 glcolor;
 void main() {
 	vec4 color = texture2D(texture, texcoord) * glcolor;
 	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor).rgb;
+	color.a *= 1.25;
 
 /* DRAWBUFFERS:0 */
 	gl_FragData[0] = color; //gcolor

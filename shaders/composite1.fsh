@@ -111,5 +111,5 @@ void main()
 
 	/* DRAWBUFFERS:01 */
 	gl_FragData[0] = vec4(color, spotLoc); //alpha has film grunge spot locations
-	gl_FragData[1] = vec4(color2, 1.0);
+	gl_FragData[1] = vec4(color2, texture2D(colortex1, texcoord).a);
 }
