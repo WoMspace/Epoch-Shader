@@ -31,7 +31,11 @@ void main()
 {
 	vec3 color = texture2D(colortex0, texcoord).rgb;
 	//color = linearToSRGB(color * HDR_EXPOSURE_VALUE);
-	float screenLuminance = dot(vec3(1.0), texture2DLod(colortex0, vec2(0.5), 7.5).rgb) * HDR_EXPOSURE_VALUE;
+	vec3 exposureSamples = texture2DLod(colortex0, vec2(0.5), 7.5).rgb;
+	exposureSamples += texture2DLod(colortex0, vec2(0.5), 5.0).rgb;
+	exposureSamples += texture2DLod(colortex0, vec2(0.5), 10.0).rgb;
+	exposureSamples /= 3.0;
+	float screenLuminance = dot(vec3(1.0), exposureSamples) * HDR_EXPOSURE_VALUE;
 	float screenExposure = 1.0 / screenLuminance;
 	color = hejlBurgess(color * screenExposure * 0.2);
 

@@ -1,5 +1,8 @@
 #version 120
 
+#include "lib/settings.glsl"
+#include "lib/tonemapping.glsl"
+
 uniform float viewHeight;
 uniform float viewWidth;
 uniform mat4 gbufferModelView;
@@ -21,13 +24,14 @@ vec3 calcSkyColor(vec3 pos) {
 void main() {
 	vec3 color;
 	if (starData.a > 0.5) {
-		color = starData.rgb;
+		color = starData.rgb * 3.0;
 	}
 	else {
 		vec4 pos = vec4(gl_FragCoord.xy / vec2(viewWidth, viewHeight) * 2.0 - 1.0, 1.0, 1.0);
 		pos = gbufferProjectionInverse * pos;
 		color = calcSkyColor(normalize(pos.xyz));
 	}
+	color = srgbToLinear(color);
 
 /* DRAWBUFFERS:0 */
 	gl_FragData[0] = vec4(color, 1.0); //gcolor
