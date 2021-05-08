@@ -2,6 +2,7 @@
 
 #include "lib/settings.glsl"
 #include "lib/labPBR.glsl"
+#include "lib/tonemapping.glsl"
 
 uniform sampler2D lightmap;
 uniform sampler2D texture;
@@ -18,6 +19,7 @@ uniform mat4 gbufferModelViewInverse;
 uniform vec3 sunPosition;
 const float sunPathRotation = -25.0;
 uniform int worldTime;
+uniform vec3 skyColor;
 
 varying vec2 lmcoord;
 varying vec2 texcoord;
@@ -27,7 +29,9 @@ varying mat3 tbn;
 
 void main() {
 	vec4 color = texture2D(texture, texcoord) * glcolor;
-	color *= texture2D(lightmap, lmcoord);
+	color.rgb = srgbToLinear(color.rgb);
+	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor);
+
 	#ifdef NORMALMAP_ENABLED
 	vec4 normalmap = texture2D(normals, texcoord);
 	#endif

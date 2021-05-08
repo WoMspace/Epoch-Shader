@@ -8,6 +8,10 @@
 #define NORMALMAP_ENABLED = defined(NORMALS_ENABLED) || defined(NORMALS_LAB_AO_ENABLED)
 #define SPECULARMAP_ENABLED = defined(SPECULAR_EMISSIVE_ENABLED)
 
+#define HDR_BLOCKLIGHT_STRENGTH 2.0
+#define HDR_AMBIENTLIGHT_STRENGTH 10.0
+#define HDR_EXPOSURE_VALUE 1.0 // [0.1 0.5 1.0 1.5 2.0 5.0 10.0]
+
 #define SHADER_FOG_ENABLED // Should the fog effect be used.
 #define FOG_END far // How far away the fog should end. [32 64 128 far]
 #define FOG_NEAR 32 // How far away the fog should start. [0 2 4 8 16 32 64]

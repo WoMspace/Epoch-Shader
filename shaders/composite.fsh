@@ -8,7 +8,11 @@
 
 #include "lib/settings.glsl"
 
+const int RGBA16F = 0;
+
 uniform sampler2D colortex0;
+const int colortex0Format = RGBA16F;
+const bool colortex0MipmapEnabled = true;
 uniform sampler2D depthtex0;
 uniform mat4 gbufferProjection;
 uniform mat4 gbufferProjectionInverse;
@@ -21,10 +25,15 @@ varying vec2 texcoord;
 
 #include "lib/depth.glsl"
 #include "lib/fog.glsl"
+#include "lib/tonemapping.glsl"
 
 void main()
 {
 	vec3 color = texture2D(colortex0, texcoord).rgb;
+	//color = linearToSRGB(color * HDR_EXPOSURE_VALUE);
+	float screenLuminance = dot(vec3(1.0), texture2DLod(colortex0, vec2(0.5), 7.5).rgb) * HDR_EXPOSURE_VALUE;
+	float screenExposure = 1.0 / screenLuminance;
+	color = hejlBurgess(color * screenExposure * 0.2);
 
 	#ifdef SHADER_FOG_ENABLED
 	color = doFog(getRoundFragDepth(depthtex0, texcoord), color);
