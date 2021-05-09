@@ -25,7 +25,8 @@ vec3 hejlBurgess(vec3 color)
 vec3 applyLightmap(vec3 color, vec2 lmcoord, vec3 skyColor)
 {
 	vec3 blockLight = vec3(HDR_BLOCKLIGHT_RED, HDR_BLOCKLIGHT_GREEN, HDR_BLOCKLIGHT_BLUE) * lmcoord.x * HDR_BLOCKLIGHT_STRENGTH;
-	vec3 skyLight = lmcoord.y * skyColor * HDR_AMBIENTLIGHT_STRENGTH;
+	vec3 skyLight = skyColor * lmcoord.y * HDR_AMBIENTLIGHT_STRENGTH;
 	
-	return color * mix(skyLight, blockLight, min(lmcoord.x, lmcoord.y) + HDR_MINLIGHT);
+	return color * max(skyLight, blockLight);
+	//return color * mix(skyLight, blockLight, min(lmcoord.x, lmcoord.y) + HDR_MINLIGHT);
 }
