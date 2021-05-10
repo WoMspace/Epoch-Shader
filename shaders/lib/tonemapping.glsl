@@ -22,18 +22,21 @@ vec3 hejlBurgess(vec3 color)
 	return color;
 }
 
-vec3 applyLightmap(vec3 color, vec2 lmcoord, vec3 skyColor)
+vec3 applyLightmap(vec3 color, vec2 lmcoord, vec3 skyColor, int worldTime)
 {
 	vec3 blockLight = vec3(HDR_BLOCKLIGHT_RED, HDR_BLOCKLIGHT_GREEN, HDR_BLOCKLIGHT_BLUE) * lmcoord.x * HDR_BLOCKLIGHT_STRENGTH;
-	vec3 skyLight = skyColor * lmcoord.y * HDR_AMBIENTLIGHT_STRENGTH;
-<<<<<<< HEAD
+	vec3 ambientColor;
 	if(worldTime > 13000)
 	{
-		skyLight = vec3(HDR_MOONLIGHT_RED, HDR_MOONLIGHT_GREEN, HDR_MOONLIGHT_BLUE) * lmcoord.y * HDR_AMBIENTLIGHT_STRENGTH * 0.001;
+		ambientColor = vec3(HDR_MOONLIGHT_RED, HDR_MOONLIGHT_GREEN, HDR_MOONLIGHT_BLUE) * 0.0005;
 	}
-=======
->>>>>>> parent of 646451e (sis idek)
-	
-	return color * max(skyLight, blockLight);
+	else
+	{
+		ambientColor = skyColor;
+	}
+	vec3 skyLight = ambientColor * lmcoord.y * HDR_AMBIENTLIGHT_STRENGTH;
+	float lightInfluence = clamp(lmcoord.x - lmcoord.y, HDR_MINLIGHT, 1.0); // AMBIENTLIGHT IS STILL YELLOW BECAUSE THE HDR_MINLIGHT IS MIXING TOO MUCH BLOCK COLOR WITH AMBIENT COLOR
+	return color * mix(skyLight, blockLight, lightInfluence);
+	//return color * max(skyLight, blockLight);
 	//return color * mix(skyLight, blockLight, min(lmcoord.x, lmcoord.y) + HDR_MINLIGHT);
 }
