@@ -30,7 +30,7 @@ varying mat3 tbn;
 void main() {
 	vec4 color = texture2D(texture, texcoord) * glcolor;
 	color.rgb = srgbToLinear(color.rgb);
-	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime);
+	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor);
 
 	#ifdef NORMALMAP_ENABLED
 	vec4 normalmap = texture2D(normals, texcoord);
@@ -40,7 +40,7 @@ void main() {
 	#endif
 
 	#ifdef NORMALS_ENABLED
-	color = applyNormals(normalmap, color, gbufferModelViewInverse, sunPosition, NORMALS_STRENGTH, tbn, worldTime, skyColor);
+	color = applyNormals(normalmap, color, gbufferModelViewInverse, sunPosition, NORMALS_STRENGTH, tbn, worldTime);
 	#endif
 
 	#ifdef NORMALS_LAB_AO_ENABLED
