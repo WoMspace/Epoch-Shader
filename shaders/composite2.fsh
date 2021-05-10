@@ -16,6 +16,7 @@ uniform sampler2D colortex2;
 #if (SCANLINE_MODE == 3 && defined(CRT_TEXTURE_ENABLED))
 	uniform sampler2D colortex3;
 #endif
+uniform sampler2D depthtex2;
 uniform sampler2D noisetex;
 uniform mat4 gbufferProjection;
 uniform float viewWidth;
@@ -138,6 +139,9 @@ void main()
 		GRADING_LOW_RED, GRADING_LOW_GREEN, GRADING_LOW_BLUE
 		);
 		color = colorGrade(color, grade);
+	#endif
+	#if LUT_SELECTED != LUT_DISABLED
+		color = applyLUT(clamp(color, 0.0, 1.0), depthtex2);
 	#endif
 
 	/* DRAWBUFFERS:02 */

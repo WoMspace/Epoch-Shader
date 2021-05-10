@@ -30,7 +30,7 @@ void main() {
 	#endif
 
 	#ifdef NORMALS_ENABLED
-	color = applyNormals(normalmap, color, gbufferModelViewInverse, sunPosition, NORMALS_STRENGTH, tbn, worldTime);
+	color = applyNormals(normalmap, color, gbufferModelViewInverse, sunPosition, NORMALS_STRENGTH, tbn, worldTime, skyColor);
 	#endif
 
 	#ifdef NORMALS_LAB_AO_ENABLED

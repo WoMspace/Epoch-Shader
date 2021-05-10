@@ -27,7 +27,7 @@ vec3 applyLightmap(vec3 color, vec2 lmcoord, vec3 skyColor, int worldTime)
 	vec3 blockLight = vec3(HDR_BLOCKLIGHT_RED, HDR_BLOCKLIGHT_GREEN, HDR_BLOCKLIGHT_BLUE) * lmcoord.x * HDR_BLOCKLIGHT_STRENGTH;
 	vec3 ambientColor;
 	if(worldTime > 13000)
-	{
+	{ //IT SNAPS TO NIGHT INSTANTLY ;-;
 		ambientColor = vec3(HDR_MOONLIGHT_RED, HDR_MOONLIGHT_GREEN, HDR_MOONLIGHT_BLUE) * 0.0005;
 	}
 	else
