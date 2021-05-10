@@ -22,11 +22,15 @@ vec3 hejlBurgess(vec3 color)
 	return color;
 }
 
-vec3 applyLightmap(vec3 color, vec2 lmcoord, vec3 skyColor)
+vec3 applyLightmap(vec3 color, vec2 lmcoord, vec3 skyColor, int worldTime)
 {
 	vec3 blockLight = vec3(HDR_BLOCKLIGHT_RED, HDR_BLOCKLIGHT_GREEN, HDR_BLOCKLIGHT_BLUE) * lmcoord.x * HDR_BLOCKLIGHT_STRENGTH;
 	vec3 skyLight = skyColor * lmcoord.y * HDR_AMBIENTLIGHT_STRENGTH;
+	if(worldTime > 13000)
+	{
+		skyLight = vec3(HDR_MOONLIGHT_RED, HDR_MOONLIGHT_GREEN, HDR_MOONLIGHT_BLUE) * lmcoord.y * HDR_AMBIENTLIGHT_STRENGTH * 0.005;
+	}
 	
-	return color * max(skyLight, blockLight);
-	//return color * mix(skyLight, blockLight, min(lmcoord.x, lmcoord.y) + HDR_MINLIGHT);
+	float lightInfluence = clamp(lmcoord.x - lmcoord.y, HDR_MINLIGHT, 1.0);
+	return color * mix(skyLight, blockLight, lightInfluence);
 }

@@ -44,7 +44,7 @@ void main()
 	exposureSamples /= 2.0;
 	float screenLuminance = dot(vec3(1.0), exposureSamples) * HDR_EXPOSURE_VALUE;
 	float temporalLuminance = texture2D(colortex1, vec2(0.5)).a;
-	temporalLuminance = mix(temporalLuminance, screenLuminance, frameTime * 3.0);
+	temporalLuminance = clamp(mix(temporalLuminance, screenLuminance, frameTime * 3.0), HDR_EXPOSURE_MAXIMUM, HDR_EXPOSURE_MINIMUM);
 	float screenExposure = 1.0 / temporalLuminance;
 	color = hejlBurgess(color * screenExposure * 0.35);
 	//color = linearToSRGB(color);
