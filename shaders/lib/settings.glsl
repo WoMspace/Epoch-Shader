@@ -67,6 +67,7 @@ const float centerDepthHalflife = 0.5; // How fast the focus should move. In sec
 #define FILM_DISABLED 0
 #define FILM_GREYSCALE 1 // Black and white like a film camera.
 #define FILM_COLOR 2 // Color film, like a Kodak Gold film.
+#define FILM_THERMAL 3 // Thermal Camera :D
 #define FILM_MODE FILM_DISABLED // Film emulation. [FILM_DISABLED FILM_GREYSCALE FILM_COLOR]
 #define FILM_BRIGHTNESS 0.0 // How bright the image should be. [-1.0 -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 #define FILM_CONTRAST 1.0 // How much contrast the film-like image should have. [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0 2.1 2.2 2.3 2.4 2.5 2.6 2.7 2.8 2.9 3.0 3.1 3.2 3.3 3.4 3.5 3.6 3.7 3.8 3.9 4.0]

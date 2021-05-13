@@ -1,10 +1,13 @@
 #version 120
 
+attribute vec3 mc_Entity;
+
 varying vec2 lmcoord;
 varying vec2 texcoord;
 varying vec4 glcolor;
 varying vec4 at_tangent;
 varying mat3 tbn;
+varying float blockTemp;
 
 void main() {
 	gl_Position = ftransform();
@@ -20,4 +23,5 @@ void main() {
     	normalize(gl_NormalMatrix * cross(at_tangent.xyz, gl_Normal.xyz) * sign(at_tangent.w)),
     	normalize(gl_NormalMatrix * gl_Normal)
     );*/
+	blockTemp = mc_Entity.x;
 }

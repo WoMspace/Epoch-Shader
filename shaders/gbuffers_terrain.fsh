@@ -25,7 +25,10 @@ varying vec2 lmcoord;
 varying vec2 texcoord;
 varying vec4 glcolor;
 varying mat3 tbn;
-
+#if FILM_MODE == FILM_THERMAL
+uniform sampler2D colortex2;
+varying float blockTemp;
+#endif
 
 void main() {
 	vec4 color = texture2D(texture, texcoord) * glcolor;
@@ -52,6 +55,14 @@ void main() {
 		color = applyEmission(specularmap, color, SPECULAR_EMISSIVE_STRENGTH);
 	#endif
 
-/* DRAWBUFFERS:0 */
+	#if FILM_MODE == 3 //thermal camera
+	vec3 color2 = texture2D(colortex2, texcoord).rgb;
+	float temperature = float(blockTemp - 1000) / 4.0;
+	#endif
+
+/* DRAWBUFFERS:02 */
 	gl_FragData[0] = color; //gcolor
+	#if FILM_MODE == FILM_THERMAL
+	gl_FragData[1] = vec4(color2, temperature);
+	#endif
 }

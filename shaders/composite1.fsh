@@ -32,6 +32,11 @@ uniform float frameTimeCounter;
 const bool colortex1Clear = false;
 const bool colortex0MipmapEnabled = true;
 
+#if FILM_MODE == FILM_THERMAL
+uniform sampler2D colortex2;
+const bool colortex2MipmapEnabled = true;
+#endif
+
 varying vec2 texcoord;
 
 #include "lib/depth.glsl"
@@ -69,6 +74,11 @@ void main()
 			color = contrast(color, FILM_BRIGHTNESS, FILM_CONTRAST);
 		#elif FILM_MODE == 2 // color film
 			color = colorFilm(color, 1.0);
+		#elif FILM_MODE == 3 //thermal
+			vec3 cold = vec3(0.1, 0.0, 0.5);
+			vec3 hot = vec3(1.0, 0.7, 0.5);
+			float temperature = texture2DLod(colortex2, texcoord, 3.0).a;
+			color = mix(cold, hot, temperature);
 		#endif
 	#endif
 
@@ -90,7 +100,7 @@ void main()
 
 	#ifdef QUANTISATION_ENABLED
 	color *= quantisation_colors_perchannel;
-	color = round(color);
+	color = floor(color + 0.5);
 	color *= 1.0 / quantisation_colors_perchannel;
 	#endif
 
