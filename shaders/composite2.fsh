@@ -64,7 +64,7 @@ void main()
 		{
 			for(int j = -FILM_IMPERFECTIONS_SPOTS_SIZE; j < FILM_IMPERFECTIONS_SPOTS_SIZE; j++)
 			{
-				vec2 spotLoc = texcoord + vec2(1.0 / viewWidth * i, 1.0 / viewHeight * j);
+				vec2 spotLoc = uv + vec2(1.0 / viewWidth * i, 1.0 / viewHeight * j);
 				if(texture2D(colortex0, spotLoc).a > 0.0)
 				{
 					spotHere = 1.0 - (abs(i * j) / (FILM_IMPERFECTIONS_SPOTS_SIZE * FILM_IMPERFECTIONS_SPOTS_SIZE));
@@ -76,7 +76,7 @@ void main()
 	#endif
 
 	#ifdef FILM_IMPERFECTIONS_LINES_ENABLED
-		color -= clamp(texture2D(noisetex, vec2(frameTime + texcoord.x, 1.0)).r - 0.9, 0.0, 0.1) * 10.0 * FILM_IMPERFECTIONS_LINES_STRENGTH;
+		color -= clamp(texture2D(noisetex, vec2(frameTime + uv.x, 1.0)).r - 0.9, 0.0, 0.1) * 10.0 * FILM_IMPERFECTIONS_LINES_STRENGTH;
 	#endif
 
 	#if SCANLINE_MODE != 0
@@ -89,8 +89,8 @@ void main()
 			color *= 0.92+0.08*(0.05-pow(clamp(sin(viewHeight/2.*uv.y+frameCounter/5.),0.,1.),1.5));
 		#elif SCANLINE_MODE == 3 //CRT Mode
 			#ifdef CRT_TEXTURE_ENABLED // CRT TEXTURE (courtesy of s o u l n a t e#3527)
-				vec2 CRTtexcoord = vec2(texcoord.x * (viewWidth/1500) * CRT_TEXTURE_SCALE, texcoord.y * (viewHeight/1500) * CRT_TEXTURE_SCALE);
-				color *= texture2D(colortex3, CRTtexcoord).rgb;
+				vec2 CRTuv = vec2(uv.x * (viewWidth/1500) * CRT_TEXTURE_SCALE, uv.y * (viewHeight/1500) * CRT_TEXTURE_SCALE);
+				color *= texture2D(colortex3, CRTuv).rgb;
 			#else
 				float moduloPixLoc = mod(gl_FragCoord.x, 3);
 				if(mod(gl_FragCoord.y, 4) > 1)
@@ -118,7 +118,7 @@ void main()
 
 	vec3 color2 = vec3(0.0);
 	#ifdef GHOSTING_ENABLED
-		color2 = texture2D(colortex2, texcoord).rgb;
+		color2 = texture2D(colortex2, uv).rgb;
 		color2 = mix(color2, color, (1 - GHOSTING_STRENGTH) * frameTime * 70.0);
 		color = (color + color2)*0.5;
 	#endif

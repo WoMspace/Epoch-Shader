@@ -46,17 +46,17 @@ varying vec2 texcoord;
 
 void main()
 {
-	vec3 color = texture2D(colortex0, texcoord).rgb;
 
 	#if DOF_MODE == 1 //mip blur
-	color = mipBlur(sqrt(abs(getFragDepth(depthtex0, texcoord) - getCursorDepth())));
+	vec3 color = mipBlur(sqrt(abs(getFragDepth(depthtex0, texcoord) - getCursorDepth())));
 	#elif DOF_MODE == 2 //bokeh blur
 	float coc = texture2DLod(colortex0, texcoord, 3.5).a;
-	color = bokehBlur(coc * 10.0);
+	vec3 color = bokehBlur(coc * 10.0);
+	#else
+	vec3 color = texture2D(colortex0, texcoord).rgb;
 	#endif
 
 	#ifdef BLOOM_ENABLED
-
 		vec3 bloomColor = color;// * 10.0 - 7.5;
 		int count = 0;
 		for(float i = 0.0; i < 7.0; i += 0.1)
@@ -85,11 +85,11 @@ void main()
 	#if GRAIN_MODE != 0
 		float noiseSeed = float(frameCounter) * 0.11;
 		vec2 noiseCoord = texcoord + vec2(sin(noiseSeed), cos(noiseSeed));
-
+		float grain_strength = GRAIN_STRENGTH * (1.0 - length(color)) + 0.1;
 		#if GRAIN_MODE == 1 // luma noise
-		color += vec3(texture2D(noisetex, noiseCoord).r - 0.5)*GRAIN_STRENGTH;
+		color += vec3(texture2D(noisetex, noiseCoord).r - 0.5) * grain_strength;
 		#elif GRAIN_MODE == 2 // chroma noise
-		color += (texture2D(noisetex, noiseCoord).rgb - vec3(0.5))*GRAIN_STRENGTH;
+		color += (texture2D(noisetex, noiseCoord).rgb - vec3(0.5)) * grain_strength;
 		#endif
 	#endif
 
@@ -104,19 +104,19 @@ void main()
 	color *= 1.0 / quantisation_colors_perchannel;
 	#endif
 
+	float spotLoc = 0.0;
+	#ifdef FILM_IMPERFECTIONS_SPOTS_ENABLED
+		//preparation for next pass
+		float threshold = 1.0 - (FILM_IMPERFECTIONS_SPOTS_AMOUNT * 0.01);
+		spotLoc = clamp(texture2D(noisetex, noiseCoord).r - threshold, 0.0, 0.01) * (1.0 / FILM_IMPERFECTIONS_SPOTS_AMOUNT) * 100.0;
+	#endif
+
 	vec3 color2 = color;
 	#ifdef INTERLACING_ENABLED
 	if(mod(gl_FragCoord.y, INTERLACING_SIZE) > (INTERLACING_SIZE - 1.0)*0.5)
 		{
 			color = texture2D(colortex1, texcoord).rgb;
 		}
-	#endif
-
-	float spotLoc = 0.0;
-	#ifdef FILM_IMPERFECTIONS_SPOTS_ENABLED
-		//preparation for next pass
-		float threshold = 1.0 - (FILM_IMPERFECTIONS_SPOTS_AMOUNT * 0.01);
-		spotLoc = clamp(texture2D(noisetex, noiseCoord).r - threshold, 0.0, 0.01) * (1.0 / FILM_IMPERFECTIONS_SPOTS_AMOUNT) * 100.0;
 	#endif
 
 	/* DRAWBUFFERS:01 */
