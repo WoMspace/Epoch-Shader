@@ -4,6 +4,7 @@
 ==== COMPOSITE2:PLAYBACK ====
 - Image Transforms
 - Rewind Effect
+- Pixel Size
 - Scanlines
 - Ghosting
 - Barrel Distortion
@@ -55,8 +56,16 @@ void main()
 		uv.y += texture2D(noisetex, vec2(frameTime)).r * (10.0 / viewHeight) * FILM_IMPERFECTIONS_SHAKE_STRENGTH;
 	#endif
 
+	#if PIXEL_SIZE > 0
+	vec2 scaleFactor;
+	scaleFactor.x = viewWidth / PIXEL_SIZE;
+	scaleFactor.y = viewHeight / PIXEL_SIZE;
+	uv = clip(uv);
+	uv = floor(uv * scaleFactor) / scaleFactor;
+	uv = unclip(uv);
+	#endif
+
 	vec3 color = texture2D(colortex0, uv).rgb;
-	//color = vec3(generateNoise(uv, frameCounter));
 
 	#ifdef FILM_IMPERFECTIONS_SPOTS_ENABLED
 		float spotHere = 0.0;

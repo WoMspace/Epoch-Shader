@@ -105,6 +105,8 @@ const float quantisation_colors_perchannel = pow(2, float(QUANTISATION_BITDEPTH)
 #define INTERLACING_SIZE 4.0 // How big the interlaced lines are. Good for HiDPI displays. [2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 15.0 20.0 30.0 40.0 50.0]
 
 // #define VHS_TRANSFORMS_ENABLED
+#define PIXEL_SIZE_DISABLED -1
+#define PIXEL_SIZE PIXEL_SIZE_DISABLED // How big the pixels should be, in on-screen pixels. [PIXEL_SIZE_DISABLED 2 4 8 16 32 64 128]
 
 #define SCANLINE_MODE_OFF 0
 #define SCANLINE_MODE_WOMSPACE 1
