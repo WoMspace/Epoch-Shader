@@ -1,25 +1,30 @@
 #version 120
 
+#define FSH
+
 #include "lib/settings.glsl"
 #include "lib/labPBR.glsl"
 #include "lib/tonemapping.glsl"
 
 uniform sampler2D lightmap;
 uniform sampler2D texture;
+uniform sampler2D shadowtex0;
 
-#ifdef NORMALMAP_ENABLED
 uniform sampler2D normals;
-#endif
 #ifdef SPECULARMAP_ENABLED
 uniform sampler2D specular;
 #endif
 
-
+uniform mat4 shadowProjection;
+uniform mat4 shadowModelView;
+uniform mat4 gbufferModelView;
 uniform mat4 gbufferModelViewInverse;
+uniform vec3 shadowLightPosition;
 uniform vec3 sunPosition;
 const float sunPathRotation = -25.0;
 uniform int worldTime;
 uniform vec3 skyColor;
+varying vec4 shadowPos;
 
 varying vec2 lmcoord;
 varying vec2 texcoord;
@@ -30,20 +35,17 @@ uniform sampler2D colortex2;
 varying float blockTemp;
 #endif
 
+#include "lib/shadows.glsl"
+
 void main() {
+	vec4 normalmap = texture2D(normals, texcoord);
 	vec4 color = texture2D(texture, texcoord) * glcolor;
 	color.rgb = srgbToLinear(color.rgb);
-	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime);
+	float normalDarkness = getNormals(normalmap, gbufferModelViewInverse, shadowLightPosition, tbn);
+	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime, calculateShadows(shadowtex0, shadowPos), normalDarkness, gbufferModelView, sunPosition);
 
-	#ifdef NORMALMAP_ENABLED
-	vec4 normalmap = texture2D(normals, texcoord);
-	#endif
 	#ifdef SPECULARMAP_ENABLED
 	vec4 specularmap = texture2D(specular, texcoord);
-	#endif
-
-	#ifdef NORMALS_ENABLED
-	color = applyNormals(normalmap, color, gbufferModelViewInverse, sunPosition, NORMALS_STRENGTH, tbn, worldTime, skyColor);
 	#endif
 
 	#ifdef NORMALS_LAB_AO_ENABLED

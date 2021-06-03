@@ -1,10 +1,19 @@
 #version 120
 
+#define VSH
+
 varying vec2 lmcoord;
 varying vec2 texcoord;
 varying vec4 glcolor;
 varying mat3 tbn;
 varying vec4 at_tangent;
+uniform mat4 gbufferModelViewInverse;
+uniform mat4 shadowProjection;
+uniform mat4 shadowModelView;
+varying vec4 shadowPos;
+
+#include "lib/settings.glsl"
+#include "lib/shadows.glsl"
 
 void main() {
 	gl_Position = ftransform();
@@ -19,4 +28,5 @@ void main() {
     	normalize(gl_NormalMatrix * cross(at_tangent.xyz, gl_Normal.xyz) * sign(at_tangent.w)),
     	normalize(gl_NormalMatrix * gl_Normal)
     ); */
+	shadowPos = calculateShadowUV();
 }

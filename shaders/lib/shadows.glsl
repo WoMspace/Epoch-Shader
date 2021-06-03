@@ -1,3 +1,4 @@
+#include "bokeh.glsl"
 float getDistortionFactor(vec2 uv)
 {
 	return pow(abs(uv.x * uv.x * uv.x) + abs(uv.y * uv.y * uv.y), 1.0 / 3.0) + SHADOW_DISTORTION_FACTOR;

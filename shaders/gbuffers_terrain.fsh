@@ -1,18 +1,15 @@
 #version 120
 
+#define FSH
+
 #include "lib/settings.glsl"
 #include "lib/labPBR.glsl"
 #include "lib/tonemapping.glsl"
-#include "lib/bokeh.glsl"
-
-#define FSH
 
 uniform sampler2D lightmap;
 uniform sampler2D texture;
 
-#ifdef NORMALMAP_ENABLED
 uniform sampler2D normals;
-#endif
 #ifdef SPECULARMAP_ENABLED
 uniform sampler2D specular;
 #endif
@@ -40,9 +37,7 @@ varying float blockTemp;
 #endif
 
 void main() {
-	#ifdef NORMALMAP_ENABLED
 	vec4 normalmap = texture2D(normals, texcoord);
-	#endif
 	#ifdef SPECULARMAP_ENABLED
 	vec4 specularmap = texture2D(specular, texcoord);
 	#endif
