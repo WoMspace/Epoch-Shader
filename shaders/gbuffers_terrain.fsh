@@ -3,6 +3,7 @@
 #include "lib/settings.glsl"
 #include "lib/labPBR.glsl"
 #include "lib/tonemapping.glsl"
+#include "lib/bokeh.glsl"
 
 #define FSH
 
@@ -22,7 +23,9 @@ varying vec4 shadowPos;
 #include "lib/shadows.glsl"
 
 uniform mat4 gbufferModelViewInverse;
+uniform mat4 gbufferModelView;
 uniform vec3 sunPosition;
+uniform vec3 shadowLightPosition;
 const float sunPathRotation = -25.0;
 uniform int worldTime;
 uniform vec3 skyColor;
@@ -37,10 +40,6 @@ varying float blockTemp;
 #endif
 
 void main() {
-	vec4 color = texture2D(texture, texcoord) * glcolor;
-	color.rgb = srgbToLinear(color.rgb);
-	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime);
-
 	#ifdef NORMALMAP_ENABLED
 	vec4 normalmap = texture2D(normals, texcoord);
 	#endif
@@ -48,9 +47,10 @@ void main() {
 	vec4 specularmap = texture2D(specular, texcoord);
 	#endif
 
-	#ifdef NORMALS_ENABLED
-	color = applyNormals(normalmap, color, gbufferModelViewInverse, sunPosition, NORMALS_STRENGTH, tbn, worldTime, skyColor);
-	#endif
+	vec4 color = texture2D(texture, texcoord) * glcolor;
+	color.rgb = srgbToLinear(color.rgb);
+	float normalDarkness = getNormals(normalmap, gbufferModelViewInverse, shadowLightPosition, tbn);
+	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime, calculateShadows(shadowtex0, shadowPos), normalDarkness, gbufferModelView, sunPosition);
 
 	#ifdef NORMALS_LAB_AO_ENABLED
 	float AO = normalmap.b * NORMALS_LAB_AO_STRENGTH;
@@ -66,7 +66,6 @@ void main() {
 	float temperature = float(blockTemp - 1000) / 4.0;
 	#endif
 
-	color.rgb *= calculateShadows(shadowtex0, shadowPos);
 
 /* DRAWBUFFERS:02 */
 	gl_FragData[0] = color; //gcolor

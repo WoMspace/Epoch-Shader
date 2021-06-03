@@ -22,21 +22,16 @@ vec3 hejlBurgess(vec3 color)
 	return color;
 }
 
-vec3 applyLightmap(vec3 color, vec2 lmcoord, vec3 skyColor, int worldTime)
+vec3 applyLightmap(vec3 color, vec2 lmcoord, vec3 skyColor, int worldTime, float shadowAmount, float normalAmount, mat4 gbufferModelView, vec3 sunPosition)
 {
 	vec3 blockLight = vec3(HDR_BLOCKLIGHT_RED, HDR_BLOCKLIGHT_GREEN, HDR_BLOCKLIGHT_BLUE) * lmcoord.x * HDR_BLOCKLIGHT_STRENGTH;
-	vec3 ambientColor;
-	if(worldTime > 13000)
-	{ //IT SNAPS TO NIGHT INSTANTLY ;-;
-		ambientColor = vec3(HDR_MOONLIGHT_RED, HDR_MOONLIGHT_GREEN, HDR_MOONLIGHT_BLUE) * 0.0005;
-	}
-	else
-	{
-		ambientColor = skyColor;
-	}
-	vec3 skyLight = ambientColor * lmcoord.y * HDR_AMBIENTLIGHT_STRENGTH;
-	float lightInfluence = clamp(lmcoord.x - lmcoord.y, HDR_MINLIGHT, 1.0); // AMBIENTLIGHT IS STILL YELLOW BECAUSE THE HDR_MINLIGHT IS MIXING TOO MUCH BLOCK COLOR WITH AMBIENT COLOR
-	return color * mix(skyLight, blockLight, lightInfluence);
-	//return color * max(skyLight, blockLight);
-	//return color * mix(skyLight, blockLight, min(lmcoord.x, lmcoord.y) + HDR_MINLIGHT);
+	vec3 ambientColor = skyColor;
+	vec3 sunlightColor = vec3(HDR_SUNLIGHT_RED, HDR_SUNLIGHT_GREEN, HDR_SUNLIGHT_BLUE) * lmcoord.y * HDR_SUNLIGHT_STRENGTH;
+	vec3 moonLightColor = vec3(HDR_MOONLIGHT_RED, HDR_MOONLIGHT_GREEN, HDR_MOONLIGHT_BLUE) * lmcoord.y * HDR_MOONLIGHT_STRENGTH;
+
+	float celestialSwapBrightness = min(max(smoothstep(13000, 11000, worldTime), smoothstep(13000, 15000, worldTime)), max(smoothstep(23000, 21000, worldTime), smoothstep(23000, 24000, worldTime)));
+	float celestialMix = clamp(dot(normalize(sunPosition), gbufferModelView[1].xyz), 0.0, 1.0); //some function to carefully mix between sun and moon
+	vec3 celestialLight = mix(moonLightColor, sunlightColor, celestialMix) * celestialSwapBrightness;
+	vec3 lightColor = mix(ambientColor, celestialLight, shadowAmount * normalAmount * celestialSwapBrightness);
+	return color * lightColor;
 }
