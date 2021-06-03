@@ -75,10 +75,34 @@ const vec2 LUTBlueOffset[64] = vec2[](
 
 vec3 applyLUT(vec3 color, sampler2D LUT)
 {
+	color = clamp(color, vec3(0.0), vec3(1.0));
 	vec2 RGoffset = vec2(color.r / 8.0, color.g / 176.0);
 	vec2 Boffset = LUTBlueOffset[int(color.b * 64.0)];
 	vec2 LUToffset = Boffset + RGoffset;
 	LUToffset.y += lut_selected;
 	color = mix(color, color * texture2D(LUT, LUToffset).rgb, LUT_STRENGTH);
 	return color;
+}
+
+float bayer2(vec2 uv) {
+	uv = 0.5 * floor(uv);
+	return fract(1.5 * fract(uv.y) + uv.x);
+}
+float bayer4(vec2 uv) {
+	return 0.25 * bayer2(0.5 * uv) + bayer2(uv);
+}
+float bayer8(vec2 uv) {
+	return 0.25 * bayer4(0.5 * uv) + bayer2(uv);
+}
+float bayer16(vec2 uv) {
+	return 0.25 * bayer8(0.5 * uv) + bayer2(uv);
+}
+float bayer32(vec2 uv) {
+	return 0.25 * bayer16(0.5 * uv) + bayer2(uv);
+}
+float bayer64(vec2 uv) {
+	return 0.25 * bayer32(0.5 * uv) + bayer2(uv);
+}
+float bayer128(vec2 uv) {
+	return 0.25 * bayer64(0.5 * uv) + bayer2(uv);
 }

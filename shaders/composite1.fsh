@@ -8,6 +8,7 @@
 - Bloom
 - Grain
 - Chroma Sampling
+- Quantisation
 - Film Mode
 - Interlacing
 */
@@ -35,6 +36,9 @@ const bool colortex0MipmapEnabled = true;
 #if FILM_MODE == FILM_THERMAL
 uniform sampler2D colortex2;
 const bool colortex2MipmapEnabled = true;
+#endif
+#if DITHERING_MODE == DITHERING_BLUE
+uniform sampler2D depthtex1;
 #endif
 
 varying vec2 texcoord;
@@ -99,6 +103,12 @@ void main()
 	#endif
 
 	#ifdef QUANTISATION_ENABLED
+	#if DITHERING_MODE == DITHERING_BAYER
+	color += bayer128(gl_FragCoord.xy) / quantisation_colors_perchannel;
+	#elif DITHERING_MODE == DITHERING_BLUE
+	vec2 ditherUV = vec2(texcoord.x * (viewWidth/512), texcoord.y * (viewHeight/512));
+	color += texture2D(depthtex1, ditherUV).rgb / quantisation_colors_perchannel;
+	#endif
 	color *= quantisation_colors_perchannel;
 	color = floor(color + 0.5);
 	color *= 1.0 / quantisation_colors_perchannel;

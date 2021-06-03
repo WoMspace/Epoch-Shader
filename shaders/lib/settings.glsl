@@ -98,8 +98,12 @@ const int noiseTextureResolution = 512; // Size of the noise texture. Smaller nu
 #define CHROMA_SAMPLING_SIZE 4.0// How big the chroma subsampling should be. Larger number = bigger artefacting.[1.0 2.0 3.0 4.0 5.0]
 
 // #define QUANTISATION_ENABLED // Reduced color palette.
-#define QUANTISATION_BITDEPTH 8 // How many values each color can have. [4 8 16 32]
+#define QUANTISATION_BITDEPTH 8 // How many values each color can have. [2 4 8 16 32]
 const float quantisation_colors_perchannel = pow(2, float(QUANTISATION_BITDEPTH) / 4.0);
+#define DITHERING_DISABLED 0
+#define DITHERING_BAYER 1
+#define DITHERING_BLUE 2
+#define DITHERING_MODE DITHERING_DISABLED // Makes low bit-depth look higher bitdepth. [DITHERING_DISABLED DITHERING_BAYER DITHERING_BLUE]
 
 #define INTERLACING_ENABLED // An interlacing effect. With help from Sir Bird.
 #define INTERLACING_SIZE 4.0 // How big the interlaced lines are. Good for HiDPI displays. [2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 15.0 20.0 30.0 40.0 50.0]
