@@ -4,6 +4,8 @@
 #include "lib/labPBR.glsl"
 #include "lib/tonemapping.glsl"
 
+#define FSH
+
 uniform sampler2D lightmap;
 uniform sampler2D texture;
 
@@ -14,6 +16,10 @@ uniform sampler2D normals;
 uniform sampler2D specular;
 #endif
 
+uniform sampler2D shadowtex0;
+varying vec4 shadowPos;
+
+#include "lib/shadows.glsl"
 
 uniform mat4 gbufferModelViewInverse;
 uniform vec3 sunPosition;
@@ -59,6 +65,8 @@ void main() {
 	vec3 color2 = texture2D(colortex2, texcoord).rgb;
 	float temperature = float(blockTemp - 1000) / 4.0;
 	#endif
+
+	color.rgb *= calculateShadows(shadowtex0, shadowPos);
 
 /* DRAWBUFFERS:02 */
 	gl_FragData[0] = color; //gcolor
