@@ -13,7 +13,7 @@ vec2 distort(vec2 uv)
 
 
 #ifdef VSH
-vec4 calculateShadowUV(mat4 gbufferModelViewInverse, mat4 shadowProjection, mat4 shadowModelView)
+vec4 calculateShadowUV()
 {
 	vec4 viewPos = gl_ModelViewMatrix * gl_Vertex;
 	vec4 playerPos = gbufferModelViewInverse * viewPos;

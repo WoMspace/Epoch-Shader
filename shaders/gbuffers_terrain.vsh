@@ -33,6 +33,6 @@ void main() {
     	normalize(gl_NormalMatrix * cross(at_tangent.xyz, gl_Normal.xyz) * sign(at_tangent.w)),
     	normalize(gl_NormalMatrix * gl_Normal)
     );*/
-	shadowPos = calculateShadowUV(gbufferModelViewInverse, shadowProjection, shadowModelView);
+	shadowPos = calculateShadowUV();
 	blockTemp = mc_Entity.x;
 }
