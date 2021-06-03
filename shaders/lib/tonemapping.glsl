@@ -29,7 +29,7 @@ vec3 applyLightmap(vec3 color, vec2 lmcoord, vec3 skyColor, int worldTime, float
 	vec3 sunlightColor = vec3(HDR_SUNLIGHT_RED, HDR_SUNLIGHT_GREEN, HDR_SUNLIGHT_BLUE) * lmcoord.y * HDR_SUNLIGHT_STRENGTH;
 	vec3 moonLightColor = vec3(HDR_MOONLIGHT_RED, HDR_MOONLIGHT_GREEN, HDR_MOONLIGHT_BLUE) * lmcoord.y * HDR_MOONLIGHT_STRENGTH;
 
-	float celestialSwapBrightness = min(max(smoothstep(13000.0, 11000.0, worldTime), smoothstep(13000.0, 15000.0, worldTime)), max(smoothstep(23000.0, 21000.0, worldTime), smoothstep(23000.0, 24000.0, worldTime)));
+	float celestialSwapBrightness = min(max(smoothstep(13000.0, 11000.0, float(worldTime)), smoothstep(13000.0, 15000.0, float(worldTime))), max(smoothstep(23000.0, 21000.0, float(worldTime)), smoothstep(23000.0, 24000.0, float(worldTime))));
 	float celestialMix = clamp(dot(normalize(sunPosition), gbufferModelView[1].xyz), 0.0, 1.0); //some function to carefully mix between sun and moon
 	vec3 celestialLight = mix(moonLightColor, sunlightColor, celestialMix) * celestialSwapBrightness;
 	vec3 lightColor = mix(ambientColor, celestialLight, shadowAmount * normalAmount * celestialSwapBrightness);
