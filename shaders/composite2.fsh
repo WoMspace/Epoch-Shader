@@ -79,7 +79,7 @@ void main()
 				vec2 spotLoc = uv + vec2(1.0 / viewWidth * i, 1.0 / viewHeight * j);
 				if(texture2D(colortex0, spotLoc).a > 0.0)
 				{
-					spotHere = 1.0 - (abs(i * j) / (FILM_IMPERFECTIONS_SPOTS_SIZE * FILM_IMPERFECTIONS_SPOTS_SIZE));
+					spotHere = 1.0 - (abs(float(i * j)) / (FILM_IMPERFECTIONS_SPOTS_SIZE * FILM_IMPERFECTIONS_SPOTS_SIZE));
 					break;
 				}
 			}

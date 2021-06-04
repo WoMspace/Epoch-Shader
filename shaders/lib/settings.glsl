@@ -164,4 +164,4 @@ const float quantisation_colors_perchannel = pow(2, float(QUANTISATION_BITDEPTH)
 const float lut_selected = float(LUT_SELECTED) / 22.0;
 #define LUT_STRENGTH 1.0 //[0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 
-#define MOLLY
+// #define MOLLY_LIT_TRANSLUCENTS_ENABLED

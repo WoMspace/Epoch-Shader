@@ -44,5 +44,5 @@ void main() {
 	//color = normalmap;
 
 /* DRAWBUFFERS:0 */
-	gl_FragData[0] = color; //gcolor
+	gl_FragData[0] = vec4(color.rgb, ceil(color.a)); //gcolor
 }
