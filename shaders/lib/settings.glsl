@@ -139,7 +139,7 @@ const float quantisation_colors_perchannel = pow(2, float(QUANTISATION_BITDEPTH)
 #endif
 
 #define GHOSTING_ENABLED // Ghosting effect.
-#define GHOSTING_STRENGTH 0.5 // The strength of the ghosting. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9]
+#define GHOSTING_STRENGTH 48.0 // The inverse strength of the ghosting. [1.0 1.5 2.0 3.0 4.0 6.0 8.0 12.0 16.0 24.0 32.0 48.0 64.0]
 
 // #define GRADING_ENABLED // Post-processing color grading.
 #define GRADING_HI_RED 1.0 // Red highlight strength [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
@@ -163,3 +163,5 @@ const float quantisation_colors_perchannel = pow(2, float(QUANTISATION_BITDEPTH)
 #define LUT_SELECTED LUT_DISABLED // [LUT_DISABLED 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22]
 const float lut_selected = float(LUT_SELECTED) / 22.0;
 #define LUT_STRENGTH 1.0 //[0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
+
+#define MOLLY

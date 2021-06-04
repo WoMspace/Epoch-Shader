@@ -11,7 +11,7 @@ uniform mat4 shadowModelView;
 varying vec2 lmcoord;
 varying vec2 texcoord;
 varying vec4 glcolor;
-varying vec4 at_tangent;
+attribute vec4 at_tangent;
 varying mat3 tbn;
 varying float blockTemp;
 varying vec4 shadowPos;

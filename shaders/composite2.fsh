@@ -27,6 +27,9 @@ uniform float frameTime;
 uniform float frameTimeCounter;
 
 const bool colortex2Clear = false;
+/*
+const int colortex2Format = RGBA16;
+*/
 
 varying vec2 texcoord;
 
@@ -128,7 +131,7 @@ void main()
 	vec3 color2 = vec3(0.0);
 	#ifdef GHOSTING_ENABLED
 		color2 = texture2D(colortex2, uv).rgb;
-		color2 = mix(color2, color, (1 - GHOSTING_STRENGTH) * frameTime * 70.0);
+		color2 = mix(color, color2, exp2(-GHOSTING_STRENGTH * frameTime));
 		color = (color + color2)*0.5;
 	#endif
 
