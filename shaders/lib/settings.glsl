@@ -72,6 +72,13 @@ const float centerDepthHalflife = 0.5; // How fast the focus should move. In sec
 #define BLOOM_THRESHOLD 0.1 // Minimum brightness for the bloom effect to work. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 #define BLOOM_QUALITY 1.0 // Quality of the bloom effect. [2.0 1.0 0.5 0.2]
 
+#define LENS_FLARES_DISABLED 0
+#define LENS_FLARES_SPHERICAL 1
+#define LENS_FLARES_ANAMORPHIC 2
+#define LENS_FLARES_MODE LENS_FLARES_ANAMORPHIC // [LENS_FLARES_DISABLED LENS_FLARES_SPHERICAL LENS_FLARES_ANAMORPHIC]
+#define LENS_FLARES_STRENGTH 1.0 // [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.2 1.5 1.6 1.8 2.0]
+#define LENS_FLARES_THRESHOLD 5.0 // [1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0]
+
 #define FILM_DISABLED 0
 #define FILM_GREYSCALE 1 // Black and white like a film camera.
 #define FILM_COLOR 2 // Color film, like a Kodak Gold film.
@@ -163,5 +170,11 @@ const float quantisation_colors_perchannel = pow(2, float(QUANTISATION_BITDEPTH)
 #define LUT_SELECTED LUT_DISABLED // [LUT_DISABLED 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22]
 const float lut_selected = float(LUT_SELECTED) / 22.0;
 #define LUT_STRENGTH 1.0 //[0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
+#define TONEMAP_BURGESS 0
+#define TONEMAP_JESSIE 1
+#define TONEMAP_ZOMBYE 2
+#define TONEMAP_TECH 3
+#define TONEMAP_OPERATOR TONEMAP_BURGESS // [TONEMAP_BURGESS TONEMAP_JESSIE TONEMAP_ZOMBYE TONEMAP_TECH]
 
 // #define MOLLY_LIT_TRANSLUCENTS_ENABLED
+// #define SHADOW_PROGRAM_DISABLED

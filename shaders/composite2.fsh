@@ -157,6 +157,6 @@ void main()
 	#endif
 
 	/* DRAWBUFFERS:02 */
-	gl_FragData[0] = vec4(color, 1.0);
+	gl_FragData[0] = vec4(max(color, 0.0), 1.0);
 	gl_FragData[1] = vec4(color2, 1.0);
 }

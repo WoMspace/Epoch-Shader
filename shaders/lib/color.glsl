@@ -75,7 +75,7 @@ const vec2 LUTBlueOffset[64] = vec2[](
 
 vec3 applyLUT(vec3 color, sampler2D LUT)
 {
-	color = clamp(color, vec3(0.0), vec3(1.0));
+	color = max(color, 0.0);
 	vec2 RGoffset = vec2(color.r / 8.0, color.g / 176.0);
 	vec2 Boffset = LUTBlueOffset[int(color.b * 64.0)];
 	vec2 LUToffset = Boffset + RGoffset;

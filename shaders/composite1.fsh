@@ -99,7 +99,7 @@ void main()
 
 	#ifdef CHROMA_SAMPLING_ENABLED
 		vec3 chroma = normalize(texture2DLod(colortex0, texcoord, CHROMA_SAMPLING_SIZE).rgb) * 2.0;
-		color = chroma * extractLuma(color);
+		color = max(chroma * extractLuma(color), 0.0);
 	#endif
 
 	#ifdef QUANTISATION_ENABLED
