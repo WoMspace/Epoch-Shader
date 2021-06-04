@@ -24,8 +24,9 @@ vec3 hejlBurgess(vec3 color)
 
 vec3 applyLightmap(vec3 color, vec2 lmcoord, vec3 skyColor, int worldTime, float shadowAmount, float normalAmount, mat4 gbufferModelView, vec3 sunPosition)
 {
-	vec3 blockLight = vec3(HDR_BLOCKLIGHT_RED, HDR_BLOCKLIGHT_GREEN, HDR_BLOCKLIGHT_BLUE) * lmcoord.x * HDR_BLOCKLIGHT_STRENGTH;
-	vec3 ambientColor = skyColor;
+	vec3 blockLight = vec3(HDR_BLOCKLIGHT_RED, HDR_BLOCKLIGHT_GREEN, HDR_BLOCKLIGHT_BLUE) * (lmcoord.x - 0.03125)  * HDR_BLOCKLIGHT_STRENGTH;
+	vec3 skyLight = lmcoord.y * skyColor;
+	vec3 ambientColor = max(skyColor, vec3(0.0015, 0.0015, 0.0025));
 	vec3 sunlightColor = vec3(HDR_SUNLIGHT_RED, HDR_SUNLIGHT_GREEN, HDR_SUNLIGHT_BLUE) * lmcoord.y * HDR_SUNLIGHT_STRENGTH;
 	vec3 moonLightColor = vec3(HDR_MOONLIGHT_RED, HDR_MOONLIGHT_GREEN, HDR_MOONLIGHT_BLUE) * lmcoord.y * HDR_MOONLIGHT_STRENGTH;
 
@@ -33,5 +34,7 @@ vec3 applyLightmap(vec3 color, vec2 lmcoord, vec3 skyColor, int worldTime, float
 	float celestialMix = clamp(dot(normalize(sunPosition), gbufferModelView[1].xyz), 0.0, 1.0); //some function to carefully mix between sun and moon
 	vec3 celestialLight = mix(moonLightColor, sunlightColor, celestialMix) * celestialSwapBrightness;
 	vec3 lightColor = mix(ambientColor, celestialLight, shadowAmount * normalAmount * celestialSwapBrightness);
-	return color * lightColor;
+
+	return color * max(lightColor, blockLight);
 }
+//return color * mix(skyLight, blockLight, lightInfluence);
