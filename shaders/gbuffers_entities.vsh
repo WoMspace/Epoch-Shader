@@ -6,7 +6,7 @@ varying vec2 lmcoord;
 varying vec2 texcoord;
 varying vec4 glcolor;
 varying mat3 tbn;
-varying vec4 at_tangent;
+attribute vec4 at_tangent;
 uniform mat4 gbufferModelViewInverse;
 uniform mat4 shadowProjection;
 uniform mat4 shadowModelView;
