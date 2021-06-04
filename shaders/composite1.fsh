@@ -89,7 +89,7 @@ void main()
 	#if GRAIN_MODE != 0
 		float noiseSeed = float(frameCounter) * 0.11;
 		vec2 noiseCoord = texcoord + vec2(sin(noiseSeed), cos(noiseSeed));
-		float grain_strength = GRAIN_STRENGTH * (1.0 - length(color)) + 0.1;
+		float grain_strength = GRAIN_STRENGTH * (1.0 - length(color)) * GRAIN_PERFORMANCE;
 		#if GRAIN_MODE == 1 // luma noise
 		color += vec3(texture2D(noisetex, noiseCoord).r - 0.5) * grain_strength;
 		#elif GRAIN_MODE == 2 // chroma noise

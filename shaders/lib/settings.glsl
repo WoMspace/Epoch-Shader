@@ -40,7 +40,6 @@
 const int shadowMapResolution = 2048; // [512 1024 2048 4096 8192]
 #define SHADOW_DISTORTION_FACTOR 0.1 // [0.01 0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 #define SHADOW_BIAS 0.02 //sis idek [0.0 0.01 0.02 0.03 0.04 0.05]
-#define SHADOW_DARKNESS 0.7 // [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 #define SHADOW_FILTER_SAMPLES 16 // [16 32 64]
 const float shadow_sample_darkness = 1.0 / SHADOW_FILTER_SAMPLES;
 // #define EXCLUDE_FOLIAGE
@@ -103,6 +102,7 @@ const float centerDepthHalflife = 0.5; // How fast the focus should move. In sec
 #define FILM_IMPERFECTIONS_LINES_STRENGTH 0.7 // Strength of the lines. [0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 
 #define GRAIN_STRENGTH 0.15 // How strong the noise is. [0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40 0.45 0.50]
+#define GRAIN_PERFORMANCE 0.4 // The noise performance of the camera/film. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 #define GRAIN_DISABLED 0
 #define GRAIN_LUMA 1
 #define GRAIN_CHROMA 2
@@ -177,4 +177,3 @@ const float lut_selected = float(LUT_SELECTED) / 22.0;
 #define TONEMAP_OPERATOR TONEMAP_BURGESS // [TONEMAP_BURGESS TONEMAP_JESSIE TONEMAP_ZOMBYE TONEMAP_TECH]
 
 // #define MOLLY_LIT_TRANSLUCENTS_ENABLED
-// #define SHADOW_PROGRAM_DISABLED
