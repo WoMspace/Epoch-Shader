@@ -5,6 +5,7 @@
 varying vec2 lmcoord;
 varying vec2 texcoord;
 varying vec4 glcolor;
+varying mat3 tbn;
 
 uniform mat4 gbufferModelViewInverse;
 uniform mat4 shadowProjection;
@@ -19,4 +20,7 @@ void main() {
 	lmcoord  = (gl_TextureMatrix[1] * gl_MultiTexCoord1).xy;
 	glcolor = gl_Color;
 	shadowPos = calculateShadowUV();
+	vec3 normal = gl_NormalMatrix * gl_Normal;
+	vec3 tangent = normalize(gl_NormalMatrix * at_tangent.xyz);
+	tbn = mat3(tangent, cross(tangent, normal) * sign(at_tangent.w), normal);
 }
