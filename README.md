@@ -20,7 +20,6 @@ a particular period of time in history or a person's life.
 - Light leaks
 - Anamorphic effects
 - Other lens effects
-	- Chromatic Aberration
 	- Flares
 - Flashlight
 - Physical-ish sky
@@ -34,5 +33,5 @@ buffer|Read|Write|composite0|composite1|composite2|composite15
 ------|----|-----|----------|----------|----------|-----------
 colortex0|0 1 2 15|0 1 2 15|color.rgb, coc.a|color.rgb, filmspot.a|color.rgb|color.rgb
 colortex1|1 15|1 15|N/A|color.rgb delayed|N/A|exposure.a
-colortex2|2|2|N/A|N/A|color.rgb accum|N/A
+colortex2|1 2|2|N/A|N/A|color.rgb accum|N/A
 colortex3|2|N/A|N/A|N/A|CRT Texture|N/A

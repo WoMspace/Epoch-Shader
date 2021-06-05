@@ -14,10 +14,25 @@ varying vec2 texcoord;
 
 #include "lib/tonemapping.glsl"
 #include "lib/color.glsl"
+#include "lib/maths.glsl"
 
 void main()
 {
-	vec3 color = texture2D(colortex0, texcoord).rgb;
+	vec3 color;
+	#ifdef CHROMATIC_ABERRATION_ENABLED
+	vec2 uvGreen = clip(texcoord);
+	vec2 uvBlue = uvGreen;
+	uvGreen *= 1.0 + CHROMATIC_ABERRATION_STRENGTH;
+	uvBlue *= CHROMATIC_ABERRATION_STRENGTH * 2.0 + 1.0;
+	uvGreen = unclip(uvGreen);
+	uvBlue = unclip(uvBlue);
+	color.r = texture2D(colortex0, texcoord).r;
+	color.g = texture2D(colortex0, uvGreen).g;
+	color.b = texture2D(colortex0, uvBlue).b;
+	#else
+	color = texture2D(colortex0, texcoord).rgb;
+	#endif
+
 	vec3 exposureSamples = texture2DLod(colortex0, vec2(0.5), 8.0).rgb;
 	exposureSamples += texture2DLod(colortex0, vec2(0.5), 10.0).rgb;
 	exposureSamples /= 2.0;

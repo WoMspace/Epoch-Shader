@@ -50,6 +50,9 @@ varying vec2 texcoord;
 
 void main()
 {
+	#ifdef CHROMATIC_ABERRATION_ENABLED
+	
+	#endif
 
 	#if DOF_MODE == 1 //mip blur
 	vec3 color = mipBlur(sqrt(abs(getFragDepth(depthtex0, texcoord) - getCursorDepth())));

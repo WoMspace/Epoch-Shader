@@ -124,6 +124,11 @@ suffix.LENS_LENGTH=mm
 option.LENS_APERTURE=Aperture
 option.LENS_APERTURE.comment=F-stop of the lens. A higher f-stop means smaller depth of field.
 prefix.LENS_APERTURE=f/
+option.CAMERA_ISO=ISO
+value.CAMERA_ISO.CAMERA_AUTO=Auto
+option.CAMERA_SHUTTER_SPEED=Shutter Speed
+value.CAMERA_SHUTTER_SPEED.CAMERA_AUTO=Auto
+prefix.CAMERA_SHUTTER_SPEED=1/
 option.DOF_DISTANCE=Focus Distance
 option.DOF_DISTANCE.comment=Which focus mode to use. Focus distance in blocks. FOCUS DISTANCE IS BROKEN!
 value.DOF_DISTANCE.DOF_AUTOFOCUS=Auto-focus
@@ -179,8 +184,15 @@ option.GRAIN_MODE.comment=Luma is black and white grain. Generally considered ae
 value.GRAIN_MODE.GRAIN_DISABLED=Disabled
 value.GRAIN_MODE.GRAIN_LUMA=Luma Grain
 value.GRAIN_MODE.GRAIN_CHROMA=Chroma Grain
+option.GRAIN_PERFORMANCE=Low-light Performance
+option.GRAIN_PERFORMANCE.comment=Higher values mean it's noisier when it's dark. Lower values mean it's less noisy when it's dark.
 option.noiseTextureResolution=Grain Resolution
 option.noiseTextureResolution.comment=Resolution of the grain. Higher resolution = finer grain.
+option.CHROMATIC_ABERRATION_ENABLED=Chromatic Aberration
+option.CHROMATIC_ABERRATION_ENABLED.comment=Adds color fringing to the edge of the frame.
+option.CHROMATIC_ABERRATION_STRENGTH=Chromatic Aberration Strength
+option.CHROMATIC_ABERRATION_STRENGTH.comment=How far apart the colors should be.
+
 option.CHROMA_SAMPLING_ENABLED=Chroma Subsampling
 option.CHROMA_SAMPLING_ENABLED.comment=Adds a slight compression artefact used in old color TV. Looks bad with Depth of Field.
 option.CHROMA_SAMPLING_SIZE=Subsampling Size
@@ -252,6 +264,22 @@ option.GRADING_LOW_GREEN=Green Shadows
 option.GRADING_LOW_GREEN.comment=Green shadow strength.
 option.GRADING_LOW_BLUE=Blue Shadows
 option.GRADING_LOW_BLUE.comment=Blue shadow strength.
+
+option.TONEMAP_OPERATOR=Tonemap Operator
+option.TONEMAP_OPERATOR.comment=Which tonemap operator to use. Burgess is fairly neutral. Jessie's is very high contrast. Zombye's is very low contrast. Tech's is fairly neutral.
+value.TONEMAP_OPERATOR.TONEMAP_BURGESS=Burgess
+value.TONEMAP_OPERATOR.TONEMAP_JESSIE=Jessie's
+value.TONEMAP_OPERATOR.TONEMAP_ZOMBYE=Zombye's
+value.TONEMAP_OPERATOR.TONEMAP_TECH=Tech's
+screen.TONEMAP_SETTINGS=Zombye's Tonemap Settings
+screen.TONEMAP_SETTINGS.comment=Adjust how the tonemap looks. Only affects Zombye's tonemap.
+
+option.TONEMAP_TOE_STRENGTH=Toe Strength
+option.TONEMAP_TOE_LENGTH=Toe Length
+option.TONEMAP_LINEAR_SLOPE=Linear Slope
+option.TONEMAP_LINEAR_LENGTH=Linear Length
+option.TONEMAP_SHOULDER_CURVE=Shoulder Curve
+option.TONEMAP_SHOULDER_LENGTH=Shoulder Length
 
 option.LUT_SELECTED=L.U.T
 option.LUT_SELECTED.comment=Enable and select a L.U.T (Look-Up Table).

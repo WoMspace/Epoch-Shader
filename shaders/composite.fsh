@@ -13,7 +13,6 @@ const int RGBA16F = 0;
 uniform sampler2D colortex0;
 const int colortex0Format = RGBA16F;
 const bool colortex0MipmapEnabled = true;
-uniform sampler2D colortex1;
 const int colortex1Format = RGBA16F;
 const bool colortex1Clear = false;
 uniform sampler2D depthtex0;

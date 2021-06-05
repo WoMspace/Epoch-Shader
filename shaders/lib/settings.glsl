@@ -7,7 +7,7 @@
 #define SPECULARMAP_ENABLED = defined(SPECULAR_EMISSIVE_ENABLED)
 
 #define HDR_BLOCKLIGHT_STRENGTH 2.0 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0 2.1 2.2 2.3 2.4 2.5 2.6 2.7 2.8 2.9 3.0 3.1 3.2 3.3 3.4 3.5 3.6 3.7 3.8 3.9 4.0 4.1 4.2 4.3 4.4 4.5 4.6 4.7 4.8 4.9 5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8 5.9 6.0 6.1 6.2 6.3 6.4 6.5 6.6 6.7 6.8 6.9 7.0 7.1 7.2 7.3 7.4 7.5 7.6 7.7 7.8 7.9 8.0 8.1 8.2 8.3 8.4 8.5 8.6 8.7 8.8 8.9 9.0 9.1 9.2 9.3 9.4 9.5 9.6 9.7 9.8 9.9 10.0]
-#define HDR_BLOCKLIGHT_RED 1.1 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define HDR_BLOCKLIGHT_RED 1.0 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
 #define HDR_BLOCKLIGHT_GREEN 0.6 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
 #define HDR_BLOCKLIGHT_BLUE 0.2 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
 #define HDR_SUNLIGHT_STRENGTH 7.5
@@ -71,12 +71,20 @@ const float centerDepthHalflife = 0.5; // How fast the focus should move. In sec
 #define BLOOM_THRESHOLD 0.1 // Minimum brightness for the bloom effect to work. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 #define BLOOM_QUALITY 1.0 // Quality of the bloom effect. [2.0 1.0 0.5 0.2]
 
+#define CHROMATIC_ABERRATION_ENABLED // Fringing of the colors around the edges of the screen.
+#define CHROMATIC_ABERRATION_STRENGTH 0.005 // How strong the chromatic aberration should be. [0.001 0.002 0.003 0.004 0.005 0.006 0.007 0.008 0.009 0.01]
+
 #define LENS_FLARES_DISABLED 0
 #define LENS_FLARES_SPHERICAL 1
 #define LENS_FLARES_ANAMORPHIC 2
 #define LENS_FLARES_MODE LENS_FLARES_ANAMORPHIC // [LENS_FLARES_DISABLED LENS_FLARES_SPHERICAL LENS_FLARES_ANAMORPHIC]
 #define LENS_FLARES_STRENGTH 1.0 // [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.2 1.5 1.6 1.8 2.0]
 #define LENS_FLARES_THRESHOLD 5.0 // [1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0]
+
+#define CAMERA_AUTO -1
+#define CAMERA_ISO CAMERA_AUTO // Currently doesn't do anything! [CAMERA_AUTO 50 100 200 400 800 1300 1600 3200 6400]
+#define CAMERA_SHUTTER_SPEED CAMERA_AUTO // Currently doesn't do anything! [CAMERA_AUTO 30 60 125 250 500 2000 4000]
+const float camera_shutter_speed = 1.0 / float(CAMERA_SHUTTER_SPEED);
 
 #define FILM_DISABLED 0
 #define FILM_GREYSCALE 1 // Black and white like a film camera.
