@@ -63,7 +63,7 @@ const float centerDepthHalflife = 0.5; // How fast the focus should move. In sec
 #else
 	#define DOF_BOKEH_SAMPLES 128 // How many samples to use for the bokeh. [32 64 128 256 512]
 #endif
-// // #define DOF_BOKEH_MIPMAP // Smoothens a low bokeh sample count. Can make the bokeh pixellated.
+// #define DOF_BOKEH_MIPMAP // Smoothens a low bokeh sample count. Can make the bokeh pixellated.
 // // #define DOF_BOKEH_NOISE // Makes the bokeh noisy, but smoother. BROKEN!
 
 // #define BLOOM_ENABLED // Should the bloom effect be used. Makes the image softer.

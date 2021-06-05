@@ -33,6 +33,7 @@ varying vec2 texcoord;
 #include "lib/fog.glsl"
 #include "lib/tonemapping.glsl"
 #include "lib/blurs.glsl"
+#include "lib/color.glsl"
 
 void main()
 {
@@ -48,10 +49,6 @@ void main()
 		float cursorDepth = getCursorDepth();
 		coc = abs(lens_aperture_diameter * ((LENS_LENGTH * (cursorDepth - fragDepth)) / (fragDepth * (cursorDepth - LENS_LENGTH)))) * 0.5;
 	#endif
-
-	// #if LENS_FLARES_MODE == LENS_FLARES_ANAMORPHIC
-	// color = gaussianHorizontal(colortex0, texcoord, 10.0);
-	// #endif
 
 	/* DRAWBUFFERS:0 */
 	gl_FragData[0] = vec4(color, coc);
