@@ -8,7 +8,9 @@
 
 uniform sampler2D lightmap;
 uniform sampler2D texture;
+#ifdef SHADOWS_ENABLED
 uniform sampler2D shadowtex0;
+#endif
 
 uniform sampler2D normals;
 #ifdef SPECULARMAP_ENABLED
@@ -42,7 +44,11 @@ void main() {
 	vec4 color = texture2D(texture, texcoord) * glcolor;
 	color.rgb = srgbToLinear(color.rgb);
 	float normalDarkness = getNormals(normalmap, gbufferModelViewInverse, shadowLightPosition, tbn);
+	#ifdef SHADOWS_ENABLED
 	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime, calculateShadows(shadowtex0, shadowPos), normalDarkness, gbufferModelView, sunPosition);
+	#else
+	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime, 1.0, normalDarkness, gbufferModelView, sunPosition);
+	#endif
 
 	#ifdef SPECULARMAP_ENABLED
 	vec4 specularmap = texture2D(specular, texcoord);

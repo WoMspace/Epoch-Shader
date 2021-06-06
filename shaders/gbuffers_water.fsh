@@ -8,7 +8,9 @@
 
 uniform sampler2D lightmap;
 uniform sampler2D texture;
+#ifdef SHADOWS_ENABLED
 uniform sampler2D shadowtex0;
+#endif
 uniform sampler2D normals;
 uniform vec3 skyColor;
 uniform int worldTime;
@@ -29,8 +31,11 @@ void main() {
 	vec4 normalmap = texture2D(normals, texcoord);
 	vec4 color = texture2D(texture, texcoord) * glcolor;
 	float normalDarkness = getNormals(normalmap, gbufferModelViewInverse, shadowLightPosition, tbn);
-	#ifndef MOLLY_LIT_TRANSLUCENTS_ENABLED
+	#if !defined(MOLLY_LIT_TRANSLUCENTS_ENABLED) && defined(SHADOWS_ENABLED)
 	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime, calculateShadows(shadowtex0, shadowPos), normalDarkness, gbufferModelView, sunPosition).rgb;
+	#elif defined(MOLLY_LIT_TRANSLUCENTS_ENABLED)
+	#else
+	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime, 1.0, normalDarkness, gbufferModelView, sunPosition).rgb;
 	#endif
 	//color.a *= 1.25;
 

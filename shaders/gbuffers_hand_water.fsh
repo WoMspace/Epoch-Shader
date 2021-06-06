@@ -20,8 +20,10 @@ varying vec2 texcoord;
 varying vec4 glcolor;
 varying mat3 tbn;
 
+#ifdef SHADOWS_ENABLED
 uniform sampler2D shadowtex0;
 varying vec4 shadowPos;
+#endif
 uniform mat4 gbufferModelView;
 uniform vec3 shadowLightPosition;
 #include "lib/shadows.glsl"
@@ -30,7 +32,11 @@ void main() {
 	vec4 color = texture2D(texture, texcoord) * glcolor;
 	vec4 normalmap = texture2D(normals, texcoord);
 	float normalDarkness = getNormals(normalmap, gbufferModelViewInverse, shadowLightPosition, tbn);
-	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime, calculateShadows(shadowtex0, shadowPos), normalDarkness, gbufferModelView, sunPosition);
+	#ifdef SHADOWS_ENABLED
+		color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime, calculateShadows(shadowtex0, shadowPos), normalDarkness, gbufferModelView, sunPosition);
+	#else
+		color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime, 1.0, normalDarkness, gbufferModelView, sunPosition);
+	#endif
 
 	#ifdef NORMALS_LAB_AO_ENABLED
 	float AO = normalmap.b * NORMALS_LAB_AO_STRENGTH;

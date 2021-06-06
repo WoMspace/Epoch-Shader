@@ -40,6 +40,7 @@ vec4 calculateShadowUV()
 #ifdef FSH
 float calculateShadows(sampler2D shadowtex0, vec4 shadowPos)
 {
+	#ifdef SHADOWS_ENABLED
 	#ifdef SHADOW_FILTER_ENABLED
 		float shadow = 1.0;
 		mat2 sampleRotation = rotate(InterleavedGradientNoise(gl_FragCoord.xy) * pi * 2.0);
@@ -59,6 +60,9 @@ float calculateShadows(sampler2D shadowtex0, vec4 shadowPos)
 			return 0.0;
 		}
 		else return 1.0;
+	#endif
+	#else
+	return 1.0;
 	#endif
 }
 #endif

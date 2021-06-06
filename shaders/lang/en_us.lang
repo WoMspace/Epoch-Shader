@@ -310,11 +310,15 @@ option.LUT_STRENGTH=L.U.T Strength
 option.LUT_STRENGTH.comment=How much the L.U.T should affect the colors.
 
 screen.SHADOWS=Shadows
+option.SHADOWS_ENABLED=Shadows
+option.SHADOWS_ENABLED.comment=Enable Shadows. Disabling can regain a LOT of FPS.
+option.shadowMapResolution=Shadow Resolution
+option.shadowMapResolution.comment=Quality of Shadows. Higher can get significantly slower.
 option.SHADOW_BIAS=Shadow Bias
 option.SHADOW_BIAS.comment=Affects the shadow offset. Too high or too low causes shadow acne or peter-panning.
 option.SHADOW_DISTORTION_FACTOR=Shadow Distance
 option.SHADOW_DISTORTION_FACTOR.comment=Lower makes closer shadows more detailed at the cost of farther shadows. Higher makes shadows more consistent throughout the world, at the cost of closer shadows.
+option.SHADOW_FILTER_ENABLED=Shadow Filter
+option.SHADOW_FILTER_ENABLED.comment=Enable the shadow filter. Disabling it makes shadows really blocky and sharp. Can be used with very high shadow resolution.
 option.SHADOW_FILTER_SAMPLES=Shadow Filter Samples
 option.SHADOW_FILTER_SAMPLES.comment=How many samples should be used to filter the shadows.
-option.shadowMapResolution=Shadow Resolution
-option.shadowMapResolution.comment=Quality of Shadows. Higher can get significantly slower.
