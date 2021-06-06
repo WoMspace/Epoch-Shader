@@ -1,4 +1,4 @@
-vec3 doFog(float depth, vec3 color)
+vec3 doFog(float depth, vec3 color, int skyLight)
 {
 	float viewPos = getRoundFragDepth(depthtex0, texcoord);
 	vec3 customFogColor;
@@ -7,7 +7,7 @@ vec3 doFog(float depth, vec3 color)
 
 	if(isEyeInWater == 0) //air
 	{
-		customFogColor = fogColor;
+		customFogColor = (fogColor * skyLight) / 240.0;
 		fogNearValue = FOG_NEAR;
 		fogFarValue = FOG_END;
 	}
@@ -26,6 +26,10 @@ vec3 doFog(float depth, vec3 color)
 	if(texture2D(depthtex0, texcoord).r != 1.0)
 	{
 		color = mix(color, customFogColor, clamp(((length(viewPos)-fogNearValue)/fogFarValue), 0.0, 1.0));
+	}
+	else
+	{
+		color = mix(color, customFogColor, clamp(((length(viewPos)-fogNearValue)/fogFarValue), 0.0, 1.0) * 0.5);
 	}
 	return color;
 }

@@ -23,6 +23,7 @@ uniform vec3 fogColor;
 uniform float frameTime;
 uniform float viewWidth;
 uniform float viewHeight;
+uniform ivec2 eyeBrightnessSmooth;
 
 varying vec2 texcoord;
 
@@ -37,7 +38,7 @@ void main()
 	vec3 color = texture2D(colortex0, texcoord).rgb;
 
 	#ifdef SHADER_FOG_ENABLED
-	color = doFog(getRoundFragDepth(depthtex0, texcoord), color);
+	color = doFog(getRoundFragDepth(depthtex0, texcoord), color, eyeBrightnessSmooth.y);
 	#endif
 
 	float coc = 1.0;

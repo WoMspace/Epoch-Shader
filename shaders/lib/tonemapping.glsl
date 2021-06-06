@@ -40,9 +40,9 @@ vec3 applyLightmap(vec3 color, vec2 lmcoord, vec3 skyColor, int worldTime, float
 	vec3 skyLight = lmcoord.y * skyColor;
 
 	#ifdef SHADOWS_ENABLED
-	vec3 ambientColor = max(skyColor, vec3(0.0015, 0.0015, 0.0025));
+	vec3 ambientColor = max(skyColor, vec3(0.0015, 0.0015, 0.0025) * HDR_MINLIGHT);
 	#else
-	vec3 ambientColor = max(skyColor * 1.5, vec3(0.015, 0.015, 0.025));
+	vec3 ambientColor = max(skyColor * 1.5, vec3(0.015, 0.015, 0.025) * HDR_MINLIGHT);
 	#endif
 
 	vec3 sunlightColor = vec3(HDR_SUNLIGHT_RED, HDR_SUNLIGHT_GREEN, HDR_SUNLIGHT_BLUE) * lmcoord.y * HDR_SUNLIGHT_STRENGTH;
