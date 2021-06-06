@@ -62,6 +62,6 @@ void main() {
 	float temperature = float(blockTemp - 1000) / 4.0;
 	#endif
 
-/* DRAWBUFFERS:02 */
+/* DRAWBUFFERS:0 */
 	gl_FragData[0] = color; //gcolor
 }

@@ -62,7 +62,7 @@ void main() {
 	#endif
 
 
-/* DRAWBUFFERS:02 */
+/* DRAWBUFFERS:0 */
 	gl_FragData[0] = color; //gcolor
 	#if FILM_MODE == FILM_THERMAL
 	gl_FragData[1] = vec4(color2, temperature);
