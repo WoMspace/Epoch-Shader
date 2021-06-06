@@ -38,7 +38,7 @@ void main() {
 
 	#ifdef NORMALS_LAB_AO_ENABLED
 	float AO = normalmap.b * NORMALS_LAB_AO_STRENGTH;
-	color *= AO;
+	color.rgb *= vec3(AO);
 	#endif
 
 	//color = normalmap;

@@ -40,9 +40,10 @@
 const int shadowMapResolution = 2048; // [512 1024 2048 4096 8192]
 #define SHADOW_DISTORTION_FACTOR 0.1 // [0.01 0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 #define SHADOW_BIAS 0.02 //sis idek [0.0 0.01 0.02 0.03 0.04 0.05]
-#define SHADOW_FILTER_SAMPLES 16 // [16 32 64]
+#define SHADOW_FILTER_SAMPLES 16 // [4 8 16 32 64]
 const float shadow_sample_darkness = 1.0 / SHADOW_FILTER_SAMPLES;
 // #define EXCLUDE_FOLIAGE
+#define SHADOW_FILTER_ENABLED // Enable filtering on the shadows to make them look soft and less blocky.
 
 #define DOF_DISABLED 0 // Really low quality. Really fast.
 #define DOF_MIP 1 // Higher quality. Pretty fast.
