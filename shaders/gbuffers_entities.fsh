@@ -37,12 +37,15 @@ void main() {
 	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime, calculateShadows(shadowtex0, shadowPos), normalDarkness, gbufferModelView, sunPosition);
 
 	#ifdef NORMALS_LAB_AO_ENABLED
-	float AO = normalmap.b * NORMALS_LAB_AO_STRENGTH;
-	color.rgb *= vec3(AO);
+	if(normalmap.r > 0.0)
+	{
+		float AO = normalmap.b * NORMALS_LAB_AO_STRENGTH;
+		color.rgb *= vec3(AO);
+	}
 	#endif
 
 	//color = normalmap;
 
 /* DRAWBUFFERS:0 */
-	gl_FragData[0] = vec4(color.rgb, ceil(color.a)); //gcolor
+	gl_FragData[0] = vec4(color.rgb, color.a); //gcolor
 }
