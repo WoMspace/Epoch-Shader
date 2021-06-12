@@ -84,7 +84,7 @@ const float centerDepthHalflife = 0.5; // How fast the focus should move. In sec
 #define LENS_FLARES_THRESHOLD 5.0 // [1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0]
 
 #define CAMERA_AUTO -1
-#define CAMERA_ISO CAMERA_AUTO // Currently doesn't do anything! [CAMERA_AUTO 50 100 200 400 800 1300 1600 3200 6400]
+#define CAMERA_ISO CAMERA_AUTO // Currently doesn't do anything! [CAMERA_AUTO 50 100 200 400 800 1300 1600 3200 6400 12800 25600]
 #define CAMERA_SHUTTER_SPEED CAMERA_AUTO // Currently doesn't do anything! [CAMERA_AUTO 30 60 125 250 500 2000 4000]
 const float camera_shutter_speed = 1.0 / float(CAMERA_SHUTTER_SPEED);
 
