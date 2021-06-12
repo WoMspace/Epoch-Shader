@@ -125,6 +125,7 @@ option.LENS_APERTURE=Aperture
 option.LENS_APERTURE.comment=F-stop of the lens. A higher f-stop means smaller depth of field.
 prefix.LENS_APERTURE=f/
 option.CAMERA_ISO=ISO
+option.CAMERA_ISO.comment=Sensitivity of the camera to light.
 value.CAMERA_ISO.CAMERA_AUTO=Auto
 option.CAMERA_SHUTTER_SPEED=Shutter Speed
 value.CAMERA_SHUTTER_SPEED.CAMERA_AUTO=Auto
