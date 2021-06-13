@@ -1,7 +1,7 @@
 #version 120
 
 /*
-==== COMPOSITE0:WORLD ====
+==== COMPOSITE0:WORLD #1 ====
 - Fog
 - DoF CoC calculation (hehe coc)
 */

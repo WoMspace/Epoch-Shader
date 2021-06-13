@@ -1,5 +1,12 @@
 #version 120
 
+/*
+==== COMPOSITE15:TONEMAPPING ====
+- Chromatic Aberration
+- Exposure
+- Tonemap
+*/
+
 #include "lib/settings.glsl"
 const int RGBA16F = 0;
 

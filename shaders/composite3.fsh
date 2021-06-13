@@ -3,7 +3,7 @@
 #extension GL_ARB_shader_texture_lod : enable
 
 /*
-==== COMPOSITE1:CAMERA ====
+==== COMPOSITE3:CAMERA #1 ====
 - DoF
 - Bloom
 - Grain

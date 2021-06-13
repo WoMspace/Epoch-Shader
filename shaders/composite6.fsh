@@ -1,7 +1,7 @@
 #version 120
 
 /*
-==== COMPOSITE2:PLAYBACK ====
+==== COMPOSITE6:PLAYBACK #1 ====
 - Image Transforms
 - Rewind Effect
 - Pixel Size
