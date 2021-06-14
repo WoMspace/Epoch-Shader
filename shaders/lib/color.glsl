@@ -12,6 +12,12 @@ vec3 extractLuma(vec3 color, vec3 influence)
 	return color;
 }
 
+vec3 threshold(vec3 color, float threshold)
+{
+	float luma = extractLuma(color);
+	return mix(vec3(0.0), color, step(threshold, luma));
+}
+
 vec3 contrast(vec3 color, float midpoint, float strength)
 {
 	color -= -midpoint + 0.5;

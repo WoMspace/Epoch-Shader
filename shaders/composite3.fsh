@@ -30,6 +30,10 @@ uniform float aspectRatio;
 uniform int frameCounter;
 uniform float frameTimeCounter;
 
+#ifdef BLOOM_ENABLED
+uniform sampler2D colortex4;
+#endif
+
 const bool colortex1Clear = false;
 const bool colortex0MipmapEnabled = true;
 
@@ -51,24 +55,12 @@ varying vec2 texcoord;
 void main()
 {
 	#if DOF_MODE == 1 //mip blur
-	vec3 color = mipBlur(sqrt(abs(getFragDepth(depthtex0, texcoord) - getCursorDepth())));
+	vec3 color = mipBlur(sqrt(abs(getFragDepth(depthtex0, texcoord) - getCursorDepth())), colortex0);
 	#elif DOF_MODE == 2 //bokeh blur
 	float coc = texture2DLod(colortex0, texcoord, 3.5).a;
-	vec3 color = bokehBlur(coc * 10.0);
+	vec3 color = bokehBlur(coc * 10.0, colortex0);
 	#else
 	vec3 color = texture2D(colortex0, texcoord).rgb;
-	#endif
-
-	#ifdef BLOOM_ENABLED
-		vec3 bloomColor = color;// * 10.0 - 7.5;
-		int count = 0;
-		for(float i = 0.0; i < 7.0; i += 0.1)
-		{//kinda sketch ngl. WIP.
-			bloomColor += texture2DLod(colortex0, texcoord, i).rgb * 10.0 - 7.5;
-			count++;
-		}
-		//bloomColor = bloomColor * 10.0 - 7.5;
-		color =+ clamp(bloomColor / count, 0.0, 2.0);
 	#endif
 
 	#if FILM_MODE != 0
@@ -83,6 +75,10 @@ void main()
 			float temperature = texture2DLod(colortex2, texcoord, 3.0).a;
 			color = mix(cold, hot, temperature);
 		#endif
+	#endif
+
+	#ifdef BLOOM_ENABLED
+	color += texture2D(colortex4, texcoord).rgb * BLOOM_STRENGTH;
 	#endif
 
 	#if GRAIN_MODE != 0
