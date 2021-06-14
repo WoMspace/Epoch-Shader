@@ -30,6 +30,7 @@ varying vec4 shadowPos;
 void main() {
 	vec4 normalmap = texture2D(normals, texcoord);
 	vec4 color = texture2D(texture, texcoord) * glcolor;
+	color.rgb = srgbToLinear(color.rgb);
 	float normalDarkness = getNormals(normalmap, gbufferModelViewInverse, shadowLightPosition, tbn);
 	#if !defined(MOLLY_LIT_TRANSLUCENTS_ENABLED) && defined(SHADOWS_ENABLED)
 	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime, calculateShadows(shadowtex0, shadowPos), normalDarkness, gbufferModelView, sunPosition).rgb;
