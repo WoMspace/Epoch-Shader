@@ -30,7 +30,7 @@ uniform float aspectRatio;
 uniform int frameCounter;
 uniform float frameTimeCounter;
 
-#ifdef BLOOM_ENABLED
+#if BLOOM_QUALITY != BLOOM_DISABLED
 uniform sampler2D colortex4;
 #endif
 
@@ -77,7 +77,7 @@ void main()
 		#endif
 	#endif
 
-	#ifdef BLOOM_ENABLED
+	#if BLOOM_QUALITY != BLOOM_DISABLED
 	color += texture2D(colortex4, texcoord).rgb * BLOOM_STRENGTH;
 	#endif
 

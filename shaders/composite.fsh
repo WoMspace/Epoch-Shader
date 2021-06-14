@@ -49,7 +49,7 @@ void main()
 	#endif
 
 	vec3 bloom = vec3(0.0);
-	#ifdef BLOOM_ENABLED
+	#if BLOOM_QUALITY != BLOOM_DISABLED
 	bloom = threshold(color, BLOOM_THRESHOLD);
 	#endif
 

@@ -44,38 +44,10 @@ vec3 bokehBlur(float blurAmount, sampler2D colortex) //simple and pretty fast bo
 	return retColor;
 }
 
-
-// vec3 gaussianHorizontal(sampler2D colortex, vec2 uv, float blurAmount)
-// {
-// 	vec2 onePixel = vec2(1.0 / viewWidth, 1.0 / viewHeight);
-// 	vec3 retColor = vec3(0.0);
-// 	float offset = 0.0;
-// 	for(int i = -16; i < 16; i++)
-// 	{
-// 		offset = float(i) * onePixel.x + uv.x;
-// 		retColor += texture2D(colortex, vec2(offset * blurAmount, uv.y)).rgb / gaussianKernel2[i];
-// 	}
-// 	return retColor / 18.0;
-// }
-
- vec3 gaussianHorizontal(sampler2D gcolor, vec2 uv, float blurAmount)
-{
-    hPixelOffset *= blurAmount;
-    vec3 color = vec3(0.0);
-    for(int i = 0; i < 33; i++)
-    {
-        color += texture2D(gcolor, vec2(uv.x + (i * hPixelOffset), uv.y)).rgb * gaussianKernel2[i] * 0.25;
-    }
-    for(int i = 1; i < 33; i++)
-    {
-        color += texture2D(gcolor, vec2(uv.x - (i * hPixelOffset), uv.y)).rgb * gaussianKernel2[i] * 0.25;
-    }
-    return color;
-}
-
 vec3 gaussianBloom(sampler2D colortex, vec2 uv)
 {
-	vec3 retColor = vec3(0.0);
+	//small pass. fastest.
+	vec3 pass1 = vec3(0.0);
 	for(int i = 0; i < 9; i++)
 	{
 		vec2 offset = uv;
@@ -85,7 +57,37 @@ vec3 gaussianBloom(sampler2D colortex, vec2 uv)
 		offset.y += float(i - 5) * vPixelOffset;
 		#endif
 
-		retColor += texture2D(colortex, offset).rgb * bloomKernelLarge[i];
+		pass1 += texture2D(colortex, offset).rgb * bloomKernelSmall[i];
 	}
+	vec3 pass2 = vec3(0.0);
+	#if BLOOM_QUALITY >= 2
+	for(int i = 0; i < 39; i++)
+	{
+		vec2 offset = uv;
+		#ifdef GAUSSIAN_HORIZONTAL
+		offset.x += float(i - 20) * hPixelOffset;
+		#else
+		offset.y += float(i - 520) * vPixelOffset;
+		#endif
+
+		pass2 += texture2D(colortex, offset).rgb * bloomKernelMedium[i];
+	}
+	#endif
+	vec3 pass3 = vec3(0.0);
+	#if BLOOM_QUALITY >=3
+	for(int i = 0; i < 201; i++)
+	{
+		vec2 offset = uv;
+		#ifdef GAUSSIAN_HORIZONTAL
+		offset.x += float(i - 101) * hPixelOffset;
+		#else
+		offset.y += float(i - 101) * vPixelOffset;
+		#endif
+
+		pass3 += texture2D(colortex, offset).rgb * bloomKernelSmall[i];
+	}
+	#endif
+	vec3 retColor = pass1 + pass2 + pass3;
+	//retColor *= 30.0;
 	return retColor;
 }
