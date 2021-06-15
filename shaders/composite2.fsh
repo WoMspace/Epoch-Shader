@@ -1,5 +1,7 @@
 #version 120
 
+#extension GL_ARB_shader_texture_lod : enable
+
 /*
 ==== COMPOSITE2:BLOOM #2 ====
 - Bloom pass 2
