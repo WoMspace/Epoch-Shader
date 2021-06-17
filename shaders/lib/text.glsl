@@ -8,18 +8,24 @@ Requires #version 130 or greater
 //change this to change color of text.
 const vec3 textColor = vec3(1.0);
 
+//change this to change color of text background.
 const vec3 bgColor = vec3(0.0);
 
 // the size in on-screen pixels of each font pixel.
-const int characterPixelWidth = 2;
+const int characterPixelWidth = 10;
 
 
-vec3 renderChar(int asciiCode, int characterIndex)
+vec3 renderChar(int asciiCode, int characterIndex, vec3 passthroughColor)
 { // asciiCode is the... ascii code...
   // characterIndex is how far along the character is.
 
 	vec2 pixelCoord = floor(gl_FragCoord).xy;
 	pixelCoord = mod(pixelCoord, vec2(8.0 * float(characterPixelWidth)));
+
+	if(pixelCoord.y > characterPixelWidth)
+	{
+		return passthroughColor;
+	}
 
 	int charInt = ascii[asciiCode].int1;
 	int bitIndex = int(floor(mod(pixelCoord.y * 2.0 + pixelCoord.x, 32.0)));

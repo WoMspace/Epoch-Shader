@@ -19,13 +19,7 @@ const int colortex1Format = RGBA16F;
 const bool colortex1Clear = false;
 uniform sampler2D colortex1;
 uniform float frameTime;
-
-
-
 varying vec2 texcoord;
-
-
-
 
 #include "lib/tonemapping.glsl"
 #include "lib/color.glsl"
@@ -67,7 +61,7 @@ void main()
 
 	vec3 color1 = texture2D(colortex1, texcoord).rgb;
 
-	color = renderChar(64, 0);
+	color = renderChar(64, 0, color); //should render A
 
 	/* DRAWBUFFERS:01 */
 	gl_FragData[0] = vec4(color, 1.0);
