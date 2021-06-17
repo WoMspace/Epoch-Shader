@@ -1,4 +1,4 @@
-#version 120
+#version 130
 
 #extension GL_ARB_shader_texture_lod : enable
 
@@ -19,11 +19,18 @@ const int colortex1Format = RGBA16F;
 const bool colortex1Clear = false;
 uniform sampler2D colortex1;
 uniform float frameTime;
+
+
+
 varying vec2 texcoord;
+
+
+
 
 #include "lib/tonemapping.glsl"
 #include "lib/color.glsl"
 #include "lib/maths.glsl"
+#include "lib/text.glsl"
 
 void main()
 {
@@ -59,6 +66,8 @@ void main()
 	color = tonemapSelector(color * brightnessMultiplier * 0.35);
 
 	vec3 color1 = texture2D(colortex1, texcoord).rgb;
+
+	color = renderChar(64, 0);
 
 	/* DRAWBUFFERS:01 */
 	gl_FragData[0] = vec4(color, 1.0);
