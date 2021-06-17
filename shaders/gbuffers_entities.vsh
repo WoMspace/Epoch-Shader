@@ -24,9 +24,9 @@ void main() {
 	vec3 tangent = normalize(gl_NormalMatrix * at_tangent.xyz);
 	tbn = mat3(tangent, cross(tangent, normal) * sign(at_tangent.w), normal);
 	/* tbn = mat3(
-    	normalize(gl_NormalMatrix * at_tangent.xyz),
-    	normalize(gl_NormalMatrix * cross(at_tangent.xyz, gl_Normal.xyz) * sign(at_tangent.w)),
-    	normalize(gl_NormalMatrix * gl_Normal)
-    ); */
+		normalize(gl_NormalMatrix * at_tangent.xyz),
+		normalize(gl_NormalMatrix * cross(at_tangent.xyz, gl_Normal.xyz) * sign(at_tangent.w)),
+		normalize(gl_NormalMatrix * gl_Normal)
+	); */
 	shadowPos = calculateShadowUV();
 }

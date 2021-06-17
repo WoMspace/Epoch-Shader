@@ -14,12 +14,12 @@ vec2 distort(vec2 uv)
 }
 
 float InterleavedGradientNoise(vec2 p) { //Thanks Tech!
-    vec3 magic = vec3(0.06711056, 0.00583715, 52.9829189);
-    return fract(magic.z * fract(dot(p, magic.xy)));
+	vec3 magic = vec3(0.06711056, 0.00583715, 52.9829189);
+	return fract(magic.z * fract(dot(p, magic.xy)));
 }
 
 mat2 rotate(float angle){
-    return mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+	return mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
 }
 
 #ifdef VSH
