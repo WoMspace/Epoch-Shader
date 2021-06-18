@@ -11,7 +11,7 @@ float getNormals(vec4 normal, mat4 gbufferModelViewInverse, vec3 shadowLightPosi
 {
 	vec3 normalMap = extractNormalMap(normal, tbn, gbufferModelViewInverse);
 	vec3 celestialDirection = mat3(gbufferModelViewInverse) * shadowLightPosition;
-	return clamp(dot(normalMap, celestialDirection), 0.0, 1.0);
+	return clamp(dot(normalMap, celestialDirection) * 0.01 * NORMALMAP_STRENGTH, 0.0, 1.0);
 }
 
 vec4 applyEmission(vec4 specular, vec4 color, float strength)
