@@ -1,3 +1,6 @@
+option.EPOCH_VERSION=§5§lEpoch§r by §b§oWoMspace§r
+value.EPOCH_VERSION.1.1=§cv1.1-rc3
+
 profile.OFF=Disabled
 profile.OFF.comment=Disable everything. Except fog.
 profile.VHS=VHS Tape

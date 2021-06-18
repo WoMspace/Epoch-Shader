@@ -12,6 +12,11 @@
 #include "lib/settings.glsl"
 const int RGBA16F = 0;
 
+/*
+#ifdef EPOCH_VERSION
+#endif
+*/
+
 uniform sampler2D colortex0;
 const bool colortex0MipmapEnabled = true;
 const int colortex0Format = RGBA16F;
