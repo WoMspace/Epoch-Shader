@@ -35,4 +35,4 @@ colortex0|0 3 6 15|GB 0 3 6 15|color.rgb, coc.a|color.rgb, filmspot.a|color.rgb|
 colortex1|3 15|3 15|N/A|color.rgb delayed|N/A|exposure.a
 colortex2|GB 3 6|6|N/A|N/A|color.rgb accum|N/A
 colortex3|2|6|N/A|N/A|CRT Texture|N/A
-colortex4||0 1 2|N/A|Bloom|N/A|N/A
+colortex4|3|0 1 2|N/A|Bloom|N/A|N/A
