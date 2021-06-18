@@ -29,9 +29,10 @@ a particular period of time in history or a person's life.
 
 ### BUFFER USAGE:
 
-buffer|Read|Write|composite0|composite1|composite2|composite15
+buffer|Read|Write|composite0|composite3|composite6|composite15
 ------|----|-----|----------|----------|----------|-----------
-colortex0|0 1 2 15|0 1 2 15|color.rgb, coc.a|color.rgb, filmspot.a|color.rgb|color.rgb
-colortex1|1 15|1 15|N/A|color.rgb delayed|N/A|exposure.a
-colortex2|1 2|2|N/A|N/A|color.rgb accum|N/A
-colortex3|2|N/A|N/A|N/A|CRT Texture|N/A
+colortex0|0 3 6 15|GB 0 3 6 15|color.rgb, coc.a|color.rgb, filmspot.a|color.rgb|color.rgb
+colortex1|3 15|3 15|N/A|color.rgb delayed|N/A|exposure.a
+colortex2|GB 3 6|6|N/A|N/A|color.rgb accum|N/A
+colortex3|2|6|N/A|N/A|CRT Texture|N/A
+colortex4||0 1 2|N/A|Bloom|N/A|N/A
