@@ -1,14 +1,14 @@
 float getFragDepth(sampler2D depthTex, vec2 texcoord)
 {
 	float depth = texture2D(depthTex, texcoord).r;
-	depth = pow(far+1,depth)-1;
+	depth = pow(far + 1.0, depth) - 1.0;
 	return depth;
 }
 
 float getCursorDepth()
 {
 	#if DOF_DISTANCE == DOF_AUTOFOCUS
-	return pow(far+1,centerDepthSmooth)-1;
+	return pow(far + 1.0, centerDepthSmooth) - 1.0;
 	#else
 	return float(DOF_DISTANCE);
 	#endif

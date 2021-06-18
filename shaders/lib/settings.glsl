@@ -1,12 +1,30 @@
-//#define NORMALS_ENABLED // Should normalmapping be enabled.
-#define NORMALS_STRENGTH 1.0 // How strong the normal mapping should be. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define EPOCH_VERSION 1.1
+
+#define NORMALMAP_STRENGTH 1.0 // [0.01 0.05 0.1 0.5 1.0 5.0 10.0 50.0]
 //#define NORMALS_LAB_AO_ENABLED // Should the labPBR texture Ambient Occlusion be used.
 #define NORMALS_LAB_AO_STRENGTH 1.0 // How strong the labPBR ambient occlusion is. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
 //#define SPECULAR_EMISSIVE_ENABLED
-#define SPECULAR_EMISSIVE_STRENGTH 2.0 // How strong the labPBR Emission is. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0 2.2 2.4 2.6 2.8 3.0 3.2 3.4 3.6 3.8 4.0]
+#define SPECULAR_EMISSIVE_STRENGTH 6.0 // How strong the labPBR Emission is. [0.2 0.4 0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0 2.2 2.4 2.6 2.8 3.0 3.2 3.4 3.6 3.8 4.0 4.2 4.4 4.6 4.8 5.0 5.2 5.4 5.6 5.8 6.0 6.2 6.4 6.6 6.8 7.0 7.2 7.4 7.6 7.8 8.0]
 
-#define NORMALMAP_ENABLED = defined(NORMALS_ENABLED) || defined(NORMALS_LAB_AO_ENABLED)
 #define SPECULARMAP_ENABLED = defined(SPECULAR_EMISSIVE_ENABLED)
+
+#define HDR_BLOCKLIGHT_STRENGTH 2.0 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0 2.1 2.2 2.3 2.4 2.5 2.6 2.7 2.8 2.9 3.0 3.1 3.2 3.3 3.4 3.5 3.6 3.7 3.8 3.9 4.0 4.1 4.2 4.3 4.4 4.5 4.6 4.7 4.8 4.9 5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8 5.9 6.0 6.1 6.2 6.3 6.4 6.5 6.6 6.7 6.8 6.9 7.0 7.1 7.2 7.3 7.4 7.5 7.6 7.7 7.8 7.9 8.0 8.1 8.2 8.3 8.4 8.5 8.6 8.7 8.8 8.9 9.0 9.1 9.2 9.3 9.4 9.5 9.6 9.7 9.8 9.9 10.0]
+#define HDR_BLOCKLIGHT_RED 1.0 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define HDR_BLOCKLIGHT_GREEN 0.6 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define HDR_BLOCKLIGHT_BLUE 0.2 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define HDR_SUNLIGHT_STRENGTH 7.5
+#define HDR_SUNLIGHT_RED 1.0 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define HDR_SUNLIGHT_GREEN 0.9 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define HDR_SUNLIGHT_BLUE 0.8 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define HDR_MOONLIGHT_STRENGTH 0.05
+#define HDR_MOONLIGHT_RED 0.2 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define HDR_MOONLIGHT_GREEN 0.2 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define HDR_MOONLIGHT_BLUE 0.3 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+#define HDR_AMBIENTLIGHT_STRENGTH 1.0 // [0.0 0.5 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5 8.0 8.5 9.0 9.5 10.0 10.5 11.0 11.5 12.0 12.5 13.0 13.5 14.0 14.5 15.0 15.5 16.0 16.5 17.0 17.5 18.0 18.5 19.0 19.5 20.0]
+#define HDR_MINLIGHT 1.0 // [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0 2.2 2.4 2.6 2.8 3.0 3.5 4.0 5.0 6.0 8.0 10.0]
+#define HDR_EXPOSURE_VALUE 0.6 // [0.0 0.2 0.4 0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0 2.2 2.4 2.6 2.8 3.0 3.2 3.4 3.6 3.8 4.0 4.2 4.4 4.6 4.8 5.0 5.2 5.4 5.6 5.8 6.0 6.2 6.4 6.6 6.8 7.0 7.2 7.4 7.6 7.8 8.0 8.2 8.4 8.6 8.8 9.0 9.2 9.4 9.6 9.8 10.0 10.2 10.4 10.6 10.8 11.0 11.2 11.4 11.6 11.8 12.0 12.2 12.4 12.6 12.8 13.0 13.2 13.4 13.6 13.8 14.0 14.2 14.4 14.6 14.8 15.0 15.2 15.4 15.6 15.8 16.0 16.2 16.4 16.6 16.8 17.0 17.2 17.4 17.6 17.8 18.0 18.2 18.4 18.6 18.8 19.0 19.2 19.4 19.6 19.8 20.0]
+#define HDR_EXPOSURE_MAXIMUM 0.01 // [0.0 0.005 0.01 0.03 0.05 0.1 0.15 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.2 1.4 1.6 1.8 2.0 2.2 2.4 2.6 2.8 3.0 3.5 4.0 4.5 5.0 6.0 7.0 8.0 9.0 10.0 12.0 14.0 16.0 18.0 20.0 25.0 30.0 40.0 50.0 75.0 100.0]
+#define HDR_EXPOSURE_MINIMUM 5.0 // [0.01 0.0 3 0.05 0.1 0.15 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.2 1.4 1.6 1.8 2.0 2.2 2.4 2.6 2.8 3.0 3.5 4.0 4.5 5.0 6.0 7.0 8.0 9.0 10.0 12.0 14.0 16.0 18.0 20.0 25.0 30.0 40.0 50.0 75.0 100.0]
 
 #define SHADER_FOG_ENABLED // Should the fog effect be used.
 #define FOG_END far // How far away the fog should end. [32 64 128 far]
@@ -20,6 +38,15 @@
 #define LAVA_FOG_B 0.0// Blue channel of the water fog. [0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 #define LAVA_FOG_DISTANCE 2.0 // How far the lava fog should go. [1.0 2.0 4.0 8.0]
 #define pi 3.14159 //pi babey
+
+#define SHADOWS_ENABLED // :grimacing:
+const int shadowMapResolution = 2048; // [512 1024 2048 4096 8192]
+#define SHADOW_DISTORTION_FACTOR 0.1 // [0.01 0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
+#define SHADOW_BIAS 0.02 //sis idek [0.0 0.01 0.02 0.03 0.04 0.05]
+#define SHADOW_FILTER_SAMPLES 16 // [4 8 16 32 64]
+const float shadow_sample_darkness = 1.0 / SHADOW_FILTER_SAMPLES;
+// #define EXCLUDE_FOLIAGE
+#define SHADOW_FILTER_ENABLED // Enable filtering on the shadows to make them look soft and less blocky.
 
 #define DOF_DISABLED 0 // Really low quality. Really fast.
 #define DOF_MIP 1 // Higher quality. Pretty fast.
@@ -40,17 +67,33 @@ const float centerDepthHalflife = 0.5; // How fast the focus should move. In sec
 #else
 	#define DOF_BOKEH_SAMPLES 128 // How many samples to use for the bokeh. [32 64 128 256 512]
 #endif
-// // #define DOF_BOKEH_MIPMAP // Smoothens a low bokeh sample count. Can make the bokeh pixellated.
+// #define DOF_BOKEH_MIPMAP // Smoothens a low bokeh sample count. Can make the bokeh pixellated.
 // // #define DOF_BOKEH_NOISE // Makes the bokeh noisy, but smoother. BROKEN!
 
-// #define BLOOM_ENABLED // Should the bloom effect be used. Makes the image softer.
+#define BLOOM_DISABLED -1
 #define BLOOM_STRENGTH 1.0 // How strong should the bloom effect be. [0.2 0.4 0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
-#define BLOOM_THRESHOLD 0.1 // Minimum brightness for the bloom effect to work. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
-#define BLOOM_QUALITY 1.0 // Quality of the bloom effect. [2.0 1.0 0.5 0.2]
+#define BLOOM_THRESHOLD 2.0 // Minimum brightness for the bloom effect to work. [ 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0 2.1 2.2 2.3 2.4 2.5 2.6 2.7 2.8 2.9 3.0 3.1 3.2 3.3 3.4 3.5 3.6 3.7 3.8 3.9 4.0 4.1 4.2 4.3 4.4 4.5 4.6 4.7 4.8 4.9 5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8 5.9 6.0 6.1 6.2 6.3 6.4 6.5 6.6 6.7 6.8 6.9 7.0 7.1 7.2 7.3 7.4 7.5 7.6 7.7 7.8 7.9 8.0 8.1 8.2 8.3 8.4 8.5 8.6 8.7 8.8 8.9 9.0 9.1 9.2 9.3 9.4 9.5 9.6 9.7 9.8 9.9 10.0]
+#define BLOOM_QUALITY BLOOM_DISABLED // Quality of the bloom effect. QUALITY 3 IS FAIRLY INTENSIVE! [BLOOM_DISABLED 1 2 3]
+
+#define CHROMATIC_ABERRATION_ENABLED // Fringing of the colors around the edges of the screen.
+#define CHROMATIC_ABERRATION_STRENGTH 0.005 // How strong the chromatic aberration should be. [0.001 0.002 0.003 0.004 0.005 0.006 0.007 0.008 0.009 0.01]
+
+#define LENS_FLARES_DISABLED 0
+#define LENS_FLARES_SPHERICAL 1
+#define LENS_FLARES_ANAMORPHIC 2
+#define LENS_FLARES_MODE LENS_FLARES_ANAMORPHIC // [LENS_FLARES_DISABLED LENS_FLARES_SPHERICAL LENS_FLARES_ANAMORPHIC]
+#define LENS_FLARES_STRENGTH 1.0 // [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.2 1.5 1.6 1.8 2.0]
+#define LENS_FLARES_THRESHOLD 5.0 // [1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0]
+
+#define CAMERA_AUTO -1
+#define CAMERA_ISO CAMERA_AUTO // Currently doesn't do anything! [CAMERA_AUTO 50 100 200 400 800 1300 1600 3200 6400 12800 25600]
+#define CAMERA_SHUTTER_SPEED CAMERA_AUTO // Currently doesn't do anything! [CAMERA_AUTO 30 60 125 250 500 2000 4000]
+const float camera_shutter_speed = 1.0 / float(CAMERA_SHUTTER_SPEED);
 
 #define FILM_DISABLED 0
 #define FILM_GREYSCALE 1 // Black and white like a film camera.
 #define FILM_COLOR 2 // Color film, like a Kodak Gold film.
+#define FILM_THERMAL 3 // Thermal Camera :D
 #define FILM_MODE FILM_DISABLED // Film emulation. [FILM_DISABLED FILM_GREYSCALE FILM_COLOR]
 #define FILM_BRIGHTNESS 0.0 // How bright the image should be. [-1.0 -0.9 -0.8 -0.7 -0.6 -0.5 -0.4 -0.3 -0.2 -0.1 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 #define FILM_CONTRAST 1.0 // How much contrast the film-like image should have. [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0 2.1 2.2 2.3 2.4 2.5 2.6 2.7 2.8 2.9 3.0 3.1 3.2 3.3 3.4 3.5 3.6 3.7 3.8 3.9 4.0]
@@ -71,6 +114,7 @@ const float centerDepthHalflife = 0.5; // How fast the focus should move. In sec
 #define FILM_IMPERFECTIONS_LINES_STRENGTH 0.7 // Strength of the lines. [0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 
 #define GRAIN_STRENGTH 0.15 // How strong the noise is. [0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40 0.45 0.50]
+#define GRAIN_PERFORMANCE 0.4 // The noise performance of the camera/film. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 #define GRAIN_DISABLED 0
 #define GRAIN_LUMA 1
 #define GRAIN_CHROMA 2
@@ -81,13 +125,19 @@ const int noiseTextureResolution = 512; // Size of the noise texture. Smaller nu
 #define CHROMA_SAMPLING_SIZE 4.0// How big the chroma subsampling should be. Larger number = bigger artefacting.[1.0 2.0 3.0 4.0 5.0]
 
 // #define QUANTISATION_ENABLED // Reduced color palette.
-#define QUANTISATION_BITDEPTH 8 // How many values each color can have. [4 8 16 32]
+#define QUANTISATION_BITDEPTH 8 // How many values each color can have. [2 4 8 16 32]
 const float quantisation_colors_perchannel = pow(2, float(QUANTISATION_BITDEPTH) / 4.0);
+#define DITHERING_DISABLED 0
+#define DITHERING_BAYER 1
+#define DITHERING_BLUE 2
+#define DITHERING_MODE DITHERING_DISABLED // Makes low bit-depth look higher bitdepth. [DITHERING_DISABLED DITHERING_BAYER DITHERING_BLUE]
 
 #define INTERLACING_ENABLED // An interlacing effect. With help from Sir Bird.
 #define INTERLACING_SIZE 4.0 // How big the interlaced lines are. Good for HiDPI displays. [2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 15.0 20.0 30.0 40.0 50.0]
 
 // #define VHS_TRANSFORMS_ENABLED
+#define PIXEL_SIZE_DISABLED -1
+#define PIXEL_SIZE PIXEL_SIZE_DISABLED // How big the pixels should be, in on-screen pixels. [PIXEL_SIZE_DISABLED 2 4 8 16 32 64 128]
 
 #define SCANLINE_MODE_OFF 0
 #define SCANLINE_MODE_WOMSPACE 1
@@ -108,7 +158,7 @@ const float quantisation_colors_perchannel = pow(2, float(QUANTISATION_BITDEPTH)
 #endif
 
 #define GHOSTING_ENABLED // Ghosting effect.
-#define GHOSTING_STRENGTH 0.5 // The strength of the ghosting. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9]
+#define GHOSTING_STRENGTH 48.0 // The inverse strength of the ghosting. [1.0 1.5 2.0 3.0 4.0 6.0 8.0 12.0 16.0 24.0 32.0 48.0 64.0]
 
 // #define GRADING_ENABLED // Post-processing color grading.
 #define GRADING_HI_RED 1.0 // Red highlight strength [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
@@ -127,3 +177,21 @@ const float quantisation_colors_perchannel = pow(2, float(QUANTISATION_BITDEPTH)
 #define BARREL_CLIP_ZOOM 1
 #define BARREL_CLIP_OFF 2
 #define BARREL_CLIP_MODE BARREL_CLIP_BLACK // How should barrel distortion artefacts be fixed. Black fills in the broken areas with black. Zoom enlarges the image to hide the broken areas. [BARREL_CLIP_BLACK BARREL_CLIP_ZOOM BARREL_CLIP_OFF]
+
+#define LUT_DISABLED -1
+#define LUT_SELECTED LUT_DISABLED // [LUT_DISABLED 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21]
+const float lut_selected = float(LUT_SELECTED) / 22.0;
+#define LUT_STRENGTH 1.0 //[0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
+#define TONEMAP_BURGESS 0
+#define TONEMAP_JESSIE 1
+#define TONEMAP_ZOMBYE 2
+#define TONEMAP_TECH 3
+#define TONEMAP_OPERATOR TONEMAP_BURGESS // [TONEMAP_BURGESS TONEMAP_JESSIE TONEMAP_ZOMBYE TONEMAP_TECH]
+
+#define VERTEX_WAVING_WATER
+#define VERTEX_WAVING_LAVA
+#define VERTEX_WAVING_LEAVES
+#define VERTEX_WAVING_PLANTS
+// #define VERTEX_WAVING_FIRE
+
+// #define MOLLY_LIT_TRANSLUCENTS_ENABLED

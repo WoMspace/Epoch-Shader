@@ -12,6 +12,12 @@ vec3 extractLuma(vec3 color, vec3 influence)
 	return color;
 }
 
+vec3 threshold(vec3 color, float threshold)
+{
+	float luma = extractLuma(color);
+	return mix(vec3(0.0), color, step(threshold, luma));
+}
+
 vec3 contrast(vec3 color, float midpoint, float strength)
 {
 	color -= -midpoint + 0.5;
@@ -60,4 +66,50 @@ vec3 colorFilm(vec3 color, float strength)
 	);
 	color = colorGrade(color, filmGrade * COLORFILM_STRENGTH);
 	return color;
+}
+
+const vec2 LUTBlueOffset[64] = vec2[](
+	vec2(0.000, 0), vec2(0.125, 0), vec2(0.250, 0), vec2(0.375, 0), vec2(0.500, 0), vec2(0.625, 0), vec2(0.750, 0), vec2(0.875, 0), 
+	vec2(0.000, 0.00568181818181818), vec2(0.125, 0.00568181818181818), vec2(0.250, 0.00568181818181818), vec2(0.375, 0.00568181818181818), vec2(0.500, 0.00568181818181818), vec2(0.625, 0.00568181818181818), vec2(0.750, 0.00568181818181818), vec2(0.875, 0.00568181818181818), 
+	vec2(0.000, 0.0113636363636364), vec2(0.125, 0.0113636363636364), vec2(0.250, 0.0113636363636364), vec2(0.375, 0.0113636363636364), vec2(0.500, 0.0113636363636364), vec2(0.625, 0.0113636363636364), vec2(0.750, 0.0113636363636364), vec2(0.875, 0.0113636363636364), 
+	vec2(0.000, 0.0170454545454545), vec2(0.125, 0.0170454545454545), vec2(0.250, 0.0170454545454545), vec2(0.375, 0.0170454545454545), vec2(0.500, 0.0170454545454545), vec2(0.625, 0.0170454545454545), vec2(0.750, 0.0170454545454545), vec2(0.875, 0.0170454545454545), 
+	vec2(0.000, 0.0227272727272727), vec2(0.125, 0.0227272727272727), vec2(0.250, 0.0227272727272727), vec2(0.375, 0.0227272727272727), vec2(0.500, 0.0227272727272727), vec2(0.625, 0.0227272727272727), vec2(0.750, 0.0227272727272727), vec2(0.875, 0.0227272727272727), 
+	vec2(0.000, 0.0284090909090909), vec2(0.125, 0.0284090909090909), vec2(0.250, 0.0284090909090909), vec2(0.375, 0.0284090909090909), vec2(0.500, 0.0284090909090909), vec2(0.625, 0.0284090909090909), vec2(0.750, 0.0284090909090909), vec2(0.875, 0.0284090909090909), 
+	vec2(0.000, 0.0340909090909091), vec2(0.125, 0.0340909090909091), vec2(0.250, 0.0340909090909091), vec2(0.375, 0.0340909090909091), vec2(0.500, 0.0340909090909091), vec2(0.625, 0.0340909090909091), vec2(0.750, 0.0340909090909091), vec2(0.875, 0.0340909090909091), 
+	vec2(0.000, 0.0397727272727273), vec2(0.125, 0.0397727272727273), vec2(0.250, 0.0397727272727273), vec2(0.375, 0.0397727272727273), vec2(0.500, 0.0397727272727273), vec2(0.625, 0.0397727272727273), vec2(0.750, 0.0397727272727273), vec2(0.875, 0.0397727272727273)
+);
+
+vec3 applyLUT(vec3 color, sampler2D LUT)
+{
+	color = max(color, 0.0);
+	color = min(color, 1.0);
+	vec2 RGoffset = vec2(color.r / 8.0, color.g / 176.0);
+	vec2 Boffset = LUTBlueOffset[int(color.b * 64.0)];
+	vec2 LUToffset = Boffset + RGoffset;
+	LUToffset.y += lut_selected;
+	color = mix(color, color * texture2D(LUT, LUToffset).rgb, LUT_STRENGTH);
+	return color;
+}
+
+float bayer2(vec2 uv) {
+	uv = 0.5 * floor(uv);
+	return fract(1.5 * fract(uv.y) + uv.x);
+}
+float bayer4(vec2 uv) {
+	return 0.25 * bayer2(0.5 * uv) + bayer2(uv);
+}
+float bayer8(vec2 uv) {
+	return 0.25 * bayer4(0.5 * uv) + bayer2(uv);
+}
+float bayer16(vec2 uv) {
+	return 0.25 * bayer8(0.5 * uv) + bayer2(uv);
+}
+float bayer32(vec2 uv) {
+	return 0.25 * bayer16(0.5 * uv) + bayer2(uv);
+}
+float bayer64(vec2 uv) {
+	return 0.25 * bayer32(0.5 * uv) + bayer2(uv);
+}
+float bayer128(vec2 uv) {
+	return 0.25 * bayer64(0.5 * uv) + bayer2(uv);
 }
