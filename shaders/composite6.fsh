@@ -152,9 +152,6 @@ void main()
 		);
 		color = colorGrade(color, grade);
 	#endif
-	#if LUT_SELECTED != LUT_DISABLED
-		color = applyLUT(clamp(color, 0.0, 1.0), depthtex2);
-	#endif
 
 	/* DRAWBUFFERS:02 */
 	gl_FragData[0] = vec4(max(color, 0.0), 1.0);
