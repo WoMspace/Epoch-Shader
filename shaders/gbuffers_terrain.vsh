@@ -1,10 +1,23 @@
 #version 120
 
+#define VSH
+
+attribute vec3 mc_Entity;
+
+uniform mat4 gbufferModelViewInverse;
+uniform mat4 shadowProjection;
+uniform mat4 shadowModelView;
+
 varying vec2 lmcoord;
 varying vec2 texcoord;
 varying vec4 glcolor;
-varying vec4 at_tangent;
+attribute vec4 at_tangent;
 varying mat3 tbn;
+varying float blockTemp;
+varying vec4 shadowPos;
+
+#include "lib/settings.glsl"
+#include "lib/shadows.glsl"
 
 void main() {
 	gl_Position = ftransform();
@@ -16,8 +29,10 @@ void main() {
 	vec3 tangent = normalize(gl_NormalMatrix * at_tangent.xyz);
 	tbn = mat3(tangent, cross(tangent, normal) * sign(at_tangent.w), normal);
 	/*tbn = mat3(
-    	normalize(gl_NormalMatrix * at_tangent.xyz),
-    	normalize(gl_NormalMatrix * cross(at_tangent.xyz, gl_Normal.xyz) * sign(at_tangent.w)),
-    	normalize(gl_NormalMatrix * gl_Normal)
-    );*/
+		normalize(gl_NormalMatrix * at_tangent.xyz),
+		normalize(gl_NormalMatrix * cross(at_tangent.xyz, gl_Normal.xyz) * sign(at_tangent.w)),
+		normalize(gl_NormalMatrix * gl_Normal)
+	);*/
+	shadowPos = calculateShadowUV();
+	blockTemp = mc_Entity.x;
 }

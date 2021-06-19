@@ -10,9 +10,9 @@ vec2 unclip(vec2 p)
 }
 
 vec2 distort(vec2 coord, float strength) { //Builderb0y has made an entirely (atan-free) cartesian distortion function. Dang.
-    coord -= vec2(0.5);
-    coord *= 1.0 - strength * dot(coord, coord);
-    return coord + vec2(0.5);
+	coord -= vec2(0.5);
+	coord *= 1.0 - strength * dot(coord, coord);
+	return coord + vec2(0.5);
 }
 
 bool floatEquals(float op1, float op2, float difference)
