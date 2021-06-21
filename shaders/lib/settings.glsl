@@ -131,6 +131,7 @@ const float quantisation_colors_perchannel = pow(2, float(QUANTISATION_BITDEPTH)
 #define DITHERING_BAYER 1
 #define DITHERING_BLUE 2
 #define DITHERING_MODE DITHERING_DISABLED // Makes low bit-depth look higher bitdepth. [DITHERING_DISABLED DITHERING_BAYER DITHERING_BLUE]
+#define DITHERING_STRENGTH 0.1 // [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 
 #define INTERLACING_ENABLED // An interlacing effect. With help from Sir Bird.
 #define INTERLACING_SIZE 4.0 // How big the interlaced lines are. Good for HiDPI displays. [2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 15.0 20.0 30.0 40.0 50.0]
@@ -188,10 +189,10 @@ const float lut_selected = float(LUT_SELECTED) / 22.0;
 #define TONEMAP_TECH 3
 #define TONEMAP_OPERATOR TONEMAP_BURGESS // [TONEMAP_BURGESS TONEMAP_JESSIE TONEMAP_ZOMBYE TONEMAP_TECH]
 
-#define VERTEX_WAVING_WATER
-#define VERTEX_WAVING_LAVA
-#define VERTEX_WAVING_LEAVES
-#define VERTEX_WAVING_PLANTS
+//#define VERTEX_WAVING_WATER
+//#define VERTEX_WAVING_LAVA
+//#define VERTEX_WAVING_LEAVES
+//#define VERTEX_WAVING_PLANTS
 // #define VERTEX_WAVING_FIRE
 
 // #define MOLLY_LIT_TRANSLUCENTS_ENABLED
