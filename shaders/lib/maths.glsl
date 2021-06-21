@@ -24,3 +24,7 @@ float generateNoise(vec2 spatialSeed, float temporalSeed)
 {
 	return 1.0;
 }
+
+const float e = 2.7182818;
+const vec3 vec3e = vec3(e);
+#define e(x) pow(vec3e, x)

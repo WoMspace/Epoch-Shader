@@ -69,6 +69,7 @@ void main()
 			color = contrast(color, FILM_BRIGHTNESS, FILM_CONTRAST);
 		#elif FILM_MODE == 2 // color film
 			color = colorFilm(color, 1.0);
+			color = -e(-color * 2.0) + 1.0; // something-something-highlight falloff
 		#elif FILM_MODE == 3 //thermal
 			vec3 cold = vec3(0.1, 0.0, 0.5);
 			vec3 hot = vec3(1.0, 0.7, 0.5);
@@ -81,9 +82,11 @@ void main()
 	color += texture2D(colortex4, texcoord).rgb * BLOOM_STRENGTH;
 	#endif
 
-	#if GRAIN_MODE != 0
+	#if GRAIN_MODE != 0 || defined(FILM_IMPERFECTIONS_SPOTS_ENABLED)
 		float noiseSeed = float(frameCounter) * 0.11;
-		vec2 noiseCoord = texcoord + vec2(sin(noiseSeed), cos(noiseSeed));
+	vec2 noiseCoord = texcoord + vec2(sin(noiseSeed), cos(noiseSeed));
+	#endif
+	#if GRAIN_MODE != 0
 		float grain_strength = GRAIN_STRENGTH * (1.0 - length(color)) * GRAIN_PERFORMANCE;
 		#if GRAIN_MODE == 1 // luma noise
 		color += vec3(texture2D(noisetex, noiseCoord).r - 0.5) * grain_strength;
@@ -97,13 +100,13 @@ void main()
 		color = max(chroma * extractLuma(color), 0.0);
 	#endif
 
-	#ifdef QUANTISATION_ENABLED
 	#if DITHERING_MODE == DITHERING_BAYER
-	color += bayer128(gl_FragCoord.xy) / quantisation_colors_perchannel;
+	color += (bayer128(gl_FragCoord.xy) * DITHERING_STRENGTH) / quantisation_colors_perchannel;
 	#elif DITHERING_MODE == DITHERING_BLUE
 	vec2 ditherUV = vec2(texcoord.x * (viewWidth/512), texcoord.y * (viewHeight/512));
-	color += texture2D(depthtex1, ditherUV).rgb / quantisation_colors_perchannel;
+	color += (texture2D(depthtex1, ditherUV).rgb * DITHERING_STRENGTH) / quantisation_colors_perchannel;
 	#endif
+	#ifdef QUANTISATION_ENABLED
 	color *= quantisation_colors_perchannel;
 	color = floor(color + 0.5);
 	color *= 1.0 / quantisation_colors_perchannel;
