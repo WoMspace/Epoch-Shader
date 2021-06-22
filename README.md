@@ -24,8 +24,30 @@ a particular period of time in history or a person's life.
 - Flashlight
 - Physical-ish sky
 
-![2021-04-24_23 47 55](https://user-images.githubusercontent.com/22845656/115974876-db9a6a80-a557-11eb-8b29-b5a40c35a700.png)
-![2021-04-24_23 49 12](https://user-images.githubusercontent.com/22845656/115974863-c7566d80-a557-11eb-8d0f-ed69ce0e9405.png)
+<p align="left">
+    <a href="screenshots/bw-office.png" target="_blank" rel="noopener noreferrer">
+        <img alt="Office - Black and White - JoubaMety" src="screenshots/bw-office.jpg" width="45%">
+    </a>
+    <a href="screenshots/bw-streetcorner.png" target="_blank" rel="noopener noreferrer">
+        <img alt="Street Corner - Black and White - JoubaMety" src="screenshots/bw-streetcorner.jpg" width="45%">
+    </a>
+</p>
+<p align="left">
+    <a href="screenshots/col-office.png" target="_blank" rel="noopener noreferrer">
+        <img alt="Office - Color - JoubaMety" src="screenshots/col-office.jpg" width="45%">
+    </a>
+    <a href="screenshots/col-overlook.png" target="_blank" rel="noopener noreferrer">
+        <img alt="Overlook - Color - JoubaMety" src="screenshots/col-overlook.jpg" width="45%">
+    </a>
+</p>
+<p align="left">
+    <a href="screenshots/vhs-city.png" target="_blank" rel="noopener noreferrer">
+        <img alt="City - VHS - shortnamesalex" src="screenshots/vhs-city.jpg" width="45%">
+    </a>
+    <a href="screenshots/vhs-skyline.png" target="_blank" rel="noopener noreferrer">
+        <img alt="Skyline - VHS - shortnamesalex" src="screenshots/vhs-skyline.jpg" width="45%">
+    </a>
+</p>
 
 ### BUFFER USAGE:
 
