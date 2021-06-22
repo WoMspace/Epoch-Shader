@@ -25,22 +25,22 @@ a particular period of time in history or a person's life.
 - Physical-ish sky
 
 <p align="left">
-    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/bw-office.png" target="_blank" rel="noopener noreferrer">
+    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/bw-office.png">
         <img alt="Office - Black and White - JoubaMety" src="screenshots/bw-office.jpg" width="45%">
     </a>
-    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/bw-streetcorner.png" target="_blank" rel="noopener noreferrer">
+    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/bw-streetcorner.png">
         <img alt="Street Corner - Black and White - JoubaMety" src="screenshots/bw-streetcorner.jpg" width="45%">
     </a>
-    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/col-office.png" target="_blank" rel="noopener noreferrer">
+    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/col-office.png">
         <img alt="Office - Color - JoubaMety" src="screenshots/col-office.jpg" width="45%">
     </a>
-    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/col-overlook.png" target="_blank" rel="noopener noreferrer">
+    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/col-overlook.png">
         <img alt="Overlook - Color - JoubaMety" src="screenshots/col-overlook.jpg" width="45%">
     </a>
-    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/vhs-city.png" target="_blank" rel="noopener noreferrer">
+    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/vhs-city.png">
         <img alt="City - VHS - shortnamesalex" src="screenshots/vhs-city.jpg" width="45%">
     </a>
-    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/vhs-skyline.png" target="_blank" rel="noopener noreferrer">
+    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/vhs-skyline.png">
         <img alt="Skyline - VHS - shortnamesalex" src="screenshots/vhs-skyline.jpg" width="45%">
     </a>
 </p>
