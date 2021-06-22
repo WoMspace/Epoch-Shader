@@ -24,6 +24,8 @@ a particular period of time in history or a person's life.
 - Flashlight
 - Physical-ish sky
 
+*Control + Left Click on a image to open source image in new tab*
+
 <p align="left">
     <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/bw-office.png">
         <img alt="Office - Black and White - JoubaMety" src="screenshots/bw-office.jpg" width="45%">
