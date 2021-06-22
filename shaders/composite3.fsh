@@ -41,7 +41,7 @@ const bool colortex0MipmapEnabled = true;
 uniform sampler2D colortex2;
 const bool colortex2MipmapEnabled = true;
 #endif
-#if DITHERING_MODE == DITHERING_BLUE
+#if DITHERING_MODE == DITHERING_BLUE || GRAIN_MODE != 0
 uniform sampler2D depthtex1;
 #endif
 
@@ -84,27 +84,30 @@ void main()
 
 	#if GRAIN_MODE != 0 || defined(FILM_IMPERFECTIONS_SPOTS_ENABLED)
 		float noiseSeed = float(frameCounter) * 0.11;
-	vec2 noiseCoord = texcoord + vec2(sin(noiseSeed), cos(noiseSeed));
+		vec2 noiseCoord = texcoord + vec2(sin(noiseSeed), cos(noiseSeed));
 	#endif
 	#if GRAIN_MODE != 0
-		float grain_strength = GRAIN_STRENGTH * (1.0 - length(color)) * GRAIN_PERFORMANCE;
+		float grain_strength = GRAIN_STRENGTH * (1.0 - length(color)) * (GRAIN_PERFORMANCE * GRAIN_PERFORMANCE * 0.5);
 		#if GRAIN_MODE == 1 // luma noise
-		color += vec3(texture2D(noisetex, noiseCoord).r - 0.5) * grain_strength;
+		color += vec3(texture2D(noisetex, noiseCoord).r + texture2D(depthtex1, noiseCoord).a - 1.0) * grain_strength;
 		#elif GRAIN_MODE == 2 // chroma noise
-		color += (texture2D(noisetex, noiseCoord).rgb - vec3(0.5)) * grain_strength;
+		color += (texture2D(noisetex, noiseCoord).rgb + texture2D(depthtex1, noiseCoord).rgb - vec3(1.0)) * grain_strength;
 		#endif
 	#endif
 
-	#ifdef CHROMA_SAMPLING_ENABLED
+	#if CHROMA_SAMPLING_MODE == CHROMA_SAMPLING_DOWNSAMPLE
 		vec3 chroma = normalize(texture2DLod(colortex0, texcoord, CHROMA_SAMPLING_SIZE).rgb) * 2.0;
+		color = max(chroma * extractLuma(color), 0.0);
+	#elif CHROMA_SAMPLING_MODE == CHROMA_SAMPLING_SHIFT
+		vec3 chroma = normalize(texture2DLod(colortex0, texcoord - vec2(7.0 / viewWidth, 0.0), CHROMA_SAMPLING_SIZE).rgb) * 2.0;
 		color = max(chroma * extractLuma(color), 0.0);
 	#endif
 
 	#if DITHERING_MODE == DITHERING_BAYER
 	color += (bayer128(gl_FragCoord.xy) * DITHERING_STRENGTH) / quantisation_colors_perchannel;
 	#elif DITHERING_MODE == DITHERING_BLUE
-	vec2 ditherUV = vec2(texcoord.x * (viewWidth/512), texcoord.y * (viewHeight/512));
-	color += (texture2D(depthtex1, ditherUV).rgb * DITHERING_STRENGTH) / quantisation_colors_perchannel;
+	vec2 ditherUV = vec2(texcoord.x * (viewWidth / 1024.0), texcoord.y * (viewHeight / 1024.0));
+	color += (texture2D(depthtex1, ditherUV).a * DITHERING_STRENGTH) / quantisation_colors_perchannel;
 	#endif
 	#ifdef QUANTISATION_ENABLED
 	color *= quantisation_colors_perchannel;

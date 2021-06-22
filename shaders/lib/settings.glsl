@@ -121,8 +121,11 @@ const float camera_shutter_speed = 1.0 / float(CAMERA_SHUTTER_SPEED);
 #define GRAIN_MODE GRAIN_CHROMA // Should the grain effect be used. [GRAIN_DISABLED GRAIN_LUMA GRAIN_CHROMA]
 const int noiseTextureResolution = 512; // Size of the noise texture. Smaller number = bigger noise. [64 128 256 512 1024 2048]
 
-#define CHROMA_SAMPLING_ENABLED // Should the chroma sub-sampling effect be used.
-#define CHROMA_SAMPLING_SIZE 4.0// How big the chroma subsampling should be. Larger number = bigger artefacting.[1.0 2.0 3.0 4.0 5.0]
+#define CHROMA_SAMPLING_DISABLED -1
+#define CHROMA_SAMPLING_DOWNSAMPLE 1 
+#define CHROMA_SAMPLING_SHIFT 2
+#define CHROMA_SAMPLING_MODE CHROMA_SAMPLING_SHIFT // [CHROMA_SAMPLING_DISABLED CHROMA_SAMPLING_DOWNSAMPLE CHROMA_SAMPLING_SHIFT]
+#define CHROMA_SAMPLING_SIZE 3.0// How big the chroma subsampling should be. Larger number = bigger artefacting.[1.0 2.0 3.0 4.0 5.0]
 
 // #define QUANTISATION_ENABLED // Reduced color palette.
 #define QUANTISATION_BITDEPTH 8 // How many values each color can have. [2 4 8 16 32]
