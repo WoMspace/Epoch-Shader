@@ -27,23 +27,23 @@ a particular period of time in history or a person's life.
 *Control + Left Click on a image to open source image in new tab*
 
 <p align="left">
-    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/bw-office.png">
-        <img alt="Office - Black and White - JoubaMety" src="screenshots/bw-office.jpg" width="45%">
+    <a href="https://cdn.discordapp.com/attachments/705816123421098015/857316471586422824/bw-office.png">
+        <img alt="Office - Black and White - JoubaMety" src="https://cdn.discordapp.com/attachments/705816123421098015/857316412171485244/bw-office.jpg" width="45%">
     </a>
-    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/bw-streetcorner.png">
-        <img alt="Street Corner - Black and White - JoubaMety" src="screenshots/bw-streetcorner.jpg" width="45%">
+    <a href="https://cdn.discordapp.com/attachments/705816123421098015/857316562667438080/bw-streetcorner.png">
+        <img alt="Street Corner - Black and White - JoubaMety" src="https://cdn.discordapp.com/attachments/705816123421098015/857316487847739392/bw-streetcorner.jpg" width="45%">
     </a>
-    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/col-office.png">
-        <img alt="Office - Color - JoubaMety" src="screenshots/col-office.jpg" width="45%">
+    <a href="https://cdn.discordapp.com/attachments/705816123421098015/857316711359447090/col-office.png">
+        <img alt="Office - Color - JoubaMety" src="https://cdn.discordapp.com/attachments/705816123421098015/857316560183885834/col-office.jpg" width="45%">
     </a>
-    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/col-overlook.png">
-        <img alt="Overlook - Color - JoubaMety" src="screenshots/col-overlook.jpg" width="45%">
+    <a href="https://cdn.discordapp.com/attachments/705816123421098015/857316867986817044/col-overlook.png">
+        <img alt="Overlook - Color - JoubaMety" src="https://cdn.discordapp.com/attachments/705816123421098015/857316613606735893/col-overlook.jpg" width="45%">
     </a>
-    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/vhs-city.png">
-        <img alt="City - VHS - shortnamesalex" src="screenshots/vhs-city.jpg" width="45%">
+    <a href="https://cdn.discordapp.com/attachments/705816123421098015/857316757017460756/vhs-city.png">
+        <img alt="City - VHS - shortnamesalex" src="https://cdn.discordapp.com/attachments/705816123421098015/857316616605270036/vhs-city.jpg" width="45%">
     </a>
-    <a href="https://raw.githubusercontent.com/WoMspace/Epoch-Shader/main/screenshots/vhs-skyline.png">
-        <img alt="Skyline - VHS - shortnamesalex" src="screenshots/vhs-skyline.jpg" width="45%">
+    <a href="https://cdn.discordapp.com/attachments/705816123421098015/857316756837236756/vhs-skyline.png">
+        <img alt="Skyline - VHS - shortnamesalex" src="https://cdn.discordapp.com/attachments/705816123421098015/857316616358592542/vhs-skyline.jpg" width="45%">
     </a>
 </p>
 
