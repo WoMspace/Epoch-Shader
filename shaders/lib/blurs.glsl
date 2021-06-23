@@ -38,7 +38,7 @@ vec3 bokehBlur(float blurAmount, sampler2D colortex) //simple and pretty fast bo
 	}
 	retColor /= DOF_BOKEH_SAMPLES;
 	#ifdef DOF_BOKEH_ONIONRING
-		retColor += onionRingBokeh(blurAmount);
+		retColor += onionRingBokeh(blurAmount, colortex);
 		retColor *= 0.5;
 	#endif
 	return retColor;
