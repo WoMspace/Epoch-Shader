@@ -22,7 +22,7 @@ a particular period of time in history or a person's life.
 - Other lens effects
 	- Flares
 - Flashlight
-- Screen-space reflections
+- Screen-space reflections (perhaps world-space reflections?)
 
 *Control + Left Click on a image to open source image in new tab*
 
