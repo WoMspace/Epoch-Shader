@@ -1,4 +1,4 @@
-#include "bokeh.glsl"
+#include "bokeh/bokeh.glsl"
 
 vec3 mipBlur(float blurAmount, sampler2D colortex)
 {

@@ -142,8 +142,19 @@ option.DOF_ANAMORPHIC=Anamorphic Bokeh
 option.DOF_ANAMORPHIC.comment=Anamorphoc bokeh ratio. Makes the bokeh elongated.
 option.DOF_BOKEH_SAMPLES=Bokeh Samples
 option.DOF_BOKEH_SAMPLES.comment=How many samples to use for the bokeh blur.
-value.DOF_BOKEH_SAMPLES.1024=1024 §cAMD ONLY!
-value.DOF_BOKEH_SAMPLES.2048=2048 §cAMD ONLY!
+
+value.DOF_BOKEH_SAMPLES.32=32 §9[Blue Noise]
+value.DOF_BOKEH_SAMPLES.64=64 §9[Blue Noise]
+value.DOF_BOKEH_SAMPLES.128=128 §9[Blue Noise]
+value.DOF_BOKEH_SAMPLES.256=256 §9[Blue Noise]
+value.DOF_BOKEH_SAMPLES.512=512 §9[Blue Noise]
+value.DOF_BOKEH_SAMPLES.1024=1024 §9[Blue Noise] §cAMD ONLY!
+value.DOF_BOKEH_SAMPLES.2048=2048 §9[Blue Noise] §cAMD ONLY!
+value.DOF_BOKEH_SAMPLES.34=34 §d[Vogel Disk]
+value.DOF_BOKEH_SAMPLES.55=55 §d[Vogel Disk]
+value.DOF_BOKEH_SAMPLES.89=89 §d[Vogel Disk]
+value.DOF_BOKEH_SAMPLES.144=144 §d[Vogel Disk]
+
 option.DOF_BOKEH_MIPMAP=Mipmap Bokeh
 option.DOF_BOKEH_MIPMAP.comment=Smooths the bokeh. Useful for low sample counts. Can make it appear pixelated in motion.
 option.DOF_BOKEH_ONIONRING=Bokeh Onion Ring
