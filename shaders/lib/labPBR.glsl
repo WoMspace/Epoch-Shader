@@ -23,3 +23,8 @@ vec4 applyEmission(vec4 specular, vec4 color, float strength)
 	}
 	return color * (emission * strength + 1.0);
 }
+
+vec3 screenSpaceReflection(vec3 normal, float specularRoughness)
+{
+	return normal;
+}

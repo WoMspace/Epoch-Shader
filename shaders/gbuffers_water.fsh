@@ -12,6 +12,7 @@ uniform sampler2D texture;
 uniform sampler2D shadowtex0;
 #endif
 uniform sampler2D normals;
+uniform sampler2D specular;
 uniform vec3 skyColor;
 uniform int worldTime;
 uniform mat4 gbufferModelView;
@@ -38,7 +39,14 @@ void main() {
 	#else
 	color.rgb = applyLightmap(color.rgb, lmcoord, skyColor, worldTime, 1.0, normalDarkness, gbufferModelView, sunPosition).rgb;
 	#endif
-	//color.a *= 1.25;
+
+	#ifdef SCREEN_REFLECTIONS_ENABLED
+	float roughness = pow(1.0 - texture2D(specular, texcoord).r, 2.0);
+	vec3 normalMap = normalmap.xyz * 2.0 - 1.0;
+	normalMap.z = sqrt(clamp(1.0 - dot(normalMap.xy, normalMap.xy), 0.0, 1.0));
+	normalMap = tbn * normalMap;
+	color.rgb = screenSpaceReflection(normalMap, roughness);
+	#endif
 
 /* DRAWBUFFERS:0 */
 	gl_FragData[0] = color; //gcolor

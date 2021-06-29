@@ -40,7 +40,7 @@ void main()
 		vertOffset.y += cos(frameTimeCounter * 5.0 + worldPosition.z * 5.0) * 0.5;
 		vertOffset.y = vertOffset.y * 0.2 - 0.3;
 
-		worldPosition += vertOffset;
+		worldPosition += vertOffset * 10.0;
 		vec3 playerSpace = worldPosition - cameraPosition;
 		vec3 viewSpace = mat3(gbufferModelView) * playerSpace;
 		vec4 clipSpace = gbufferProjection * vec4(viewSpace, 1.0);
