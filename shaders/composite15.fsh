@@ -70,7 +70,12 @@ void main()
 
 	vec3 color1 = texture2D(colortex1, texcoord).rgb;
 
+	float luma = 0.0;
+	#if AA_MODE == AA_FXAA
+	luma = color.g;
+	#endif
+
 	/* DRAWBUFFERS:01 */
-	gl_FragData[0] = vec4(color, 1.0);
+	gl_FragData[0] = vec4(color, luma);
 	gl_FragData[1] = vec4(color1, temporalLuminance);
 }
