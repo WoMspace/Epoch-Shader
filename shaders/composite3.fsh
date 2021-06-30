@@ -54,14 +54,22 @@ varying vec2 texcoord;
 
 void main()
 {
-	#if DOF_MODE == 1 //mip blur
-	vec3 color = mipBlur(sqrt(abs(getFragDepth(depthtex0, texcoord) - getCursorDepth())), colortex0);
-	#elif DOF_MODE == 2 //bokeh blur
-	float coc = texture2DLod(colortex0, texcoord, 3.5).a;
-	vec3 color = bokehBlur(coc * 10.0, colortex0);
-	#else
-	vec3 color = texture2D(colortex0, texcoord).rgb;
-	#endif
+	float z = texture2D(depthtex0, texcoord).r;
+	vec3 color;
+
+	if(z > 0.56) 
+	{
+		#if DOF_MODE == 1 	//mip blur
+		color = mipBlur(sqrt(abs(getFragDepth(depthtex0, texcoord) - getCursorDepth())), colortex0);
+		#elif DOF_MODE == 2 	//bokeh blur
+		float coc = texture2DLod(colortex0, texcoord, 3.5).a;
+		color = bokehBlur(coc * 10.0, colortex0);
+		#endif
+	}
+	else 
+	{
+		color = texture2D(colortex0, texcoord).rgb;
+	}
 
 	#if FILM_MODE != 0
 		#if FILM_MODE == 1 // greyscale
