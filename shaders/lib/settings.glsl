@@ -100,6 +100,10 @@ const float camera_shutter_speed = 1.0 / float(CAMERA_SHUTTER_SPEED);
 
 // //#define COLORFILM_SATURATION 1.0 // no idea how to implement this but it's important :P
 #define COLORFILM_STRENGTH 1.0 // How strong the film color simulation should be. [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0]
+
+// #define FILM_IMPERFECTIONS_SHAKE_ENABLED // Film shakes a little bit, to simulate playback.
+#define FILM_IMPERFECTIONS_SHAKE_STRENGTH 0.2 // Strength of the film shake effect. [0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
+//#define FILM_IMPERFECTIONS_SPOTS_ENABLED // Small spots on the screen that appear and disappear.
 #define FILM_IMPERFECTIONS_SPOTS_SIZE 3 // Radius of the spots in pixels. [1 3 5 7 9 11 13 15]
 #define FILM_IMPERFECTIONS_SPOTS_AMOUNT 0.05 // How many spots should be generated. [0.01 0.02 0.03 0.04 0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
 //#define FILM_IMPERFECTIONS_LINES_ENABLED // Lines that move around. Amount of movement is linked to framerate. Higher fps = less movement.
@@ -183,11 +187,6 @@ const float lut_selected = float(LUT_SELECTED) / 22.0;
 #define TONEMAP_ZOMBYE 2
 #define TONEMAP_TECH 3
 #define TONEMAP_OPERATOR TONEMAP_BURGESS // [TONEMAP_BURGESS TONEMAP_JESSIE TONEMAP_ZOMBYE TONEMAP_TECH]
-
-#define AA_DISABLED -1
-#define AA_FXAA 0
-#define AA_TAA 1
-#define AA_MODE AA_DISABLED // [AA_DISABLED AA_FXAA AA_TAA]
 
 //#define VERTEX_WAVING_WATER
 //#define VERTEX_WAVING_LAVA
