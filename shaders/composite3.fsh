@@ -64,6 +64,8 @@ void main()
 		#elif DOF_MODE == 2 	//bokeh blur
 		float coc = texture2DLod(colortex0, texcoord, 3.5).a;
 		color = bokehBlur(coc * 10.0, colortex0);
+		#else
+		color = texture2D(colortex0, texcoord).rgb;
 		#endif
 	}
 	else 
