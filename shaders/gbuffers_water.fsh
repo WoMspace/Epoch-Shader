@@ -27,6 +27,9 @@ varying vec4 shadowPos;
 
 #include "lib/shadows.glsl"
 
+/* #ifdef MOLLY_LIT_TRANSLUCENTS_ENABLED
+#endif */
+
 void main() {
 	vec4 normalmap = texture2D(normals, texcoord);
 	vec4 color = texture2D(texture, texcoord) * glcolor;
