@@ -151,11 +151,6 @@ const float quantisation_colors_perchannel = pow(2, float(QUANTISATION_BITDEPTH)
 // #define CRT_TEXTURE_ENABLED // Should the CRT texture be used. Disabling this will use a pixel perfect, but less authentic CRT mode.
 #define CRT_BOOST 0.1 // Boosts the brightness a bit to make it less dark. [0.0 0.1 0.2 0.3 0.4 0.5]
 #define CRT_TEXTURE_SCALE 3.0 // How small should the CRT texture be. [1.0 2.0 3.0 4.0]
-#if SCANLINE_MODE == 3
-	#ifdef CRT_TEXTURE_ENABLED
-		uniform sampler2D colortex4;
-	#endif
-#endif
 
 #define GHOSTING_ENABLED // Ghosting effect.
 #define GHOSTING_STRENGTH 48.0 // The inverse strength of the ghosting. [1.0 1.5 2.0 3.0 4.0 6.0 8.0 12.0 16.0 24.0 32.0 48.0 64.0]

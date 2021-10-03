@@ -8,6 +8,9 @@
 - Scanlines
 - Ghosting
 - Barrel Distortion
+#ifdef CRT_TEXTURE_ENABLED
+//yes
+#endif
 */
 
 #include "lib/settings.glsl"
