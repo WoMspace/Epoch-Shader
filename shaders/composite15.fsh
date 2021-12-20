@@ -23,6 +23,7 @@ const int colortex0Format = RGBA16F;
 const int colortex1Format = RGBA16F;
 const bool colortex1Clear = false;
 uniform sampler2D colortex1;
+uniform sampler2D colortex7;
 uniform sampler2D depthtex2;
 uniform float frameTime;
 varying vec2 texcoord;
@@ -66,6 +67,10 @@ void main()
 
 	#if LUT_SELECTED != LUT_DISABLED
 		color = applyLUT(clamp(color, 0.0, 1.0), depthtex2);
+	#endif
+
+	#ifdef LUT_CUSTOM
+		color = customLUT(color, colortex7);
 	#endif
 
 	vec3 color1 = texture2D(colortex1, texcoord).rgb;

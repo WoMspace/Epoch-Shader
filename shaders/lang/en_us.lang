@@ -314,8 +314,8 @@ value.LUT_SELECTED.6=Fuji Provia 100
 value.LUT_SELECTED.7=Fuji Superia 400
 value.LUT_SELECTED.8=Fuji Astia 100
 value.LUT_SELECTED.9=Fuji Velvia 50
-option.LUT_STRENGTH=L.U.T Strength
-option.LUT_STRENGTH.comment=How much the L.U.T should affect the colors.
+option.LUT_CUSTOM=Custom LUT
+option.LUT_CUSTOM.comment=Enable the use of a custom LUT under /shaders/textures/lut.png
 
 screen.SHADOWS=Shadows
 option.SHADOWS_ENABLED=Shadows

@@ -176,7 +176,7 @@ const float quantisation_colors_perchannel = pow(2, float(QUANTISATION_BITDEPTH)
 #define LUT_DISABLED -1
 #define LUT_SELECTED LUT_DISABLED // [LUT_DISABLED 0 1 2 3 4 5 6 7 8 9]
 const float lut_selected = float(LUT_SELECTED) / 10.0;
-#define LUT_STRENGTH 1.0 //[0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0]
+// #define LUT_CUSTOM
 #define TONEMAP_BURGESS 0
 #define TONEMAP_JESSIE 1
 #define TONEMAP_ZOMBYE 2

@@ -87,7 +87,28 @@ vec3 applyLUT(vec3 color, sampler2D LUT)
 	vec2 Boffset = LUTBlueOffset[int(color.b * 64.0)];
 	vec2 LUToffset = Boffset + RGoffset;
 	LUToffset.y += lut_selected;
-	color = mix(color, texture2D(LUT, LUToffset).rgb, LUT_STRENGTH);
+	color = texture2D(LUT, LUToffset).rgb;
+	return color;
+}
+
+const vec2 CustomLUTBlueOffsets[64] = vec2[] (
+	vec2(0.000,0.000), vec2(0.125,0.000), vec2(0.250,0.000), vec2(0.375,0.000), vec2(0.500,0.000), vec2(0.625,0.000), vec2(0.750,0.000), vec2(0.875,0.000),
+	vec2(0.000,0.125), vec2(0.125,0.125), vec2(0.250,0.125), vec2(0.375,0.125), vec2(0.500,0.125), vec2(0.625,0.125), vec2(0.750,0.125), vec2(0.875,0.125),
+	vec2(0.000,0.250), vec2(0.125,0.250), vec2(0.250,0.250), vec2(0.375,0.250), vec2(0.500,0.250), vec2(0.625,0.250), vec2(0.750,0.250), vec2(0.875,0.250),
+	vec2(0.000,0.375), vec2(0.125,0.375), vec2(0.250,0.375), vec2(0.375,0.375), vec2(0.500,0.375), vec2(0.625,0.375), vec2(0.750,0.375), vec2(0.875,0.375),
+	vec2(0.000,0.500), vec2(0.125,0.500), vec2(0.250,0.500), vec2(0.375,0.500), vec2(0.500,0.500), vec2(0.625,0.500), vec2(0.750,0.500), vec2(0.875,0.500),
+	vec2(0.000,0.625), vec2(0.125,0.625), vec2(0.250,0.625), vec2(0.375,0.625), vec2(0.500,0.625), vec2(0.625,0.625), vec2(0.750,0.625), vec2(0.875,0.625),
+	vec2(0.000,0.750), vec2(0.125,0.750), vec2(0.250,0.750), vec2(0.375,0.750), vec2(0.500,0.750), vec2(0.625,0.750), vec2(0.750,0.750), vec2(0.875,0.750),
+	vec2(0.000,0.875), vec2(0.125,0.875), vec2(0.250,0.875), vec2(0.375,0.875), vec2(0.500,0.875), vec2(0.625,0.875), vec2(0.750,0.875), vec2(0.875,0.875)
+);
+
+vec3 customLUT(vec3 color, sampler2D LUT)
+{
+	color = max(color, 0.0);
+	color = min(color, 1.0);
+	vec2 RGOffset = vec2(color.r / 8.0, color.g / 8.0);
+	vec2 Boffset = CustomLUTBlueOffsets[int(color.b * 64.0)];
+	color = texture2D(LUT, RGOffset + Boffset).rgb;
 	return color;
 }
 
