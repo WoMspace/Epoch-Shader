@@ -1,5 +1,6 @@
 option.EPOCH_VERSION=§5§lEpoch§r by §b§oWoMspace§r
 value.EPOCH_VERSION.1.1=v1.1
+value.EPOCH_VERSION.1.2.1=v1.2.1
 
 profile.OFF=Disabled
 profile.OFF.comment=Disable everything. Except fog.
