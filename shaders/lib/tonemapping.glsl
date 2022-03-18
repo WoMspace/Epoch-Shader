@@ -17,7 +17,8 @@ vec3 hejlBurgess(vec3 color, float exposure)
 }
 vec3 hejlBurgess(vec3 color)
 {
-	vec3 x = max(vec3(0.0), color - 0.004);
+	// vec3 x = max(vec3(0.0), color - 0.004);
+	vec3 x = color;
 	color = (x * (6.2 * x + 0.5)) / (x * (6.2 * x + 1.7) + 0.06);
 	return color;
 }
