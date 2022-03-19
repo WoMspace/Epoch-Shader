@@ -59,6 +59,9 @@ void main()
 	vec3 flareSource = vec3(0.0);
 	#ifdef FLARES_ENABLED
 	flareSource = texture2DLod(colortex0, vec2(1.0) - texcoord, 4.0).rgb;
+	flareSource += texture2DLod(colortex0, vec2(1.0) - texcoord, 5.0).rgb;
+	flareSource += texture2DLod(colortex0, vec2(1.0) - texcoord, 6.0).rgb;
+	flareSource /= 3.0;
 	#endif
 
 	/* DRAWBUFFERS:045 */
