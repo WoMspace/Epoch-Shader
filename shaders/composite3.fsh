@@ -18,6 +18,7 @@
 uniform sampler2D colortex0;
 uniform sampler2D noisetex;
 uniform sampler2D colortex1;
+uniform sampler2D colortex5;
 uniform sampler2D depthtex0;
 uniform mat4 gbufferProjection;
 uniform mat4 gbufferProjectionInverse;
@@ -90,6 +91,11 @@ void main()
 
 	#if BLOOM_QUALITY != BLOOM_DISABLED
 	color += texture2D(colortex4, texcoord).rgb * BLOOM_STRENGTH;
+	#endif
+
+	#ifdef FLARES_ENABLED
+	vec3 flares = texture2D(colortex5, texcoord).rgb;
+	color = mix(color, flares, (flares.r + flares.g + flares.b) / 96.0);
 	#endif
 
 	#if GRAIN_MODE != 0 || defined(FILM_IMPERFECTIONS_SPOTS_ENABLED)

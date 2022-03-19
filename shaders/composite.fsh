@@ -6,6 +6,7 @@
 ==== COMPOSITE0:WORLD #1 ====
 - Fog
 - DoF CoC calculation (hehe coc)
+- Flares
 */
 
 #include "lib/settings.glsl"
@@ -55,7 +56,13 @@ void main()
 	bloom = threshold(color, BLOOM_THRESHOLD);
 	#endif
 
-	/* DRAWBUFFERS:04 */
+	vec3 flareSource = vec3(0.0);
+	#ifdef FLARES_ENABLED
+	flareSource = texture2DLod(colortex0, vec2(1.0) - texcoord, 4.0).rgb;
+	#endif
+
+	/* DRAWBUFFERS:045 */
 	gl_FragData[0] = vec4(color, coc);
 	gl_FragData[1] = vec4(bloom, 1.0);
+	gl_FragData[2] = vec4(flareSource, 1.0);
 }
