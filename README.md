@@ -6,6 +6,8 @@ a particular period of time in history or a person's life.
 	
 *"the Victorian epoch"*
 
+![MC Version](https://badgen.net/badge/MC/1.18.2/green)
+
 #### Features include
 - Scanlines
 - Chroma Subsampling
