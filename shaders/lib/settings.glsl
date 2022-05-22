@@ -192,3 +192,6 @@ const float lut_selected = float(LUT_SELECTED) / 10.0;
 // #define VERTEX_WAVING_FIRE
 
 // #define MOLLY_LIT_TRANSLUCENTS_ENABLED
+
+// #define ANAGLYPH_3D_ENABLED
+#define ANAGLYPH_3D_SEPARATION 1.0 // [0.2 0.4 0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]

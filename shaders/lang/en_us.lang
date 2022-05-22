@@ -302,6 +302,11 @@ option.TONEMAP_LINEAR_LENGTH=Linear Length
 option.TONEMAP_SHOULDER_CURVE=Shoulder Curve
 option.TONEMAP_SHOULDER_LENGTH=Shoulder Length
 
+option.ANAGLYPH_3D_ENABLED=Anaglyph 3D
+option.ANAGLYPH_3D_ENABLED.comment=Enables Anaglyph 3D, where red and cyan are separated.
+option.ANAGLYPH_3D_SEPARATION=Anaglyph 3D Separation
+option.ANAGLYPH_3D_SEPARATION.comment=The distance between the red and cyan channels of the anaglyph 3D effect.
+
 option.LUT_SELECTED=L.U.T
 option.LUT_SELECTED.comment=Enable and select a L.U.T (Look-Up Table).
 value.LUT_SELECTED.LUT_DISABLED=Disabled
