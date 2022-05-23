@@ -15,7 +15,7 @@ void main()
 {
 	float depth = getFragDepth(depthtex0, texcoord);
 	vec2 redOffset = vec2(1.0 - (depth / far), 0.0) * 0.05 * ANAGLYPH_3D_SEPARATION;
-	vec2 cyanOffset = vec2(-redOffset.x, 0.0) * 0.05 * ANAGLYPH_3D_SEPARATION;
+	vec2 cyanOffset = vec2(-redOffset.x, 0.0);
 	vec3 color;
 	#ifdef ANAGLYPH_3D_ENABLED
 	color.r = texture2D(colortex0, texcoord + redOffset).r;
