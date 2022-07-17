@@ -31,6 +31,7 @@ varying vec2 texcoord;
 #include "lib/tonemapping.glsl"
 #include "lib/color.glsl"
 #include "lib/maths.glsl"
+#include "lib/CIE.glsl"
 
 void main()
 {
@@ -71,6 +72,14 @@ void main()
 
 	#ifdef LUT_CUSTOM
 		color = customLUT(color, colortex7);
+	#endif
+
+	#ifdef COLOR_CHART
+	color = xriteChart(texcoord);
+	#endif
+	#ifdef CIELAB_TONEMAP
+	color = sRGB_to_CIELAB(color);
+	color /= vec3(100.0, 108.0, 108.0);
 	#endif
 
 	vec3 color1 = texture2D(colortex1, texcoord).rgb;

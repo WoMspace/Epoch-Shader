@@ -179,12 +179,14 @@ const float quantisation_colors_perchannel = pow(2, float(QUANTISATION_BITDEPTH)
 #define LUT_SELECTED LUT_DISABLED // [LUT_DISABLED 0 1 2 3 4 5 6 7 8 9]
 const float lut_selected = float(LUT_SELECTED) / 10.0;
 // #define LUT_CUSTOM
+// #define CIELAB_TONEMAP
+// #define COLOR_CHART
+
 #define TONEMAP_BURGESS 0
 #define TONEMAP_JESSIE 1
 #define TONEMAP_ZOMBYE 2
 #define TONEMAP_TECH 3
 #define TONEMAP_OPERATOR TONEMAP_BURGESS // [TONEMAP_BURGESS TONEMAP_ZOMBYE TONEMAP_TECH]
-
 //#define VERTEX_WAVING_WATER
 //#define VERTEX_WAVING_LAVA
 //#define VERTEX_WAVING_LEAVES
