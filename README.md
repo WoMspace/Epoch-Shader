@@ -63,3 +63,5 @@ colortex2|GB 3 6|6|N/A|N/A|color.rgb accum|N/A
 colortex3|2|6|N/A|N/A|CRT Texture|N/A
 colortex4|3|0 1 2|N/A|Bloom|N/A|N/A
 colortex5|3|0|Flares|N/A|N/A|N/A
+colortex6|15|0|N/A|N/A|N/A|HALD-CLUT
+colortex7|15|0|N/A|N/A|N/A|Custom LUT
