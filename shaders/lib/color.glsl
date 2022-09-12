@@ -110,6 +110,27 @@ vec3 customLUT(vec3 color, sampler2D LUT)
 	return color;
 }
 
+// vec3 hald_clut(vec3 oldColor, sampler2D hald)
+// {
+//     ivec3 rounded = ivec3(oldColor * 255.0);
+//     int index = (rounded.b << 16) | (rounded.g << 8) | rounded.r;
+//     ivec2 sampleCoord = ivec2(index & 4095, index >> 12);
+//     vec3 newColor = texelFetch(hald, sampleCoord, 0).rgb;
+// 	return mix(oldColor, newColor, LUT_STRENGTH);
+// }
+
+
+#define LUT_WIDTH 1728
+#define LUT_DEPTH 144
+vec3 hald_clut(vec3 oldColor, sampler2D hald)
+{
+	ivec3 rounded = ivec3(oldColor * float(LUT_DEPTH));
+    int index = (rounded.b * LUT_DEPTH * LUT_DEPTH) + (rounded.g * LUT_DEPTH) + rounded.r;
+    ivec2 sampleCoord = ivec2(index % LUT_WIDTH, index / LUT_WIDTH);
+    vec3 newColor = texelFetch(hald, sampleCoord, 0).rgb;
+	return mix(oldColor, newColor, LUT_STRENGTH);
+}
+
 float bayer2(vec2 uv) {
 	uv = 0.5 * floor(uv);
 	return fract(1.5 * fract(uv.y) + uv.x);

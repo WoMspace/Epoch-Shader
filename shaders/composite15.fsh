@@ -23,6 +23,7 @@ const int colortex0Format = RGBA16F;
 const int colortex1Format = RGBA16F;
 const bool colortex1Clear = false;
 uniform sampler2D colortex1;
+uniform sampler2D colortex6;
 uniform sampler2D colortex7;
 uniform sampler2D depthtex2;
 uniform float frameTime;
@@ -71,6 +72,10 @@ void main()
 
 	#ifdef LUT_CUSTOM
 		color = customLUT(color, colortex7);
+	#endif
+
+	#ifdef HALD_CLUT
+		color = hald_clut(color, colortex6);
 	#endif
 
 	vec3 color1 = texture2D(colortex1, texcoord).rgb;
