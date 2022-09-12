@@ -64,6 +64,8 @@ void main()
 	brightnessMultiplier = float(CAMERA_ISO) / 800.0;
 	#endif
 
+	brightnessMultiplier *= pow(2.0, CAMERA_EXPOSURE_COMPENSATION);
+	// brightnessMultiplier += CAMERA_EXPOSURE_COMPENSATION;
 	color = tonemapSelector(color * brightnessMultiplier * 0.35);
 
 	#if LUT_SELECTED != LUT_DISABLED
