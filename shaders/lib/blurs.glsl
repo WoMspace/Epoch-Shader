@@ -91,3 +91,16 @@ vec3 gaussianBloom(sampler2D colortex, vec2 uv)
 	//retColor *= 30.0;
 	return retColor;
 }
+
+vec3 boxBlur(sampler2D colortex, vec2 uv)
+{
+	vec3 color = vec3(0.0);
+	for(int y = -1; y <= 1; y++)
+	{
+		for(int x = -1; x <= 1; x++)
+		{
+			color += texture2D(colortex, uv + vec2(x * hPixelOffset, y * vPixelOffset)).rgb * boxKernel[y + 1][x + 1];
+		}
+	}
+	return color;
+}

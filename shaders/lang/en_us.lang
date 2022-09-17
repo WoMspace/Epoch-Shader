@@ -1,5 +1,5 @@
 option.EPOCH_VERSION=§5§lEpoch§r by §b§oWoMspace§r
-value.EPOCH_VERSION.1.3=v1.3
+value.EPOCH_VERSION.1.3.1=v1.3.1
 
 profile.OFF=Disabled
 profile.OFF.comment=Disable everything. Except fog.
@@ -213,6 +213,8 @@ option.FILM_IMPERFECTIONS_LINES_ENABLED=Film Lines
 option.FILM_IMPERFECTIONS_LINES_ENABLED.comment=Enable film lines. I think these are scratches from machinery.
 option.FILM_IMPERFECTIONS_LINES_STRENGTH=Lines Strength
 option.FILM_IMPERFECTIONS_LINES_STRENGTH.comment=How strong the lines should be. Realistically this should be near 1.0
+option.FILM_BLUR_ENABLED=Film Blur
+option.FILM_BLUR_ENABLED.comment=Enable film blur. Softens the entire image a small amount.
 option.GRAIN_STRENGTH=Grain Strength
 option.GRAIN_STRENGTH.comment=Strength of the grain. Stronger tends to lower contrast of the whole image.
 option.GRAIN_MODE=Grain Mode

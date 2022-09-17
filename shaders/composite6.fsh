@@ -38,6 +38,7 @@ varying vec2 texcoord;
 
 #include "lib/color.glsl"
 #include "lib/maths.glsl"
+#include "lib/blurs.glsl"
 
 void main()
 {
@@ -71,7 +72,11 @@ void main()
 	uv = unclip(uv);
 	#endif
 
+	#ifdef FILM_BLUR_ENABLED
+	vec3 color = boxBlur(colortex0, uv).rgb;
+	#else
 	vec3 color = texture2D(colortex0, uv).rgb;
+	#endif
 
 	#ifdef FILM_IMPERFECTIONS_SPOTS_ENABLED
 		float spotHere = 0.0;
