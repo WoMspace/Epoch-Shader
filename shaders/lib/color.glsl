@@ -1,3 +1,5 @@
+#extension GL_EXT_gpu_shader4 : enable
+
 float extractLuma(vec3 color)
 {
 	float luma = (color.r + color.g + color.b)/3.0;

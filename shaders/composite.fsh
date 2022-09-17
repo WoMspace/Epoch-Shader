@@ -1,4 +1,4 @@
-#version 120
+#version 130
 
 #extension GL_ARB_shader_texture_lod : enable
 
