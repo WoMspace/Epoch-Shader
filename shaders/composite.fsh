@@ -17,6 +17,7 @@ uniform sampler2D colortex0;
 const int colortex0Format = RGBA16F;
 const bool colortex0MipmapEnabled = true;
 uniform sampler2D depthtex0;
+uniform sampler2D depthtex1;
 uniform mat4 gbufferProjection;
 uniform mat4 gbufferProjectionInverse;
 uniform float far;
@@ -41,12 +42,12 @@ void main()
 	vec3 color = texture2D(colortex0, texcoord).rgb;
 
 	#ifdef SHADER_FOG_ENABLED
-	color = doFog(getRoundFragDepth(depthtex0, texcoord), color, eyeBrightnessSmooth.y);
+	color = doFog(depthtex1, color, eyeBrightnessSmooth.y);
 	#endif
 
 	float coc = 1.0;
 	#if DOF_MODE == DOF_BOKEH
-		float fragDepth = getFragDepth(depthtex0, texcoord);
+		float fragDepth = getFragDepth(depthtex1, texcoord);
 		float cursorDepth = getCursorDepth();
 		coc = abs(lens_aperture_diameter * ((LENS_LENGTH * (cursorDepth - fragDepth)) / (fragDepth * (cursorDepth - LENS_LENGTH)))) * 0.5;
 	#endif

@@ -43,7 +43,7 @@ uniform sampler2D colortex2;
 const bool colortex2MipmapEnabled = true;
 #endif
 #if DITHERING_MODE == DITHERING_BLUE || GRAIN_MODE != 0
-uniform sampler2D depthtex1;
+uniform sampler2D colortex8;
 #endif
 
 varying vec2 texcoord;
@@ -106,10 +106,10 @@ void main()
 		float grainWeight = clamp(-log(length(color))/4.0, 0.0, 1.0);
 		float grain_strength = GRAIN_STRENGTH * (1.0 - length(color)) * (GRAIN_PERFORMANCE * GRAIN_PERFORMANCE * 0.5);
 		#if GRAIN_MODE == 1 // luma noise
-			float noise = (texture2D(noisetex, noiseCoord).r + texture2D(depthtex1, noiseCoord).a - 1.0) * grain_strength;
+			float noise = (texture2D(noisetex, noiseCoord).r + texture2D(colortex8, noiseCoord).a - 1.0) * grain_strength;
 			color = mix(color, vec3(noise), grainWeight);
 		#elif GRAIN_MODE == 2 // chroma noise
-		vec3 noise = (texture2D(noisetex, noiseCoord).rgb + texture2D(depthtex1, noiseCoord).rgb - vec3(1.0)) * grain_strength;
+		vec3 noise = (texture2D(noisetex, noiseCoord).rgb + texture2D(colortex8, noiseCoord).rgb - vec3(1.0)) * grain_strength;
 		noise = mat3(saturationMatrix(4.0)) * noise;
 		color = mix(color, noise, grainWeight);
 		#endif
@@ -127,7 +127,7 @@ void main()
 	color += (bayer128(gl_FragCoord.xy) * DITHERING_STRENGTH) / quantisation_colors_perchannel;
 	#elif DITHERING_MODE == DITHERING_BLUE
 	vec2 ditherUV = vec2(texcoord.x * (viewWidth / 1024.0), texcoord.y * (viewHeight / 1024.0));
-	color += (texture2D(depthtex1, ditherUV).a * DITHERING_STRENGTH) / quantisation_colors_perchannel;
+	color += (texture2D(colortex8, ditherUV).a * DITHERING_STRENGTH) / quantisation_colors_perchannel;
 	#endif
 	#ifdef QUANTISATION_ENABLED
 	color *= quantisation_colors_perchannel;

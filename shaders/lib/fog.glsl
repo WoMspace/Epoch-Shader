@@ -1,6 +1,6 @@
-vec3 doFog(float depth, vec3 color, int skyLight)
+vec3 doFog(sampler2D depthTex, vec3 color, int skyLight)
 {
-	float viewPos = getRoundFragDepth(depthtex0, texcoord);
+	float viewPos = getRoundFragDepth(depthTex, texcoord);
 	vec3 customFogColor;
 	float fogNearValue;
 	float fogFarValue;
@@ -23,7 +23,8 @@ vec3 doFog(float depth, vec3 color, int skyLight)
 		fogNearValue = 0.0;
 		fogFarValue = LAVA_FOG_DISTANCE;
 	}
-	if(texture2D(depthtex0, texcoord).r != 1.0)
+
+	if(texture2D(depthTex, texcoord).r != 1.0)
 	{
 		color = mix(color, customFogColor, clamp(((length(viewPos)-fogNearValue)/fogFarValue), 0.0, 1.0));
 	}
