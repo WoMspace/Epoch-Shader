@@ -116,6 +116,9 @@ option.HDR_EXPOSURE_MINIMUM=Minimum Exposure
 option.HDR_EXPOSURE_MINIMUM.comment=How low the exposure can get. Higher values equal darker.
 option.HDR_EXPOSURE_MAXIMUM=Maximum Exposure
 option.HDR_EXPOSURE_MAXIMUM.comment=How bright the exposure can get. Lower values equal brighter.
+option.UNDERGROUND_DARKNESS_FIX=Fix Underground Darkness
+option.UNDERGROUND_DARKNESS_FIX.comment=Force lighting underground to be the minimum. May cause issues with large overhangs.
+
 option.DOF_MODE=DoF Mode
 option.DOF_MODE.comment=Which mode of DoF to use. Mipmap is very fast but low quality. Bokeh is slower but very high quality.
 value.DOF_MODE.DOF_DISABLED=Disabled
