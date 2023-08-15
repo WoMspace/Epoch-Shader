@@ -105,7 +105,6 @@ const vec2 CustomLUTBlueOffsets[64] = vec2[] (
 
 vec3 customLUT(vec3 color, sampler2D LUT)
 {
-	color = clamp(color, 1e-6, 1.0);
 	vec2 RGOffset = vec2(color.r / 8.0, color.g / 8.0);
 	vec2 Boffset = CustomLUTBlueOffsets[int(color.b * 64.0)];
 	color = texture2D(LUT, RGOffset + Boffset).rgb;

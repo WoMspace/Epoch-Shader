@@ -68,6 +68,8 @@ void main()
 	// brightnessMultiplier += CAMERA_EXPOSURE_COMPENSATION;
 	color = tonemapSelector(color * brightnessMultiplier * 0.35);
 
+	
+	color = clamp(color, 1e-6, 1.0 - 1e-6);
 	#if LUT_SELECTED != LUT_DISABLED
 		color = applyLUT(clamp(color, 0.0, 1.0), depthtex2);
 	#endif
