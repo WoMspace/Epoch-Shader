@@ -66,6 +66,7 @@ const float centerDepthHalflife = 0.5; // How fast the focus should move. In sec
 #define DOF_ANAMORPHIC 1.0 // Aspect ratio of the bokeh. [0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 1.2 1.4 1.6 1.8 2.0 2.2 2.4 2.6 2.8 3.0]
 #define DOF_BOKEH_SAMPLES 128 // How many samples to use for the bokeh. [32 64 128 34 55 89 144]
 // #define DOF_BOKEH_MIPMAP // Smoothens a low bokeh sample count. Can make the bokeh pixellated.
+#define DOF_COC_LOD 3.5 // Disables the downsample of Circle of Confusion. Fixes the hand outline at the cost of other DoF artefacts. [0.0 3.5]
 
 #define BLOOM_DISABLED -1
 #define BLOOM_STRENGTH 1.0 // How strong should the bloom effect be. [0.2 0.4 0.6 0.8 1.0 1.2 1.4 1.6 1.8 2.0]
