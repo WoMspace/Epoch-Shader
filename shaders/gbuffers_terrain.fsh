@@ -25,7 +25,6 @@ uniform mat4 gbufferModelViewInverse;
 uniform mat4 gbufferModelView;
 uniform vec3 sunPosition;
 uniform vec3 shadowLightPosition;
-const float sunPathRotation = -25.0;
 uniform int worldTime;
 uniform vec3 skyColor;
 

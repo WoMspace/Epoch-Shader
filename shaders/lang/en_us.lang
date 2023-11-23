@@ -118,6 +118,8 @@ option.HDR_EXPOSURE_MAXIMUM=Maximum Exposure
 option.HDR_EXPOSURE_MAXIMUM.comment=How bright the exposure can get. Lower values equal brighter.
 option.UNDERGROUND_DARKNESS_FIX=Fix Underground Darkness
 option.UNDERGROUND_DARKNESS_FIX.comment=Force lighting underground to be the minimum. May cause issues with large overhangs.
+option.sunPathRotation=Sun Angle
+option.sunPathRotation.comment=Change the angle at which the sun and moon orbit the world. 0.0 is directly overhead.
 
 option.DOF_MODE=DoF Mode
 option.DOF_MODE.comment=Which mode of DoF to use. Mipmap is very fast but low quality. Bokeh is slower but very high quality.
