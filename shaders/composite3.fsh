@@ -30,6 +30,7 @@ uniform float viewHeight;
 uniform float aspectRatio;
 uniform int frameCounter;
 uniform float frameTimeCounter;
+uniform vec3 fogColor;
 
 #if BLOOM_QUALITY != BLOOM_DISABLED
 uniform sampler2D colortex4;
@@ -117,9 +118,11 @@ void main()
 
 	#if CHROMA_SAMPLING_MODE == CHROMA_SAMPLING_DOWNSAMPLE
 		vec3 chroma = normalize(texture2DLod(colortex0, texcoord, CHROMA_SAMPLING_SIZE).rgb) * 2.0;
+		if(length(chroma) < 1.0) chroma = normalize(fogColor) * 2.0;
 		color = max(chroma * extractLuma(color), 0.0);
 	#elif CHROMA_SAMPLING_MODE == CHROMA_SAMPLING_SHIFT
 		vec3 chroma = normalize(texture2DLod(colortex0, texcoord - vec2(7.0 / viewWidth, 0.0), CHROMA_SAMPLING_SIZE).rgb) * 2.0;
+		if(length(chroma) < 1.0) chroma = normalize(fogColor) * 2.0;
 		color = max(chroma * extractLuma(color), 0.0);
 	#endif
 
