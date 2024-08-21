@@ -1,6 +1,7 @@
 //color space conversions from https://github.com/Jessie-LC/open-source-utility-code. Thanks Jessie!
 
 uniform ivec2 eyeBrightness;
+uniform float isInTheDark;
 
 vec3 srgbToLinear(in vec3 srgb) {
 	return pow(srgb, vec3(2.2));
@@ -49,7 +50,7 @@ vec3 applyLightmap(vec3 color, vec2 lmcoord, vec3 skyColor, int worldTime, float
 	#endif
 
 	#ifdef UNDERGROUND_DARKNESS_FIX
-	if(eyeBrightness.y == 0) { ambientColor = vec3(HDR_MINLIGHT); }
+	ambientColor = mix(ambientColor, vec3(HDR_MINLIGHT), isInTheDark);
 	#endif
 
 	vec3 sunlightColor = vec3(HDR_SUNLIGHT_RED, HDR_SUNLIGHT_GREEN, HDR_SUNLIGHT_BLUE) * lmcoord.y * HDR_SUNLIGHT_STRENGTH;
